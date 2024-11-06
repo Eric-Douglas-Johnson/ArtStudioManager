@@ -1,0 +1,34 @@
+﻿@page "/counter"
+@rendermode InteractiveServer
+
+<PageTitle>Counter</PageTitle>
+
+<h1>Counter</h1>
+
+<p role="status">Current count: @_currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+@if (_currentCount > 3)
+{
+    <p>You Rock!</p>
+}
+
+<ul>
+@for (int i = 0; i < _currentCount; i++)
+{
+    <li>Clicked!</li>
+}
+</ul>
+
+@code {
+    private int _currentCount = 0;
+
+    [Parameter]
+    public int IncrementAmount { get; set; }
+
+    private void IncrementCount()
+    {
+        _currentCount += IncrementAmount;
+    }
+}
