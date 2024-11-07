@@ -3,6 +3,7 @@ namespace ArtStudioManager.Components
 {
     public class ArtClass
     {
+        public Guid Id { get; private set; }
         public ClassType? Type { get; set; }
         public string? Name { get; set; }
         public string? Description { get; set; }
@@ -12,6 +13,11 @@ namespace ArtStudioManager.Components
         public List<Customer>? Customers { get; set; }
         public decimal? CostPerMember { get; set; }
         public decimal? CostPerCustomer { get; set; }
+
+        public ArtClass()
+        {
+            Id = Guid.NewGuid();
+        }
 
         public decimal? GetTotalDollars()
         {

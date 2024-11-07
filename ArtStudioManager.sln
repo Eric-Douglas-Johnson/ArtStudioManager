@@ -5,7 +5,7 @@ VisualStudioVersion = 17.10.35027.167
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArtStudioManager", "ArtStudioManager.csproj", "{24BD2DEB-983F-4540-BCCA-CD6913E66B15}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTesting", "..\UnitTesting\UnitTesting.csproj", "{F2D9F351-12A0-4346-ABB5-81B47FEC8683}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTesting", "..\UnitTesting\UnitTesting.csproj", "{F2D9F351-12A0-4346-ABB5-81B47FEC8683}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

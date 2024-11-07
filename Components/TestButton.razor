@@ -1,0 +1,11 @@
+﻿<button @onclick="OnButtonClick">Edit</button>
+
+@code {
+    [Parameter]
+    public EventCallback<MouseEventArgs> OnClick { get; set; }
+
+    private Task OnButtonClick(MouseEventArgs e)
+    {
+        return OnClick.InvokeAsync(e);
+    }
+}

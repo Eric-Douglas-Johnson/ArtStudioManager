@@ -14,6 +14,7 @@ else
     <table class="table">
         <thead>
             <tr>
+                <th></th>
                 <th>Type</th>
                 <th>Name</th>
                 <th>Date And Time</th>
@@ -29,6 +30,7 @@ else
             @foreach (var artClass in classes)
             {
                 <tr>
+                    <td><button class="btn btn-primary" @onclick="() => EditClass(artClass.Id)">Edit</button></td>
                     <td>@artClass.Type.ToString()</td>
                     <td>@artClass.Name</td>
                     <td>@artClass.DateAndTime.ToString()</td>
@@ -73,5 +75,10 @@ else
             CostPerMember = 45.50m,
             CostPerCustomer = 60m
         }).ToArray();
+    }
+
+    private async Task EditClass(Guid classId)
+    {
+        
     }
 }
