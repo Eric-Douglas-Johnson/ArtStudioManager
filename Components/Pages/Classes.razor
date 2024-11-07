@@ -1,0 +1,77 @@
+﻿@page "/classes"
+@attribute [StreamRendering]
+
+<PageTitle>Classes</PageTitle>
+
+<h3>Classes</h3>
+
+@if (classes == null)
+{
+    <p><em>Loading Classes...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Type</th>
+                <th>Name</th>
+                <th>Date And Time</th>
+                <th>Instructor(s)</th>
+                <th>Member Count</th>
+                <th>Customer Count</th>
+                <th>Cost Per Member</th>
+                <th>Cost Per Customer</th>
+                <th>Total Dollars</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var artClass in classes)
+            {
+                <tr>
+                    <td>@artClass.Type.ToString()</td>
+                    <td>@artClass.Name</td>
+                    <td>@artClass.DateAndTime.ToString()</td>
+
+                    <td>
+                    @foreach (var instructor in artClass.Instructors)
+                    {
+                        instructor.ToString();
+                    }
+                    </td>
+
+                    <td>@artClass.Members.Count()</td>
+                    <td>@artClass.Customers.Count()</td>
+                    <td>@artClass.CostPerMember</td>
+                    <td>@artClass.CostPerCustomer</td>
+                    <td>@artClass.GetTotalDollars()</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private ArtClass[]? classes;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await Task.Delay(1000);
+
+        var classDate = DateTime.Now;
+        var classTypes = new[] { ClassType.Glass, ClassType.Pottery, ClassType.Scratch, ClassType.Paint };
+
+        classes = Enumerable.Range(1, 5).Select(index => new ArtClass
+        {
+            Type = classTypes[Random.Shared.Next(classTypes.Length)],
+            Name = "Name of Class",
+            Description = "Description of specific class",
+            DateAndTime = classDate.AddDays(index),
+            Instructors = new List<Instructor> { new Instructor() },
+            Members = new List<Member> { new Member(), new Member(), new Member() },
+            Customers = new List<Customer> { new Customer(), new Customer() },
+            CostPerMember = 45.50m,
+            CostPerCustomer = 60m
+        }).ToArray();
+    }
+}
