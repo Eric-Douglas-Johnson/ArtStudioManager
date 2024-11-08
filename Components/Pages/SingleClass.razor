@@ -1,5 +1,17 @@
-﻿<h3>Class</h3>
+﻿@page "/classes/{classId:guid?}"
+@rendermode InteractiveServer
+@attribute [StreamRendering]
+
+<h3>Class</h3>
 
 @code {
+    private ArtClass _class;
 
+    [Parameter]
+    public Guid ClassId { get; set; }
+
+    protected override void OnInitialized()
+    {
+        _class = new ArtClass(ClassId);
+    }
 }

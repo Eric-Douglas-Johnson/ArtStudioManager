@@ -19,6 +19,25 @@ namespace ArtStudioManager.Components
             Id = Guid.NewGuid();
         }
 
+        public ArtClass(Guid id)
+        {
+            Id = id;
+            Load();
+        }
+
+        private void Load()
+        {
+            Type = ClassType.Paint;
+            Name = "Name of Class";
+            Description = "Description of specific class";
+            DateAndTime = DateTime.Now;
+            Instructors = new List<Instructor> { new Instructor() };
+            Members = new List<Member> { new Member(), new Member(), new Member() };
+            Customers = new List<Customer> { new Customer(), new Customer() };
+            CostPerMember = 45.50m;
+            CostPerCustomer = 60m;
+        }
+
         public decimal? GetTotalDollars()
         {
             decimal? totalDollars = 0;
