@@ -31,9 +31,9 @@ namespace ArtStudioManager.Components
             Name = "Name of Class";
             Description = "Description of specific class";
             DateAndTime = DateTime.Now;
-            Instructors = new List<Instructor> { new Instructor() };
-            Members = new List<Member> { new Member(), new Member(), new Member() };
-            Customers = new List<Customer> { new Customer(), new Customer() };
+            Instructors = new List<Instructor> { new Instructor() { Name = "Karen", IsPrimary = true } };
+            Members = new List<Member> { new Member() { Name = "Eric" }, new Member() { Name = "Paula" } };
+            Customers = new List<Customer> { new Customer() { Name = "Random Customer" } };
             CostPerMember = 45.50m;
             CostPerCustomer = 60m;
         }
@@ -53,6 +53,22 @@ namespace ArtStudioManager.Components
             }
 
             return totalDollars;
+        }
+
+        public Instructor GetPrimaryInstructor()
+        {
+            if (Instructors != null &&  Instructors.Count > 0)
+            {
+                foreach (var instructor in Instructors)
+                {
+                    if (instructor.IsPrimary)
+                    {
+                        return instructor;
+                    }
+                }
+            }
+
+            throw new InvalidOperationException("There is no primary instructor.");
         }
     }
 }

@@ -1,0 +1,37 @@
+﻿@page "/classes/{classId:guid?}/editclass"
+@rendermode InteractiveServer
+
+<h3>Edit Class</h3>
+
+<div class="mt-3">
+    <p>Instructor</p>
+    <input @bind="newInstructorName">
+    <button @onclick="AddNewInstructor">Add</button>
+    <button @onclick="RemoveInstructor">Remove</button>
+</div>
+
+@code {
+    private ArtClass? artClass;
+
+    private string newInstructorName = "";
+    private string newMemberName = "";
+    private string newCustomerName = "";
+
+    [Parameter]
+    public Guid ClassId { get; set; }
+
+    protected override void OnInitialized()
+    {
+        artClass = new ArtClass(ClassId);
+    }
+
+    private void AddNewInstructor()
+    {
+        artClass.Instructors.Add(new Instructor() { Name = newInstructorName });
+    }
+
+    private void RemoveInstructor()
+    {
+        artClass.Instructors.Remove(new Instructor());
+    }
+}

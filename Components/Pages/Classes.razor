@@ -35,14 +35,7 @@ else
                     <td>@artClass.Type.ToString()</td>
                     <td>@artClass.Name</td>
                     <td>@artClass.DateAndTime.ToString()</td>
-
-                    <td>
-                    @foreach (var instructor in artClass.Instructors)
-                    {
-                        instructor.ToString();
-                    }
-                    </td>
-
+                    <td>@artClass.GetPrimaryInstructor().Name</td>
                     <td>@artClass.Members.Count()</td>
                     <td>@artClass.Customers.Count()</td>
                     <td>@artClass.CostPerMember</td>
@@ -70,7 +63,7 @@ else
             Name = "Name of Class",
             Description = "Description of specific class",
             DateAndTime = classDate.AddDays(index),
-            Instructors = new List<Instructor> { new Instructor() },
+            Instructors = new List<Instructor> { new Instructor() { Name = "Karen", IsPrimary = true }, new Instructor() { Name = "Rose" } },
             Members = new List<Member> { new Member(), new Member(), new Member() },
             Customers = new List<Customer> { new Customer(), new Customer() },
             CostPerMember = 45.50m,

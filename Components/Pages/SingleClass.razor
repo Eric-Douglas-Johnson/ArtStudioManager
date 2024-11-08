@@ -3,18 +3,52 @@
 
 <h3>Class</h3>
 
+@if (artClass == null) { throw new InvalidOperationException("Art Class could not be initialized."); }
+
 <div class="mt-3">
-    <p>Class Name</p>
-    <input @bind="newClassName" @bind:event="oninput" @bind:after="Search">
-    <button @onclick="OnClick">Clear</button>
-    <p>@newClassName</p>
-    <p>@searchResults</p>
+    <p>Instructor(s)</p>
+    
+    @if (artClass.Instructors != null && artClass.Instructors.Count > 0)
+    {
+        <ul>
+            @foreach (var instructor in artClass.Instructors)
+            {
+                <li>@instructor.Name</li>
+            }
+        </ul>
+    }
+</div>
+
+<div class="mt-3">
+    <p>Members</p>
+
+    @if (artClass.Members != null && artClass.Members.Count > 0)
+    {
+        <ul>
+            @foreach (var member in artClass.Members)
+            {
+                <li>@member.Name</li>
+            }
+        </ul>
+    }
+</div>
+
+<div class="mt-3">
+    <p>Customers</p>
+
+    @if (artClass.Customers != null && artClass.Customers.Count > 0)
+    {
+        <ul>
+            @foreach (var customer in artClass.Customers)
+            {
+                <li>@customer.Name</li>
+            }
+        </ul>
+    }
 </div>
 
 @code {
-    private ArtClass artClass;
-    private string newClassName;
-    private string searchResults;
+    private ArtClass? artClass;
 
     [Parameter]
     public Guid ClassId { get; set; }
@@ -22,19 +56,5 @@
     protected override void OnInitialized()
     {
         artClass = new ArtClass(ClassId);
-    }
-
-    private void OnClick(MouseEventArgs e)
-    {
-        newClassName = "";
-    }
-
-    async Task Search()
-    {
-        searchResults = "Searching...";
-
-        await Task.Delay(1000);
-
-        searchResults = $"{newClassName} Found {Random.Shared.Next()} results.";
     }
 }
