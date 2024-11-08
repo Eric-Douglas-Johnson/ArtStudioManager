@@ -1,6 +1,6 @@
 ﻿@page "/classes"
 @rendermode InteractiveServer
-@attribute [StreamRendering]
+@inject NavigationManager NavigationManager
 
 <PageTitle>Classes</PageTitle>
 
@@ -78,8 +78,8 @@ else
         }).ToArray();
     }
 
-    private async Task EditClass(Guid classId)
+    private void EditClass(Guid classId)
     {
-        
+        NavigationManager.NavigateTo("classes/" + classId);
     }
 }
