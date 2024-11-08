@@ -1,18 +1,45 @@
 ﻿
+using System.ComponentModel.DataAnnotations;
+
 namespace ArtStudioManager.Components
 {
     public class ArtClass
     {
+        private decimal _costPerMember;
+        private decimal _costPerCustomer;
+
         public Guid Id { get; private set; }
         public ClassType? Type { get; set; }
+        [Required]
         public string? Name { get; set; }
         public string? Description { get; set; }
+        [Required]
         public DateTime? DateAndTime { get; set; }
         public List<Instructor>? Instructors { get; set; }
         public List<Member>? Members { get; set; }
         public List<Customer>? Customers { get; set; }
-        public decimal? CostPerMember { get; set; }
-        public decimal? CostPerCustomer { get; set; }
+
+        [Required]
+        [Range(0, 9999.99)]
+        public decimal CostPerMember
+        {
+            get { return _costPerMember; }
+            set
+            {
+                _costPerMember = Math.Round(value, 2);
+            }
+        }
+
+        [Required]
+        [Range(0, 9999.99)]
+        public decimal CostPerCustomer
+        {
+            get { return _costPerCustomer; }
+            set
+            {
+                _costPerCustomer = Math.Round(value, 2);
+            }
+        }
 
         public ArtClass()
         {
