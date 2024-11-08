@@ -46,10 +46,10 @@ namespace ArtStudioManager.Components
             Id = Guid.NewGuid();
         }
 
-        public ArtClass(Guid id)
+        public ArtClass(Guid id, IDataLoader<ArtClass> dataLoader)
         {
             Id = id;
-            Load();
+            dataLoader.Load(this);
         }
 
         private void Load()
