@@ -1,6 +1,6 @@
 ﻿@page "/classes"
 @inject NavigationManager NavigationManager
-@attribute [StreamRendering]
+@rendermode @(new InteractiveServerRenderMode(prerender:false))
 
 <PageTitle>Classes</PageTitle>
 
@@ -53,6 +53,7 @@ else
     protected override async Task OnInitializedAsync()
     {
         await Task.Delay(2000);
+
         classes = new List<ArtClass>();
 
         for (int i = 0; i < 10; i++)
