@@ -1,6 +1,6 @@
 ﻿@page "/classes"
-@rendermode InteractiveServer
 @inject NavigationManager NavigationManager
+@attribute [StreamRendering]
 
 <PageTitle>Classes</PageTitle>
 
@@ -48,27 +48,17 @@ else
 }
 
 @code {
-    private ArtClass[]? classes;
+    private List<ArtClass>? classes;
 
     protected override async Task OnInitializedAsync()
     {
-        await Task.Delay(1000);
+        await Task.Delay(2000);
+        classes = new List<ArtClass>();
 
-        var classDate = DateTime.Now;
-        var classTypes = new[] { ClassType.Glass, ClassType.Pottery, ClassType.Scratch, ClassType.Paint };
-
-        classes = Enumerable.Range(1, 5).Select(index => new ArtClass
+        for (int i = 0; i < 10; i++)
         {
-            Type = classTypes[Random.Shared.Next(classTypes.Length)],
-            Name = "Name of Class",
-            Description = "Description of specific class",
-            DateAndTime = classDate.AddDays(index),
-            Instructors = new List<Instructor> { new Instructor() { Name = "Karen", IsPrimary = true }, new Instructor() { Name = "Rose" } },
-            Members = new List<Member> { new Member(), new Member(), new Member() },
-            Customers = new List<Customer> { new Customer(), new Customer() },
-            CostPerMember = 45.50m,
-            CostPerCustomer = 60m
-        }).ToArray();
+            classes.Add(new ArtClass(Guid.NewGuid(), new ArtClassTestDataLoader()));
+        }
     }
 
     private void EditClass(Guid classId)
