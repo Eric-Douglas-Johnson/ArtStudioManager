@@ -52,19 +52,6 @@ namespace ArtStudioManager.Components
             dataLoader.Load(this);
         }
 
-        private void Load()
-        {
-            Type = ClassType.Paint;
-            Name = "Name of Class";
-            Description = "Description of specific class";
-            DateAndTime = DateTime.Now;
-            Instructors = new List<Instructor> { new Instructor() { Name = "Karen", IsPrimary = true } };
-            Members = new List<Member> { new Member() { Name = "Eric" }, new Member() { Name = "Paula" } };
-            Customers = new List<Customer> { new Customer() { Name = "Random Customer" } };
-            CostPerMember = 45.50m;
-            CostPerCustomer = 60m;
-        }
-
         public decimal? GetTotalDollars()
         {
             decimal? totalDollars = 0;

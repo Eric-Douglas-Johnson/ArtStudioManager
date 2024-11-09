@@ -1,4 +1,4 @@
-
+﻿
 namespace ArtStudioManager.Components
 {
     public interface IDataLoader<T>
