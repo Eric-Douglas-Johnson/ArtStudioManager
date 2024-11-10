@@ -36,8 +36,17 @@ else
                     <td>@artClass.Name</td>
                     <td>@artClass.DateAndTime.ToString()</td>
                     <td>@artClass.GetPrimaryInstructor().Name</td>
-                    <td>@artClass.Members.Count()</td>
-                    <td>@artClass.Customers.Count()</td>
+
+                    @if (artClass.Members != null)
+                    {
+                        <td>@artClass.Members.Count()</td>
+                    }
+
+                    @if (artClass.Customers != null)
+                    {
+                        <td>@artClass.Customers.Count()</td>
+                    }
+                    
                     <td>@artClass.CostPerMember</td>
                     <td>@artClass.CostPerCustomer</td>
                     <td>@artClass.GetTotalDollars()</td>
@@ -52,7 +61,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        await Task.Delay(2000);
+        await Task.Delay(1000);
 
         classes = new List<ArtClass>();
 

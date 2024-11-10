@@ -6,17 +6,76 @@
 @if (artClass == null) { throw new InvalidOperationException("Art Class could not be initialized."); }
 
 <EditForm Model="@artClass" OnValidSubmit="Save" OnInvalidSubmit="ShowSubmitError">
-    <div>
+    <div style="width:500px; margin-bottom:10px;">
+        <label for="classtype">Class Type</label>
+        <br />
+        <InputRadioGroup id="classtype" @bind-Value="@artClass.Type" class="form-control">
+            @foreach (var classType in (ClassType[])Enum.GetValues(typeof(ClassType)))
+            {
+                <InputRadio Value="classType" />
+                @classType
+                <br />
+            }
+        </InputRadioGroup>
+    </div>
+    <div style="width:500px; margin-bottom:10px;">
         <label for="name">Name</label>
         <InputText id="name" @bind-Value="artClass.Name" class="form-control"></InputText>
     </div>
-    <div>
+    <div style="width:500px; margin-bottom:10px;">
         <label for="desc">Description</label>
         <InputText id="desc" @bind-Value="artClass.Description" class="form-control"></InputText>
     </div>
-    <div>
+    <div style="width:200px; margin-bottom:10px;">
         <label for="dateandtime">Date and Time</label>
         <InputDate id="dateandtime" Type="InputDateType.DateTimeLocal" @bind-Value="artClass.DateAndTime" class="form-control"></InputDate>
+    </div>
+    <div style="width:200px; margin-bottom:10px;">
+        <label for="costpercustomer">Cost($)</label>
+        <InputNumber id="costpercustomer" @bind-Value="artClass.CostPerCustomer" class="form-control"></InputNumber>
+    </div>
+    <div style="width:200px; margin-bottom:10px;">
+        <label for="costpermember">Cost for Members($)</label>
+        <InputNumber id="costpermember" @bind-Value="artClass.CostPerMember" class="form-control"></InputNumber>
+    </div>
+    <div style="width:500px; margin-bottom:10px;">
+        <label>Instructors</label>
+        <ul>
+            @if (artClass.Instructors != null)
+            {
+                @foreach (var instructor in artClass.Instructors)
+                {
+                    <li>@instructor.Name</li>
+                }
+            }
+        </ul>
+        <button class="btn btn-primary" @onclick="EditInstructors">Edit</button>
+    </div>
+    <div style="width:500px; margin-bottom:10px;">
+        <label>Members Signed Up</label>
+        <ul>
+            @if (artClass.Members != null)
+            {
+                @foreach (var member in artClass.Members)
+                {
+                    <li>@member.Name</li>
+                }
+            }
+        </ul>
+        <button class="btn btn-primary" @onclick="EditMembers">Edit</button>
+    </div>
+    <div style="width:500px; margin-bottom:10px;">
+        <label>Non-Members Signed Up</label>
+        <ul>
+            @if (artClass.Customers != null)
+            {
+                @foreach (var customer in artClass.Customers)
+                {
+                    <li>@customer.Name</li>
+                }
+            }
+        </ul>
+        <button class="btn btn-primary" @onclick="EditCustomers">Edit</button>
     </div>
 </EditForm>
 
@@ -37,10 +96,25 @@
 
     private void Save()
     {
-        artClass.Instructors.Add(new Instructor() { Name = newInstructorName });
+
     }
 
     private void ShowSubmitError()
+    {
+
+    }
+
+    private void EditInstructors()
+    {
+
+    }
+
+    private void EditMembers()
+    {
+
+    }
+
+    private void EditCustomers()
     {
         
     }
