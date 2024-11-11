@@ -1,0 +1,18 @@
+﻿@page "/classes/attendance/{classId:guid?}"
+@rendermode @(new InteractiveServerRenderMode(prerender:true))
+
+<h3>Class Attendance</h3>
+
+@if (artClass == null) { throw new InvalidOperationException("Art Class could not be initialized."); }
+
+@code {
+    private ArtClass? artClass;
+
+    [Parameter]
+    public Guid ClassId { get; set; }
+
+    protected override void OnInitialized()
+    {
+        artClass = new ArtClass(ClassId, new ArtClassTestDataLoader());
+    }
+}

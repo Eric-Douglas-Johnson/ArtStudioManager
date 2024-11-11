@@ -4,11 +4,9 @@
 
 <PageTitle>Classes</PageTitle>
 
-<h3>Classes</h3>
-
 @if (classes == null)
 {
-    <p><em>Loading Classes...</em></p>
+    <p><em>Loading Classes.....</em></p>
 }
 else
 {
@@ -19,18 +17,19 @@ else
                 <th>Type</th>
                 <th>Name</th>
                 <th>Date And Time</th>
-                <th>Instructor(s)</th>
+                <th>Instructor</th>
                 <th>Member Count</th>
                 <th>Customer Count</th>
                 <th>Cost Per Member</th>
                 <th>Cost Per Customer</th>
                 <th>Total Dollars</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
             @foreach (var artClass in classes)
             {
-                <tr>
+                <tr style="outline: thin solid">
                     <td><button class="btn btn-primary" @onclick="() => EditClass(artClass.Id)">Edit</button></td>
                     <td>@artClass.Type.ToString()</td>
                     <td>@artClass.Name</td>
@@ -50,6 +49,7 @@ else
                     <td>@artClass.CostPerMember</td>
                     <td>@artClass.CostPerCustomer</td>
                     <td>@artClass.GetTotalDollars()</td>
+                    <td><button class="btn btn-primary" @onclick="() => EditAttendance(artClass.Id)">Attendance</button></td>
                 </tr>
             }
         </tbody>
@@ -74,5 +74,10 @@ else
     private void EditClass(Guid classId)
     {
         NavigationManager.NavigateTo("classes/" + classId);
+    }
+
+    private void EditAttendance(Guid classId)
+    {
+        NavigationManager.NavigateTo("classes/attendance/" + classId);
     }
 }
