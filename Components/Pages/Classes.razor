@@ -1,5 +1,6 @@
 ﻿@page "/classes"
 @inject NavigationManager NavigationManager
+@using Microsoft.AspNetCore.Components.QuickGrid;
 @rendermode @(new InteractiveServerRenderMode(prerender:false))
 
 <PageTitle>Classes</PageTitle>
@@ -10,54 +11,23 @@
 }
 else
 {
-    <table class="table">
-        <thead>
-            <tr>
-                <th></th>
-                <th>Type</th>
-                <th>Name</th>
-                <th>Date And Time</th>
-                <th>Instructor</th>
-                <th>Member Count</th>
-                <th>Customer Count</th>
-                <th>Cost Per Member</th>
-                <th>Cost Per Customer</th>
-                <th>Total Dollars</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var artClass in classes)
-            {
-                <tr style="outline: thin solid">
-                    <td><button class="btn btn-primary" @onclick="() => EditClass(artClass.Id)">Edit</button></td>
-                    <td>@artClass.Type.ToString()</td>
-                    <td>@artClass.Name</td>
-                    <td>@artClass.DateAndTime.ToString()</td>
-                    <td>@artClass.GetPrimaryInstructor().Name</td>
-
-                    @if (artClass.Members != null)
-                    {
-                        <td>@artClass.Members.Count()</td>
-                    }
-
-                    @if (artClass.Customers != null)
-                    {
-                        <td>@artClass.Customers.Count()</td>
-                    }
-                    
-                    <td>@artClass.CostPerMember</td>
-                    <td>@artClass.CostPerCustomer</td>
-                    <td>@artClass.GetTotalDollars()</td>
-                    <td><button class="btn btn-primary" @onclick="() => EditAttendance(artClass.Id)">Attendance</button></td>
-                </tr>
-            }
-        </tbody>
-    </table>
+    <QuickGrid Items="@queryableClasses">
+        <PropertyColumn Property="@(p => p.Type)" Sortable="true" Title="Type" />
+        <PropertyColumn Property="@(p => p.Name)" Sortable="true" Title="Name" />
+        <PropertyColumn Property="@(p => p.Start.ToString("MMMM dd, yyyy"))" Sortable="true" Title="Date" />
+        <PropertyColumn Property="@(p => p.Start.ToString("h:mm tt"))" Title="Start Time" />
+        <PropertyColumn Property="@(p => p.End.ToString("h:mm tt"))" Title="End Time" />
+        <PropertyColumn Property="@(p => p.GetPrimaryInstructor().Name)" Title="Instructor" />
+        <TemplateColumn Title="Actions">
+            <button class="btn btn-primary" @onclick="@(() => EditClass(context))">Edit</button>
+            <button class="btn btn-primary" @onclick="@(() => EditAttendance(context))">Attendance</button>
+        </TemplateColumn>
+    </QuickGrid>
 }
 
 @code {
     private List<ArtClass>? classes;
+    private IQueryable<ArtClass>? queryableClasses;
 
     protected override async Task OnInitializedAsync()
     {
@@ -69,15 +39,17 @@ else
         {
             classes.Add(new ArtClass(Guid.NewGuid(), new ArtClassTestDataLoader()));
         }
+
+        queryableClasses = classes.AsQueryable<ArtClass>();
     }
 
-    private void EditClass(Guid classId)
+    private void EditClass(ArtClass artClass)
     {
-        NavigationManager.NavigateTo("classes/" + classId);
+        NavigationManager.NavigateTo("classes/" + artClass.Id);
     }
 
-    private void EditAttendance(Guid classId)
+    private void EditAttendance(ArtClass artClass)
     {
-        NavigationManager.NavigateTo("classes/attendance/" + classId);
+        NavigationManager.NavigateTo("classes/attendance/" + artClass.Id);
     }
 }

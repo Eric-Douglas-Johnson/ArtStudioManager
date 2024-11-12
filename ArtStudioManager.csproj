@@ -13,4 +13,8 @@
     <None Remove="UnitTesting\**" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.QuickGrid" Version="8.0.10" />
+  </ItemGroup>
+
 </Project>

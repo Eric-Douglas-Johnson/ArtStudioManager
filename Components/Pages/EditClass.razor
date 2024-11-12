@@ -27,8 +27,12 @@
         <InputText id="desc" @bind-Value="artClass.Description" class="form-control"></InputText>
     </div>
     <div style="width:200px; margin-bottom:10px;">
-        <label for="dateandtime">Date and Time</label>
-        <InputDate id="dateandtime" Type="InputDateType.DateTimeLocal" @bind-Value="artClass.DateAndTime" class="form-control"></InputDate>
+        <label for="dateandtime">Starts</label>
+        <InputDate id="dateandtime" Type="InputDateType.DateTimeLocal" @bind-Value="artClass.Start" class="form-control"></InputDate>
+    </div>
+    <div style="width:200px; margin-bottom:10px;">
+        <label for="dateandtime">Ends</label>
+        <InputDate id="dateandtime" Type="InputDateType.DateTimeLocal" @bind-Value="artClass.End" class="form-control"></InputDate>
     </div>
     <div style="width:200px; margin-bottom:10px;">
         <label for="costpercustomer">Cost($)</label>
@@ -72,6 +76,19 @@
                 @foreach (var customer in artClass.Customers)
                 {
                     <li>@customer.Name</li>
+                }
+            }
+        </ul>
+        <button class="btn btn-primary" @onclick="EditCustomers">Edit</button>
+    </div>
+    <div style="width:500px; margin-bottom:10px;">
+        <label>Materials</label>
+        <ul>
+            @if (artClass.Materials != null)
+            {
+                @foreach (var material in artClass.Materials)
+                {
+                    <li>@material.Name : @material.Quantity</li>
                 }
             }
         </ul>

@@ -10,14 +10,20 @@ namespace ArtStudioManager.Components
 
         public Guid Id { get; private set; }
         public ClassType? Type { get; set; }
-        [Required]
-        public string? Name { get; set; }
         public string? Description { get; set; }
-        [Required]
-        public DateTime? DateAndTime { get; set; }
         public List<Instructor>? Instructors { get; set; }
         public List<Member>? Members { get; set; }
         public List<Customer>? Customers { get; set; }
+        public List<Material>? Materials { get; set; }
+
+        [Required]
+        public string? Name { get; set; }
+
+        [Required]
+        public DateTime Start { get; set; }
+
+        [Required]
+        public DateTime End { get; set; }
 
         [Required]
         [Range(0, 9999.99)]
