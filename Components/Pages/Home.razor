@@ -3,15 +3,22 @@
 
 <PageTitle>Home Page</PageTitle>
 
+@if (imageSource != null)
+{
+    <p>
+        <img src="@imageSource" />
+    </p>
+}
+
 <h1>Add the date and who is logged in. <br> Did that add a return?</h1>
 What other info can we show here?
 <p>for adding as space &nbsp;</p>
 
-@{
-    var amount = 1 + 1;
+    @code {
+    private string? imageSource;
+
+    protected override void OnInitialized()
+    {
+        imageSource = "images/music-the-city-style-landscape-80s-hd-wallpaper-preview.jpg";
+    }
 }
-
-<Counter IncrementAmount="amount"/>
-<p>&nbsp;</p>
-
-<Weather />
