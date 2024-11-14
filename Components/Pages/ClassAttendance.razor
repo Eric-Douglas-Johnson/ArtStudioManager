@@ -6,7 +6,7 @@
 
 @if (artClass == null) { throw new InvalidOperationException("Art Class could not be initialized."); }
 
-<QuickGrid Items="@queryableMembers">
+<QuickGrid Items="@queryableAttendees">
     <PropertyColumn Property="@(p => p.Name)" Sortable="true" Title="Attendee Name" />
 </QuickGrid>
 <br />
@@ -15,8 +15,7 @@
 
 @code {
     private ArtClass? artClass;
-    private IQueryable<Member>? queryableMembers;
-    private IQueryable<NonMember>? queryableCustomers;
+    private IQueryable<Artist>? queryableAttendees;
 
     [Parameter]
     public Guid ClassId { get; set; }
@@ -25,9 +24,9 @@
     {
         artClass = new ArtClass(ClassId, new ArtClassTestDataLoader());
 
-        if (artClass.Members is ICollection<Member> members)
+        if (artClass.Attendees is ICollection<Artist> attendees)
         {
-            queryableMembers = members.AsQueryable<Member>();
+            queryableAttendees = attendees.AsQueryable<Artist>();
         }
     }
 

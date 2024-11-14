@@ -17,17 +17,16 @@ namespace ArtStudioManager.Components
             artClass.End = artClass.Start.AddHours(2);
             artClass.Instructors = new List<Instructor> { new Instructor() { Name = "Karen", IsPrimary = true } };
 
-            artClass.Members = new List<Member> { 
+            artClass.Attendees = new List<Artist> { 
                 new Member() { Name = "Eric" }, 
                 new Member() { Name = "Paula" },
                 new Member() { Name = "Carla" },
                 new Member() { Name = "Linda" },
-                new Member() { Name = "Bob" },
-                new Member() { Name = "Steve" },
-                new Member() { Name = "Trevor" },
+                new NonMember() { Name = "Bob" },
+                new NonMember() { Name = "Steve" },
+                new NonMember() { Name = "Trevor" },
             };
 
-            artClass.NonMembers = new List<NonMember> { new NonMember() { Name = "Random Customer" } };
             artClass.Cost = (decimal)_random.Next(100);
             artClass.MemberDiscount = new FlatRateDiscount((decimal)_random.Next(100));
 

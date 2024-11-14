@@ -54,28 +54,15 @@
     <div style="width:500px; margin-bottom:10px;">
         <label>Members Signed Up</label>
         <ul>
-            @if (artClass.Members is IEnumerable<Member> members)
+            @if (artClass.Attendees is IEnumerable<Artist> attendees)
             {
-                @foreach (var member in members)
+                @foreach (var attendee in attendees)
                 {
-                    <li>@member.Name</li>
+                    <li>@attendee.Name</li>
                 }
             }
         </ul>
         <button class="btn btn-primary" @onclick="EditMembers">Edit</button>
-    </div>
-    <div style="width:500px; margin-bottom:10px;">
-        <label>Non-Members Signed Up</label>
-        <ul>
-            @if (artClass.NonMembers is IEnumerable<NonMember> customers)
-            {
-                @foreach (var customer in customers)
-                {
-                    <li>@customer.Name</li>
-                }
-            }
-        </ul>
-        <button class="btn btn-primary" @onclick="EditCustomers">Edit</button>
     </div>
     <div style="width:500px; margin-bottom:10px;">
         <label>Materials</label>
