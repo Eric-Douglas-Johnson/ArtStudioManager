@@ -37,6 +37,9 @@ namespace ArtStudioManager.Components
                 new() { Name = "Last Material", Quantity = 10.25f }
             };
 
+            artClass.Attendance = new Attendance();
+            artClass.Attendance.AddAttendees(artClass.Attendees);
+
             return Task.CompletedTask;
         }
     }

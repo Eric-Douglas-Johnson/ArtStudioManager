@@ -14,6 +14,7 @@ namespace ArtStudioManager.Components
         public ICollection<Instructor>? Instructors { get; set; }
         public ICollection<Artist>? Attendees { get; set; }
         public ICollection<Material>? Materials { get; set; }
+        public Attendance? Attendance { get; set; }
        
         public ArtClass()
         {

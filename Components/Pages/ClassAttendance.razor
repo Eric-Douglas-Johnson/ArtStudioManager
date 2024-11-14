@@ -6,16 +6,25 @@
 
 @if (artClass == null) { throw new InvalidOperationException("Art Class could not be initialized."); }
 
-<QuickGrid Items="@queryableAttendees">
-    <PropertyColumn Property="@(p => p.Name)" Sortable="true" Title="Attendee Name" />
+<QuickGrid Items="@queryableAttendance">
+    <PropertyColumn Property="@(p => p.Artist!.Name)" Sortable="true" Title="Attendee Name" />
+    <TemplateColumn Title="Attended">
+        @if (context.Attended)
+        {
+            <input type="checkbox" checked/>
+        }
+        else
+        {
+            <input type="checkbox"/>
+        }
+    </TemplateColumn>
 </QuickGrid>
 <br />
-<button class="btn btn-primary" @onclick="@(() => AddMember())">Add Member</button>
-<button class="btn btn-primary" @onclick="@(() => AddCustomer())">Add Customer</button>
+<button class="btn btn-primary" @onclick="@(() => Save())">Save</button>
 
 @code {
     private ArtClass? artClass;
-    private IQueryable<Artist>? queryableAttendees;
+    private IQueryable<AttendanceMark>? queryableAttendance;
 
     [Parameter]
     public Guid ClassId { get; set; }
@@ -24,18 +33,18 @@
     {
         artClass = new ArtClass(ClassId, new ArtClassTestDataLoader());
 
-        if (artClass.Attendees is ICollection<Artist> attendees)
+        if (artClass.Attendance is Attendance attendance)
         {
-            queryableAttendees = attendees.AsQueryable<Artist>();
+            queryableAttendance = attendance.AttendanceRecord.AsQueryable<AttendanceMark>();
         }
     }
 
-    private void AddMember()
+    private void Save()
     {
         
     }
 
-    private void AddCustomer()
+    private void EditAttendance(Artist artist)
     {
 
     }
