@@ -1,12 +1,22 @@
 ﻿@page "/classes/attendance/{classId:guid?}"
-@rendermode @(new InteractiveServerRenderMode(prerender:true))
+@using Microsoft.AspNetCore.Components.QuickGrid;
+@rendermode @(new InteractiveServerRenderMode(prerender:false))
 
 <h3>Class Attendance</h3>
 
 @if (artClass == null) { throw new InvalidOperationException("Art Class could not be initialized."); }
 
+<QuickGrid Items="@queryableMembers">
+    <PropertyColumn Property="@(p => p.Name)" Sortable="true" Title="Attendee Name" />
+</QuickGrid>
+<br />
+<button class="btn btn-primary" @onclick="@(() => AddMember())">Add Member</button>
+<button class="btn btn-primary" @onclick="@(() => AddCustomer())">Add Customer</button>
+
 @code {
     private ArtClass? artClass;
+    private IQueryable<Member>? queryableMembers;
+    private IQueryable<NonMember>? queryableCustomers;
 
     [Parameter]
     public Guid ClassId { get; set; }
@@ -14,5 +24,20 @@
     protected override void OnInitialized()
     {
         artClass = new ArtClass(ClassId, new ArtClassTestDataLoader());
+
+        if (artClass.Members is ICollection<Member> members)
+        {
+            queryableMembers = members.AsQueryable<Member>();
+        }
+    }
+
+    private void AddMember()
+    {
+        
+    }
+
+    private void AddCustomer()
+    {
+
     }
 }

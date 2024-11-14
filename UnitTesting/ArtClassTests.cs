@@ -26,9 +26,9 @@ namespace UnitTesting
                 End = DateTime.Now,
                 Instructors = new List<Instructor> { new Instructor() { Name = "Karen", IsPrimary = true }, new Instructor() { Name = "Rose" } },
                 Members = new List<Member>(),
-                Customers = new List<Customer>(),
-                CostPerMember = 45.50m,
-                CostPerCustomer = 60m
+                NonMembers = new List<NonMember>(),
+                Cost = 45.50m,
+                MemberDiscount = new FlatRateDiscount(35m)
             };
 
             Assert.True(artClass.GetTotalDollars() == 0);
@@ -46,9 +46,9 @@ namespace UnitTesting
                 End = DateTime.Now,
                 Instructors = new List<Instructor> { new Instructor() { Name = "Karen", IsPrimary = true }, new Instructor() { Name = "Rose" } },
                 Members = new List<Member> { new Member() { Name = "Eric Johnson" } },
-                Customers = new List<Customer>(),
-                CostPerMember = 45.50m,
-                CostPerCustomer = 60m
+                NonMembers = new List<NonMember>(),
+                Cost = 45.50m,
+                MemberDiscount = new FlatRateDiscount(35m)
             };
 
             Assert.True(artClass.GetTotalDollars() > 0);
@@ -66,9 +66,9 @@ namespace UnitTesting
                 End = DateTime.Now,
                 Instructors = new List<Instructor> { new Instructor() { Name = "Karen", IsPrimary = true }, new Instructor() { Name = "Rose" } },
                 Members = new List<Member>(),
-                Customers = new List<Customer> { new Customer { Name = "Some Customer" } },
-                CostPerMember = 45.50m,
-                CostPerCustomer = 60m
+                NonMembers = new List<NonMember> { new NonMember { Name = "Some Customer" } },
+                Cost = 45.50m,
+                MemberDiscount = new FlatRateDiscount(35m)
             };
 
             Assert.True(artClass.GetTotalDollars() > 0);
@@ -86,9 +86,9 @@ namespace UnitTesting
                 End = DateTime.Now,
                 Instructors = new List<Instructor> { new Instructor() { Name = "Karen", IsPrimary = true }, new Instructor() { Name = "Rose" } },
                 Members = new List<Member> { new Member { Name = "Eric Johnson" } },
-                Customers = new List<Customer> { new Customer { Name = "Some Customer" }, new Customer { Name = "Another Customer" } },
-                CostPerMember = 10.25m,
-                CostPerCustomer = 5.75m
+                NonMembers = new List<NonMember> { new NonMember { Name = "Some Customer" }, new NonMember { Name = "Another Customer" } },
+                Cost = 10.25m,
+                MemberDiscount = new FlatRateDiscount(5.75m)
             };
 
             // 1 member * CostPerMember = 10.25, 2 customers * CostPerCustomer = 11.50
@@ -107,9 +107,9 @@ namespace UnitTesting
                 End = DateTime.Now,
                 Instructors = new List<Instructor> { new Instructor() { Name = "Karen", IsPrimary = true }, new Instructor() { Name = "Rose" } },
                 Members = new List<Member> { new Member { Name = "Eric Johnson" } },
-                Customers = new List<Customer> { new Customer { Name = "Some Customer" }, new Customer { Name = "Another Customer" } },
-                CostPerMember = 10.202m,
-                CostPerCustomer = 5.755m
+                NonMembers = new List<NonMember> { new NonMember { Name = "Some Customer" }, new NonMember { Name = "Another Customer" } },
+                Cost = 10.202m,
+                MemberDiscount = new FlatRateDiscount(5.755m)
             };
 
             // 1 member * CostPerMember rounded down = 10.20, 2 customers * CostPerCustomer rounded up = 11.52

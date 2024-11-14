@@ -1,49 +1,27 @@
 ﻿
-using System.ComponentModel.DataAnnotations;
-
 namespace ArtStudioManager.Components
 {
     public class ArtClass
     {
-        private decimal _costPerMember;
-        private decimal _costPerCustomer;
-
         public Guid Id { get; private set; }
-        public ClassType? Type { get; set; }
-        public string? Description { get; set; }
-        public List<Instructor>? Instructors { get; set; }
-        public List<Member>? Members { get; set; }
-        public List<Customer>? Customers { get; set; }
-        public List<Material>? Materials { get; set; }
-
-        [Required]
+        public ClassType Type { get; set; }
         public string? Name { get; set; }
-
-        [Required]
+        public string? Description { get; set; }
         public DateTime Start { get; set; }
-
-        [Required]
         public DateTime End { get; set; }
+        public ICollection<Instructor>? Instructors { get; set; }
+        public ICollection<Member>? Members { get; set; }
+        public ICollection<NonMember>? NonMembers { get; set; }
+        public ICollection<Material>? Materials { get; set; }
+        public Discount? MemberDiscount { get; set; }
 
-        [Required]
-        [Range(0, 9999.99)]
-        public decimal CostPerMember
+        private decimal _cost;
+        public decimal Cost
         {
-            get { return _costPerMember; }
+            get { return _cost; }
             set
             {
-                _costPerMember = Math.Round(value, 2);
-            }
-        }
-
-        [Required]
-        [Range(0, 9999.99)]
-        public decimal CostPerCustomer
-        {
-            get { return _costPerCustomer; }
-            set
-            {
-                _costPerCustomer = Math.Round(value, 2);
+                _cost = Math.Round(value, 2);
             }
         }
 
@@ -64,12 +42,23 @@ namespace ArtStudioManager.Components
 
             if (Members != null && Members.Count > 0)
             {
-                totalDollars = Members.Count * CostPerMember;
+                decimal memberCost;
+
+                if (MemberDiscount is Discount discount)
+                {
+                    memberCost = Cost - MemberDiscount.GetAmount();
+                }
+                else
+                {
+                    memberCost = Cost;
+                }
+
+                totalDollars = Members.Count * memberCost;
             }
 
-            if (Customers != null && Customers.Count > 0)
+            if (NonMembers != null && NonMembers.Count > 0)
             {
-                totalDollars += Customers.Count * CostPerCustomer;
+                totalDollars += NonMembers.Count * Cost;
             }
 
             return totalDollars;

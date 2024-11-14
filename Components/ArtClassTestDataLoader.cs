@@ -16,10 +16,20 @@ namespace ArtStudioManager.Components
             artClass.Start = DateTime.Now.AddDays(_random.Next(10));
             artClass.End = artClass.Start.AddHours(2);
             artClass.Instructors = new List<Instructor> { new Instructor() { Name = "Karen", IsPrimary = true } };
-            artClass.Members = new List<Member> { new Member() { Name = "Eric" }, new Member() { Name = "Paula" } };
-            artClass.Customers = new List<Customer> { new Customer() { Name = "Random Customer" } };
-            artClass.CostPerMember = (decimal)_random.Next(100);
-            artClass.CostPerCustomer = (decimal)_random.Next(100);
+
+            artClass.Members = new List<Member> { 
+                new Member() { Name = "Eric" }, 
+                new Member() { Name = "Paula" },
+                new Member() { Name = "Carla" },
+                new Member() { Name = "Linda" },
+                new Member() { Name = "Bob" },
+                new Member() { Name = "Steve" },
+                new Member() { Name = "Trevor" },
+            };
+
+            artClass.NonMembers = new List<NonMember> { new NonMember() { Name = "Random Customer" } };
+            artClass.Cost = (decimal)_random.Next(100);
+            artClass.MemberDiscount = new FlatRateDiscount((decimal)_random.Next(100));
 
             artClass.Materials = new List<Material> { 
                 new() { Name = "Some Material", Quantity = 2.5f },

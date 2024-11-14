@@ -35,19 +35,15 @@
         <InputDate id="dateandtime" Type="InputDateType.DateTimeLocal" @bind-Value="artClass.End" class="form-control"></InputDate>
     </div>
     <div style="width:200px; margin-bottom:10px;">
-        <label for="costpercustomer">Cost($)</label>
-        <InputNumber id="costpercustomer" @bind-Value="artClass.CostPerCustomer" class="form-control"></InputNumber>
-    </div>
-    <div style="width:200px; margin-bottom:10px;">
-        <label for="costpermember">Cost for Members($)</label>
-        <InputNumber id="costpermember" @bind-Value="artClass.CostPerMember" class="form-control"></InputNumber>
+        <label for="cost">Cost($)</label>
+        <InputNumber id="costpercustomer" @bind-Value="artClass.Cost" class="form-control"></InputNumber>
     </div>
     <div style="width:500px; margin-bottom:10px;">
         <label>Instructors</label>
         <ul>
-            @if (artClass.Instructors != null)
+            @if (artClass.Instructors is IEnumerable<Instructor> instructors)
             {
-                @foreach (var instructor in artClass.Instructors)
+                @foreach (var instructor in instructors)
                 {
                     <li>@instructor.Name</li>
                 }
@@ -58,9 +54,9 @@
     <div style="width:500px; margin-bottom:10px;">
         <label>Members Signed Up</label>
         <ul>
-            @if (artClass.Members != null)
+            @if (artClass.Members is IEnumerable<Member> members)
             {
-                @foreach (var member in artClass.Members)
+                @foreach (var member in members)
                 {
                     <li>@member.Name</li>
                 }
@@ -71,9 +67,9 @@
     <div style="width:500px; margin-bottom:10px;">
         <label>Non-Members Signed Up</label>
         <ul>
-            @if (artClass.Customers != null)
+            @if (artClass.NonMembers is IEnumerable<NonMember> customers)
             {
-                @foreach (var customer in artClass.Customers)
+                @foreach (var customer in customers)
                 {
                     <li>@customer.Name</li>
                 }
@@ -84,9 +80,9 @@
     <div style="width:500px; margin-bottom:10px;">
         <label>Materials</label>
         <ul>
-            @if (artClass.Materials != null)
+            @if (artClass.Materials is IEnumerable<Material> materials)
             {
-                @foreach (var material in artClass.Materials)
+                @foreach (var material in materials)
                 {
                     <li>@material.Name : @material.Quantity</li>
                 }

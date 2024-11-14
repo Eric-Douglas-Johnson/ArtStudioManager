@@ -1,7 +1,7 @@
 ﻿
 namespace ArtStudioManager.Components
 {
-    public class Customer
+    public class NonMember
     {
         public string? Name { get; set; }
     }
