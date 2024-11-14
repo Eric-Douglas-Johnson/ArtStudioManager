@@ -15,6 +15,27 @@ namespace UnitTesting
         }
 
         [Fact]
+        public void GetTotalDollars_ReturnsCorrectNonRoundedValue()
+        {
+            var artClass = new ArtClass()
+            {
+                Type = (ClassType)_classTypes.GetValue(_random.Next(_classTypes.Length))!,
+                Name = "Name of Class",
+                Description = "Description of specific class",
+                Start = DateTime.Now,
+                End = DateTime.Now,
+                Instructors = new List<Instructor> { new Instructor() { Name = "Karen", IsPrimary = true }, new Instructor() { Name = "Rose" } },
+                Members = new List<Member> { new Member { Name = "Eric Johnson" } },
+                NonMembers = new List<NonMember> { new NonMember { Name = "Some Customer" }, new NonMember { Name = "Another Customer" } },
+                Cost = 10.202m,
+                MemberDiscount = new FlatRateDiscount(5.755m)
+            };
+
+            // 1 member * (10.202 - 5.755) + 2 nonmembers * 10.202 --> non-rounded equals 24.851
+            Assert.Equal(24.851m, artClass.GetTotalDollars());
+        }
+
+        [Fact]
         public void GetTotalDollars_ReturnsZero_WhenNoOneSignedUp()
         {
             var artClass = new ArtClass()
@@ -35,7 +56,7 @@ namespace UnitTesting
         }
 
         [Fact]
-        public void GetTotalDollars_ReturnsValue_WhenMemberSignedUp()
+        public void GetTotalDollars_ReturnsCorrectValue_WhenDiscountIsNull()
         {
             var artClass = new ArtClass()
             {
@@ -45,17 +66,17 @@ namespace UnitTesting
                 Start = DateTime.Now,
                 End = DateTime.Now,
                 Instructors = new List<Instructor> { new Instructor() { Name = "Karen", IsPrimary = true }, new Instructor() { Name = "Rose" } },
-                Members = new List<Member> { new Member() { Name = "Eric Johnson" } },
-                NonMembers = new List<NonMember>(),
-                Cost = 45.50m,
-                MemberDiscount = new FlatRateDiscount(35m)
+                Members = new List<Member> { new Member { Name = "Eric Johnson" } },
+                NonMembers = new List<NonMember> { new NonMember { Name = "Some Customer" } },
+                Cost = 45.50m
             };
 
-            Assert.True(artClass.GetTotalDollars() > 0);
+            // One member no discount, and one nonmember, so total cost should be 2 * Cost
+            Assert.Equal(91m, artClass.GetTotalDollars());
         }
 
         [Fact]
-        public void GetTotalDollars_ReturnsValue_WhenCustomerSignedUp()
+        public void GetTotalDollars_ReturnsCorrectValue_WhenDiscountIsFlatRateAndZero()
         {
             var artClass = new ArtClass()
             {
@@ -65,17 +86,93 @@ namespace UnitTesting
                 Start = DateTime.Now,
                 End = DateTime.Now,
                 Instructors = new List<Instructor> { new Instructor() { Name = "Karen", IsPrimary = true }, new Instructor() { Name = "Rose" } },
-                Members = new List<Member>(),
+                Members = new List<Member> { new Member { Name = "Eric Johnson" } },
                 NonMembers = new List<NonMember> { new NonMember { Name = "Some Customer" } },
                 Cost = 45.50m,
-                MemberDiscount = new FlatRateDiscount(35m)
+                MemberDiscount = new FlatRateDiscount(0)
             };
 
-            Assert.True(artClass.GetTotalDollars() > 0);
+            // One member no discount, and one nonmember, so total cost should be 2 * Cost
+            Assert.Equal(91m, artClass.GetTotalDollars());
         }
 
         [Fact]
-        public void GetTotalDollars_ReturnsCorrectValue_WhenBothTypesSignedUp()
+        public void GetTotalDollars_ReturnsCorrectValue_WhenDiscountIsPercentageAndZero()
+        {
+            var artClass = new ArtClass()
+            {
+                Type = (ClassType)_classTypes.GetValue(_random.Next(_classTypes.Length))!,
+                Name = "Name of Class",
+                Description = "Description of specific class",
+                Start = DateTime.Now,
+                End = DateTime.Now,
+                Instructors = new List<Instructor> { new Instructor() { Name = "Karen", IsPrimary = true }, new Instructor() { Name = "Rose" } },
+                Members = new List<Member> { new Member { Name = "Eric Johnson" } },
+                NonMembers = new List<NonMember> { new NonMember { Name = "Some Customer" } },
+                Cost = 45.50m,
+                MemberDiscount = new PercentageDiscount(45.50m, 0)
+            };
+
+            // One member no discount, and one nonmember, so total cost should be 2 * Cost
+            Assert.Equal(91m, artClass.GetTotalDollars());
+        }
+
+        [Fact]
+        public void GetTotalDollars_ThrowsArgEx_WhenDiscountIsPercentageAndCostIsLessThanZero()
+        {
+            Assert.Throws<ArgumentException>(() => new ArtClass()
+            {
+                Type = (ClassType)_classTypes.GetValue(_random.Next(_classTypes.Length))!,
+                Name = "Name of Class",
+                Description = "Description of specific class",
+                Start = DateTime.Now,
+                End = DateTime.Now,
+                Instructors = new List<Instructor> { new Instructor() { Name = "Karen", IsPrimary = true }, new Instructor() { Name = "Rose" } },
+                Members = new List<Member> { new Member { Name = "Eric Johnson" } },
+                NonMembers = new List<NonMember> { new NonMember { Name = "Some Customer" } },
+                Cost = 45.50m,
+                MemberDiscount = new PercentageDiscount(-45.50m, 0)
+            });
+        }
+
+        [Fact]
+        public void GetTotalDollars_ThrowsArgEx_WhenDiscountIsPercentageAndPercentageIsLessThanZero()
+        {
+            Assert.Throws<ArgumentException>(() => new ArtClass()
+            {
+                Type = (ClassType)_classTypes.GetValue(_random.Next(_classTypes.Length))!,
+                Name = "Name of Class",
+                Description = "Description of specific class",
+                Start = DateTime.Now,
+                End = DateTime.Now,
+                Instructors = new List<Instructor> { new Instructor() { Name = "Karen", IsPrimary = true }, new Instructor() { Name = "Rose" } },
+                Members = new List<Member> { new Member { Name = "Eric Johnson" } },
+                NonMembers = new List<NonMember> { new NonMember { Name = "Some Customer" } },
+                Cost = 45.50m,
+                MemberDiscount = new PercentageDiscount(45.50m, -0.45m)
+            });
+        }
+
+        [Fact]
+        public void GetTotalDollars_ThrowsArgEx_WhenDiscountIsPercentageAndPercentageIsGreaterThanZero()
+        {
+            Assert.Throws<ArgumentException>(() => new ArtClass()
+            {
+                Type = (ClassType)_classTypes.GetValue(_random.Next(_classTypes.Length))!,
+                Name = "Name of Class",
+                Description = "Description of specific class",
+                Start = DateTime.Now,
+                End = DateTime.Now,
+                Instructors = new List<Instructor> { new Instructor() { Name = "Karen", IsPrimary = true }, new Instructor() { Name = "Rose" } },
+                Members = new List<Member> { new Member { Name = "Eric Johnson" } },
+                NonMembers = new List<NonMember> { new NonMember { Name = "Some Customer" } },
+                Cost = 45.50m,
+                MemberDiscount = new PercentageDiscount(45.50m, 1.0001m)
+            });
+        }
+
+        [Fact]
+        public void GetTotalDollars_ReturnsCorrectValue_WhenValidFlatRateDiscount()
         {
             var artClass = new ArtClass()
             {
@@ -87,18 +184,18 @@ namespace UnitTesting
                 Instructors = new List<Instructor> { new Instructor() { Name = "Karen", IsPrimary = true }, new Instructor() { Name = "Rose" } },
                 Members = new List<Member> { new Member { Name = "Eric Johnson" } },
                 NonMembers = new List<NonMember> { new NonMember { Name = "Some Customer" }, new NonMember { Name = "Another Customer" } },
-                Cost = 10.25m,
-                MemberDiscount = new FlatRateDiscount(5.75m)
+                Cost = 50.50m,
+                MemberDiscount = new FlatRateDiscount(10.50m)
             };
 
-            // 1 member * CostPerMember = 10.25, 2 customers * CostPerCustomer = 11.50
-            Assert.Equal(21.75m, artClass.GetTotalDollars());
+            // 1 member * (Cost - MemberDiscount) + 2 nonmembers * Cost
+            Assert.Equal(141m, artClass.GetTotalDollars());
         }
 
         [Fact]
-        public void GetTotalDollars_ReturnsRounded_WhenCosHasTooManyDecimalPlaces()
+        public void GetTotalDollars_ThrowsArgEx_WhenDiscountIsFlatRateAndLessThanZero()
         {
-            var artClass = new ArtClass()
+            Assert.Throws<ArgumentException>(() => new ArtClass()
             {
                 Type = (ClassType)_classTypes.GetValue(_random.Next(_classTypes.Length))!,
                 Name = "Name of Class",
@@ -107,13 +204,10 @@ namespace UnitTesting
                 End = DateTime.Now,
                 Instructors = new List<Instructor> { new Instructor() { Name = "Karen", IsPrimary = true }, new Instructor() { Name = "Rose" } },
                 Members = new List<Member> { new Member { Name = "Eric Johnson" } },
-                NonMembers = new List<NonMember> { new NonMember { Name = "Some Customer" }, new NonMember { Name = "Another Customer" } },
-                Cost = 10.202m,
-                MemberDiscount = new FlatRateDiscount(5.755m)
-            };
-
-            // 1 member * CostPerMember rounded down = 10.20, 2 customers * CostPerCustomer rounded up = 11.52
-            Assert.Equal(21.72m, artClass.GetTotalDollars());
+                NonMembers = new List<NonMember> { new NonMember { Name = "Some Customer" } },
+                Cost = 45.50m,
+                MemberDiscount = new FlatRateDiscount(-2.1m)
+            });
         }
     }
 }

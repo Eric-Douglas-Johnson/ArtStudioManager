@@ -9,22 +9,13 @@ namespace ArtStudioManager.Components
         public string? Description { get; set; }
         public DateTime Start { get; set; }
         public DateTime End { get; set; }
+        public decimal Cost { get; set; }
+        public Discount? MemberDiscount { get; set; }
         public ICollection<Instructor>? Instructors { get; set; }
         public ICollection<Member>? Members { get; set; }
         public ICollection<NonMember>? NonMembers { get; set; }
         public ICollection<Material>? Materials { get; set; }
-        public Discount? MemberDiscount { get; set; }
-
-        private decimal _cost;
-        public decimal Cost
-        {
-            get { return _cost; }
-            set
-            {
-                _cost = Math.Round(value, 2);
-            }
-        }
-
+       
         public ArtClass()
         {
             Id = Guid.NewGuid();
@@ -36,6 +27,10 @@ namespace ArtStudioManager.Components
             dataLoader.Load(this);
         }
 
+        /// <summary>
+        /// Gets the total dollars brought in by the class.
+        /// </summary>
+        /// <returns>A raw dollar amount, i.e. not rounded.</returns>
         public decimal? GetTotalDollars()
         {
             decimal? totalDollars = 0;
