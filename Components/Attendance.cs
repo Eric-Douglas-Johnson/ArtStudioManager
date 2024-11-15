@@ -36,6 +36,14 @@ namespace ArtStudioManager.Components
                 }
             }
         }
+
+        public void Save()
+        {
+            foreach (var mark in AttendanceRecord)
+            {
+                System.Diagnostics.Debug.WriteLine(mark.Artist!.Name + " - " + mark.Attended);
+            }
+        }
     }
 
     public class AttendanceMark

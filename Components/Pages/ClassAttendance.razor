@@ -9,14 +9,7 @@
 <QuickGrid Items="@queryableAttendance">
     <PropertyColumn Property="@(p => p.Artist!.Name)" Sortable="true" Title="Attendee Name" />
     <TemplateColumn Title="Attended">
-        @if (context.Attended)
-        {
-            <input type="checkbox" checked/>
-        }
-        else
-        {
-            <input type="checkbox"/>
-        }
+        <input type="checkbox" @bind-value="@context.Attended" />
     </TemplateColumn>
 </QuickGrid>
 <br />
@@ -41,11 +34,6 @@
 
     private void Save()
     {
-        
-    }
-
-    private void EditAttendance(Artist artist)
-    {
-
+        artClass!.Attendance!.Save();
     }
 }
