@@ -26,7 +26,7 @@ namespace UnitTesting
                 End = DateTime.Now,
                 Instructors = new List<Instructor> { new Instructor() { Name = "Karen", IsPrimary = true }, new Instructor() { Name = "Rose" } },
 
-                Attendees = new List<Artist> { 
+                Artists = new List<Artist> { 
                     new Member { Name = "Eric Johnson" },
                     new NonMember { Name = "Some Customer" },
                     new NonMember { Name = "Another Customer" } },
@@ -50,7 +50,7 @@ namespace UnitTesting
                 Start = DateTime.Now,
                 End = DateTime.Now,
                 Instructors = new List<Instructor> { new Instructor() { Name = "Karen", IsPrimary = true }, new Instructor() { Name = "Rose" } },
-                Attendees = new List<Artist>(),
+                Artists = new List<Artist>(),
                 Cost = 45.50m,
                 MemberDiscount = new FlatRateDiscount(35m)
             };
@@ -69,7 +69,7 @@ namespace UnitTesting
                 Start = DateTime.Now,
                 End = DateTime.Now,
                 Instructors = new List<Instructor> { new Instructor() { Name = "Karen", IsPrimary = true }, new Instructor() { Name = "Rose" } },
-                Attendees = new List<Artist> { new Member { Name = "Eric Johnson" }, new NonMember { Name = "Some Customer" } },
+                Artists = new List<Artist> { new Member { Name = "Eric Johnson" }, new NonMember { Name = "Some Customer" } },
                 Cost = 45.50m
             };
 
@@ -88,7 +88,7 @@ namespace UnitTesting
                 Start = DateTime.Now,
                 End = DateTime.Now,
                 Instructors = new List<Instructor> { new Instructor() { Name = "Karen", IsPrimary = true }, new Instructor() { Name = "Rose" } },
-                Attendees = new List<Artist> { new Member { Name = "Eric Johnson" }, new NonMember { Name = "Some Customer" } },
+                Artists = new List<Artist> { new Member { Name = "Eric Johnson" }, new NonMember { Name = "Some Customer" } },
                 Cost = 45.50m,
                 MemberDiscount = new FlatRateDiscount(0)
             };
@@ -108,7 +108,7 @@ namespace UnitTesting
                 Start = DateTime.Now,
                 End = DateTime.Now,
                 Instructors = new List<Instructor> { new Instructor() { Name = "Karen", IsPrimary = true }, new Instructor() { Name = "Rose" } },
-                Attendees = new List<Artist> { new Member { Name = "Eric Johnson" }, new NonMember { Name = "Some Customer" } },
+                Artists = new List<Artist> { new Member { Name = "Eric Johnson" }, new NonMember { Name = "Some Customer" } },
                 Cost = 45.50m,
                 MemberDiscount = new PercentageDiscount(45.50m, 0)
             };
@@ -128,7 +128,7 @@ namespace UnitTesting
                 Start = DateTime.Now,
                 End = DateTime.Now,
                 Instructors = new List<Instructor> { new Instructor() { Name = "Karen", IsPrimary = true }, new Instructor() { Name = "Rose" } },
-                Attendees = new List<Artist> { new Member { Name = "Eric Johnson" }, new NonMember { Name = "Some Customer" } },
+                Artists = new List<Artist> { new Member { Name = "Eric Johnson" }, new NonMember { Name = "Some Customer" } },
                 Cost = 45.50m,
                 MemberDiscount = new PercentageDiscount(-45.50m, 0)
             });
@@ -145,7 +145,7 @@ namespace UnitTesting
                 Start = DateTime.Now,
                 End = DateTime.Now,
                 Instructors = new List<Instructor> { new Instructor() { Name = "Karen", IsPrimary = true }, new Instructor() { Name = "Rose" } },
-                Attendees = new List<Artist> { new Member { Name = "Eric Johnson" }, new NonMember { Name = "Some Customer" } },
+                Artists = new List<Artist> { new Member { Name = "Eric Johnson" }, new NonMember { Name = "Some Customer" } },
                 Cost = 45.50m,
                 MemberDiscount = new PercentageDiscount(45.50m, -0.45m)
             });
@@ -162,7 +162,7 @@ namespace UnitTesting
                 Start = DateTime.Now,
                 End = DateTime.Now,
                 Instructors = new List<Instructor> { new Instructor() { Name = "Karen", IsPrimary = true }, new Instructor() { Name = "Rose" } },
-                Attendees = new List<Artist> { new Member { Name = "Eric Johnson" }, new NonMember { Name = "Some Customer" } },
+                Artists = new List<Artist> { new Member { Name = "Eric Johnson" }, new NonMember { Name = "Some Customer" } },
                 Cost = 45.50m,
                 MemberDiscount = new PercentageDiscount(45.50m, 1.0001m)
             });
@@ -180,7 +180,7 @@ namespace UnitTesting
                 End = DateTime.Now,
                 Instructors = new List<Instructor> { new Instructor() { Name = "Karen", IsPrimary = true }, new Instructor() { Name = "Rose" } },
 
-                Attendees = new List<Artist> { 
+                Artists = new List<Artist> { 
                     new Member { Name = "Eric Johnson" }, 
                     new NonMember { Name = "Some Customer" }, 
                     new NonMember { Name = "Another Customer" } },
@@ -204,7 +204,7 @@ namespace UnitTesting
                 Start = DateTime.Now,
                 End = DateTime.Now,
                 Instructors = new List<Instructor> { new Instructor() { Name = "Karen", IsPrimary = true }, new Instructor() { Name = "Rose" } },
-                Attendees = new List<Artist> { new Member { Name = "Eric Johnson" }, new NonMember { Name = "Some Customer" } },
+                Artists = new List<Artist> { new Member { Name = "Eric Johnson" }, new NonMember { Name = "Some Customer" } },
                 Cost = 45.50m,
                 MemberDiscount = new FlatRateDiscount(-2.1m)
             });

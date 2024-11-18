@@ -17,7 +17,7 @@ namespace ArtStudioManager.Components
             artClass.End = artClass.Start.AddHours(2);
             artClass.Instructors = new List<Instructor> { new Instructor() { Name = "Karen", IsPrimary = true } };
 
-            artClass.Attendees = new List<Artist> { 
+            artClass.Artists = new List<Artist> { 
                 new Member() { Name = "Eric" }, 
                 new Member() { Name = "Paula" },
                 new Member() { Name = "Carla" },
@@ -38,7 +38,7 @@ namespace ArtStudioManager.Components
             };
 
             artClass.Attendance = new Attendance();
-            artClass.Attendance.AddAttendees(artClass.Attendees);
+            artClass.Attendance.AddAttendees(artClass.Artists);
 
             return Task.CompletedTask;
         }

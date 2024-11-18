@@ -1,0 +1,41 @@
+﻿@page "/emails"
+@rendermode @(new InteractiveServerRenderMode(prerender:false))
+@using Microsoft.AspNetCore.Components.QuickGrid;
+
+<PageTitle>Email</PageTitle>
+
+<h3 style="color: purple;">Send Emails</h3>
+
+@if (queryableArtists == null)
+{
+    <p style="color: purple; font-size: 25px;"><em>Loading Artists.....</em></p>
+}
+else
+{
+    <div class="grid">
+    <QuickGrid Items="@queryableArtists">
+        <PropertyColumn Property="@(p => p.GetArtistType())" Sortable="true" Title="Name" />
+        <PropertyColumn Property="@(p => p.Name)" Sortable="true" Title="Name" />
+        <PropertyColumn Property="@(p => p.Email)" Title="Email" />
+    </QuickGrid>
+    </div>
+    <br/>
+    <button class="btn btn-primary" @onclick="@(() => CheckAll())">Check All</button>
+}
+
+@code {
+    private List<Artist> artists = new();
+    private IQueryable<Artist>? queryableArtists;
+
+    protected override async Task OnInitializedAsync()
+    {
+        IDataLoader<ICollection<Artist>> artistLoader = new ArtistTestLoader();
+        await Task.Run(() => artistLoader.Load(artists));
+        queryableArtists = artists.AsQueryable<Artist>();
+    }
+
+    private void CheckAll()
+    {
+
+    }
+}

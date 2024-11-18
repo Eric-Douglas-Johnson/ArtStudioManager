@@ -12,7 +12,7 @@ namespace ArtStudioManager.Components
         public decimal Cost { get; set; }
         public Discount? MemberDiscount { get; set; }
         public ICollection<Instructor>? Instructors { get; set; }
-        public ICollection<Artist>? Attendees { get; set; }
+        public ICollection<Artist>? Artists { get; set; }
         public ICollection<Material>? Materials { get; set; }
         public Attendance? Attendance { get; set; }
        
@@ -35,10 +35,10 @@ namespace ArtStudioManager.Components
         {
             decimal? totalDollars = 0;
 
-            if (Attendees != null && Attendees.Count > 0)
+            if (Artists != null && Artists.Count > 0)
             {
-                var memberCount = Attendees.Where(x => x.GetArtistType() == Artist.ArtistType.Member).Count();
-                var nonMemberCount = Attendees.Count - memberCount;
+                var memberCount = Artists.Where(x => x.GetArtistType() == Artist.ArtistType.Member).Count();
+                var nonMemberCount = Artists.Count - memberCount;
                 decimal totalCostForAllMembers;     
 
                 if (MemberDiscount is Discount discount)

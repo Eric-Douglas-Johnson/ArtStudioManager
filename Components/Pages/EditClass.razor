@@ -52,7 +52,7 @@
         <div class="child-div">
             <label>Members Signed Up</label>
             <ul>
-                @if (artClass.Attendees is IEnumerable<Artist> attendees)
+                @if (artClass.Artists is IEnumerable<Artist> attendees)
                 {
                     @foreach (var attendee in attendees)
                     {
