@@ -1,81 +1,80 @@
 ﻿@page "/classes/{classId:guid?}"
-@rendermode @(new InteractiveServerRenderMode(prerender:true))
+@rendermode InteractiveServer
 
 <h3>Edit Class</h3>
 
 @if (artClass == null) { throw new InvalidOperationException("Art Class could not be initialized."); }
 
 <EditForm Model="@artClass" OnValidSubmit="Save" OnInvalidSubmit="ShowSubmitError">
-    <div style="width:500px; margin-bottom:10px;">
-        <label for="classtype">Class Type</label>
-        <br />
-        <InputRadioGroup id="classtype" @bind-Value="@artClass.Type" class="form-control">
-            @foreach (var classType in (ClassType[])Enum.GetValues(typeof(ClassType)))
-            {
-                <InputRadio Value="classType" />
-                @classType
-                <br />
-            }
-        </InputRadioGroup>
+    <div class="parent-div">
+        <div class="child-div">
+            <label for="name">Name</label>
+            <InputText id="name" @bind-Value="artClass.Name" class="form-control"></InputText>
+        </div>
+        <div class="child-div" style="width:300px;">
+            <label for="desc">Description</label>
+            <InputText id="desc" @bind-Value="artClass.Description" class="form-control"></InputText>
+        </div>
     </div>
-    <div style="width:500px; margin-bottom:10px;">
-        <label for="name">Name</label>
-        <InputText id="name" @bind-Value="artClass.Name" class="form-control"></InputText>
+
+    <div class="parent-div">
+        <div class="child-div">
+            <label for="dateandtime">Starts</label>
+            <InputDate id="dateandtime" Type="InputDateType.DateTimeLocal" @bind-Value="artClass.Start" class="form-control"></InputDate>
+        </div>
+        <div class="child-div">
+            <label for="dateandtime">Ends</label>
+            <InputDate id="dateandtime" Type="InputDateType.DateTimeLocal" @bind-Value="artClass.End" class="form-control"></InputDate>
+        </div>
     </div>
-    <div style="width:500px; margin-bottom:10px;">
-        <label for="desc">Description</label>
-        <InputText id="desc" @bind-Value="artClass.Description" class="form-control"></InputText>
-    </div>
-    <div style="width:200px; margin-bottom:10px;">
-        <label for="dateandtime">Starts</label>
-        <InputDate id="dateandtime" Type="InputDateType.DateTimeLocal" @bind-Value="artClass.Start" class="form-control"></InputDate>
-    </div>
-    <div style="width:200px; margin-bottom:10px;">
-        <label for="dateandtime">Ends</label>
-        <InputDate id="dateandtime" Type="InputDateType.DateTimeLocal" @bind-Value="artClass.End" class="form-control"></InputDate>
-    </div>
-    <div style="width:200px; margin-bottom:10px;">
+      
+    <div style="width:100px; margin-bottom:10px;">
         <label for="cost">Cost($)</label>
         <InputNumber id="costpercustomer" @bind-Value="artClass.Cost" class="form-control"></InputNumber>
     </div>
-    <div style="width:500px; margin-bottom:10px;">
-        <label>Instructors</label>
-        <ul>
-            @if (artClass.Instructors is IEnumerable<Instructor> instructors)
-            {
-                @foreach (var instructor in instructors)
+    <br />
+    <br />
+
+    <div class="parent-div">
+        <div class="child-div">
+            <label>Instructors</label>
+            <ul>
+                @if (artClass.Instructors is IEnumerable<Instructor> instructors)
                 {
-                    <li>@instructor.Name</li>
+                    @foreach (var instructor in instructors)
+                    {
+                        <li>@instructor.Name</li>
+                    }
                 }
-            }
-        </ul>
-        <button class="btn btn-primary" @onclick="EditInstructors">Edit</button>
-    </div>
-    <div style="width:500px; margin-bottom:10px;">
-        <label>Members Signed Up</label>
-        <ul>
-            @if (artClass.Attendees is IEnumerable<Artist> attendees)
-            {
-                @foreach (var attendee in attendees)
+            </ul>
+            <button class="btn btn-primary" @onclick="EditInstructors">Edit</button>
+        </div>
+        <div class="child-div">
+            <label>Members Signed Up</label>
+            <ul>
+                @if (artClass.Attendees is IEnumerable<Artist> attendees)
                 {
-                    <li>@attendee.Name</li>
+                    @foreach (var attendee in attendees)
+                    {
+                        <li>@attendee.Name</li>
+                    }
                 }
-            }
-        </ul>
-        <button class="btn btn-primary" @onclick="EditMembers">Edit</button>
-    </div>
-    <div style="width:500px; margin-bottom:10px;">
-        <label>Materials</label>
-        <ul>
-            @if (artClass.Materials is IEnumerable<Material> materials)
-            {
-                @foreach (var material in materials)
+            </ul>
+            <button class="btn btn-primary" @onclick="EditAttendees">Edit</button>
+        </div>
+        <div class="child-div">
+            <label>Materials</label>
+            <ul>
+                @if (artClass.Materials is IEnumerable<Material> materials)
                 {
-                    <li>@material.Name : @material.Quantity</li>
+                    @foreach (var material in materials)
+                    {
+                        <li>@material.Name : @material.Quantity</li>
+                    }
                 }
-            }
-        </ul>
-        <button class="btn btn-primary" @onclick="EditCustomers">Edit</button>
+            </ul>
+            <button class="btn btn-primary" @onclick="EditMaterials">Edit</button>
+        </div>
     </div>
 </EditForm>
 
@@ -109,13 +108,13 @@
 
     }
 
-    private void EditMembers()
+    private void EditAttendees()
     {
 
     }
 
-    private void EditCustomers()
+    private void EditMaterials()
     {
-        
+
     }
 }
