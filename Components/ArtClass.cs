@@ -74,5 +74,15 @@ namespace ArtStudioManager.Components
 
             throw new InvalidOperationException("There is no primary instructor.");
         }
+
+        public void SaveAttendance()
+        {
+            if (Attendance == null) { throw new InvalidOperationException("Attendance does not exist."); }
+
+            foreach (var mark in Attendance.AttendanceRecord)
+            {
+                System.Diagnostics.Debug.WriteLine(mark.Artist!.Name + " - " + mark.Attended);
+            }
+        }
     }
 }
