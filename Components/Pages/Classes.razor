@@ -7,10 +7,11 @@
 
 @if (queryableClasses == null)
 {
-    <p><em>Loading Classes.....</em></p>
+    <p style="color: purple; font-size: 25px;"><em>Loading Classes.....</em></p>
 }
 else
 {
+    <div class="grid">
     <QuickGrid Items="@queryableClasses">
         <PropertyColumn Property="@(p => p.Type)" Sortable="true" Title="Type" />
         <PropertyColumn Property="@(p => p.Name)" Sortable="true" Title="Name" />
@@ -23,6 +24,7 @@ else
             <button class="btn btn-primary" @onclick="@(() => EditAttendance(context))">Attendance</button>
         </TemplateColumn>
     </QuickGrid>
+    </div>
 }
 
 @code {
