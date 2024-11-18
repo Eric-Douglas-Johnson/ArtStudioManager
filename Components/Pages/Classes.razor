@@ -5,7 +5,7 @@
 
 <PageTitle>Classes</PageTitle>
 
-@if (classes == null)
+@if (queryableClasses == null)
 {
     <p><em>Loading Classes.....</em></p>
 }
@@ -26,20 +26,13 @@ else
 }
 
 @code {
-    private List<ArtClass>? classes;
+    private List<ArtClass> classes = new();
     private IQueryable<ArtClass>? queryableClasses;
 
     protected override async Task OnInitializedAsync()
     {
-        await Task.Delay(1000);
-
-        classes = new List<ArtClass>();
-
-        for (int i = 0; i < 10; i++)
-        {
-            classes.Add(new ArtClass(Guid.NewGuid(), new ArtClassTestDataLoader()));
-        }
-
+        IDataLoader<ICollection<ArtClass>> classLoader = new ArtClassesTestDataLoader();
+        await Task.Run(() => classLoader.Load(classes));
         queryableClasses = classes.AsQueryable<ArtClass>();
     }
 
