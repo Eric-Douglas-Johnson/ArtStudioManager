@@ -6,36 +6,60 @@
 
 <h3 style="color: purple;">Send Emails</h3>
 
-@if (queryableArtists == null)
+@if (queryableArtistChecks == null)
 {
     <p style="color: purple; font-size: 25px;"><em>Loading Artists.....</em></p>
 }
 else
 {
-    <div class="grid">
-    <QuickGrid Items="@queryableArtists">
-        <PropertyColumn Property="@(p => p.GetArtistType())" Sortable="true" Title="Name" />
-        <PropertyColumn Property="@(p => p.Name)" Sortable="true" Title="Name" />
-        <PropertyColumn Property="@(p => p.Email)" Title="Email" />
-    </QuickGrid>
-    </div>
     <br/>
     <button class="btn btn-primary" @onclick="@(() => CheckAll())">Check All</button>
+    <button style="margin-left: 10px" class="btn btn-primary" @onclick="@(() => UnCheckAll())">UnCheck All</button>
+    <br />
+    <br />
+    <br />
+    <QuickGrid Items="@queryableArtistChecks">
+        <PropertyColumn Property="@(p => p.Artist!.GetArtistType())" Sortable="true" Title="Name" />
+        <PropertyColumn Property="@(p => p.Artist!.Name)" Sortable="true" Title="Name" />
+        <PropertyColumn Property="@(p => p.Artist!.Email)" Title="Email" />
+        <TemplateColumn Title="Send Email">
+            <input type="checkbox" @bind="context.SendEmail" />
+        </TemplateColumn>
+    </QuickGrid>
+    <br/>
 }
 
 @code {
     private List<Artist> artists = new();
-    private IQueryable<Artist>? queryableArtists;
+    private IQueryable<ArtistCheck>? queryableArtistChecks;
+    private List<ArtistCheck> artistChecks = new();
 
     protected override async Task OnInitializedAsync()
     {
         IDataLoader<ICollection<Artist>> artistLoader = new ArtistTestLoader();
         await Task.Run(() => artistLoader.Load(artists));
-        queryableArtists = artists.AsQueryable<Artist>();
+
+        foreach (var artist in artists)
+        {
+            artistChecks.Add(new ArtistCheck(artist, false));
+        }
+
+        queryableArtistChecks = artistChecks.AsQueryable<ArtistCheck>();
     }
 
     private void CheckAll()
     {
+        foreach (var artistCheck in artistChecks)
+        {
+            artistCheck.SendEmail = true;
+        }
+    }
 
+    private void UnCheckAll()
+    {
+        foreach (var artistCheck in artistChecks)
+        {
+            artistCheck.SendEmail = false;
+        }
     }
 }

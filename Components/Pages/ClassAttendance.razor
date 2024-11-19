@@ -9,7 +9,7 @@
 <QuickGrid Items="@queryableAttendance">
     <PropertyColumn Property="@(p => p.Artist!.Name)" Sortable="true" Title="Attendee Name" />
     <TemplateColumn Title="Attended">
-        <input type="checkbox" @bind-value="@context.Attended" />
+        <input type="checkbox" @bind="context.Attended" />
     </TemplateColumn>
 </QuickGrid>
 <br />
