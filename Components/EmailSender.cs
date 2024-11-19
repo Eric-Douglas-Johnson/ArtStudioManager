@@ -28,7 +28,8 @@ namespace ArtStudioManager.Components
                 message.SubjectEncoding = System.Text.Encoding.UTF8;
                 message.Subject = subject;
                 message.Body = body;
-                client.Send(message);
+                //client.Send(message);
+                System.Diagnostics.Debug.WriteLine("email sent for " + to.Address);
                 message.Dispose();
             }
 

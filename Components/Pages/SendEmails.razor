@@ -88,6 +88,6 @@ else
             }
         }
 
-        EmailSender.SendEmails(emailToList, "borealis@outlook.com", "Borealis", subject, body);
+        Task.Run(() => EmailSender.SendEmails(emailToList, "borealis@outlook.com", "Borealis", subject, body));
     }
 }
