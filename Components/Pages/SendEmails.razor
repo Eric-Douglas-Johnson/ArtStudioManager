@@ -12,10 +12,19 @@
 }
 else
 {
-    <br/>
+    <br />
+    <label>Subject:</label>
+    <br />
+    <textarea id="subject" @bind="subject" rows="1" cols="65" />
+    <br />
+    <label>Message:</label>
+    <br />
+    <textarea id="emailbody" @bind="body" rows="7" cols="65" />
+    <br />
+    <br />
     <button class="btn btn-primary" @onclick="@(() => CheckAll())">Check All</button>
     <button style="margin-left: 10px" class="btn btn-primary" @onclick="@(() => UnCheckAll())">UnCheck All</button>
-    <br />
+    <button style="margin-left: 200px" class="btn btn-primary" @onclick="@(() => Send())">Send Emails</button>
     <br />
     <br />
     <QuickGrid Items="@queryableArtistChecks">
@@ -33,6 +42,8 @@ else
     private List<Artist> artists = new();
     private IQueryable<ArtistCheck>? queryableArtistChecks;
     private List<ArtistCheck> artistChecks = new();
+    private string subject = "";
+    private string body = "";
 
     protected override async Task OnInitializedAsync()
     {
@@ -61,5 +72,22 @@ else
         {
             artistCheck.SendEmail = false;
         }
+    }
+
+    private void Send()
+    {
+        var emailToList = new List<string>();
+
+        if (queryableArtistChecks == null) { throw new InvalidOperationException("No artist checks exist."); }
+
+        foreach (var artistCheck in queryableArtistChecks)
+        {
+            if (artistCheck.SendEmail && artistCheck.Artist.Email != null)
+            {
+                emailToList.Add(artistCheck.Artist.Email);
+            }
+        }
+
+        EmailSender.SendEmails(emailToList, "borealis@outlook.com", "Borealis", subject, body);
     }
 }
