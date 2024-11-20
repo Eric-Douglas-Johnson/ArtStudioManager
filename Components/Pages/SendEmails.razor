@@ -6,7 +6,7 @@
 
 <h3 style="color: purple;">Send Emails</h3>
 
-@if (queryableArtistChecks == null)
+@if (QueryableArtistChecks == null)
 {
     <p style="color: purple; font-size: 25px;"><em>Loading Artists.....</em></p>
 }
@@ -27,7 +27,12 @@ else
     <button style="margin-left: 200px" class="btn btn-primary" @onclick="@(() => Send())">Send Emails</button>
     <br />
     <br />
-    <QuickGrid Items="@queryableArtistChecks">
+    <QuickGrid Items="QueryableArtistChecks" Pagination="pagState">
+        <PropertyColumn Property="@(p => p.Artist!.Groups)" Title="Groups">
+            <ColumnOptions>
+                <input type="search" @bind="groupFilter" @bind:event="oninput" placeholder="Search Groups..."/>
+            </ColumnOptions>
+        </PropertyColumn>
         <PropertyColumn Property="@(p => p.Artist!.GetArtistType())" Sortable="true" Title="Name" />
         <PropertyColumn Property="@(p => p.Artist!.Name)" Sortable="true" Title="Name" />
         <PropertyColumn Property="@(p => p.Artist!.Email)" Title="Email" />
@@ -35,15 +40,32 @@ else
             <input type="checkbox" @bind="context.SendEmail" />
         </TemplateColumn>
     </QuickGrid>
+    <Paginator State="@pagState"></Paginator>
     <br/>
 }
 
 @code {
     private List<Artist> artists = new();
-    private IQueryable<ArtistCheck>? queryableArtistChecks;
     private List<ArtistCheck> artistChecks = new();
     private string subject = "";
     private string body = "";
+    PaginationState pagState = new PaginationState { ItemsPerPage = 15 };
+    private string? groupFilter;
+
+    private IQueryable<ArtistCheck>? QueryableArtistChecks
+    {
+        get
+        {
+            var filteredArtists = artistChecks.AsQueryable<ArtistCheck>();
+
+            if (!string.IsNullOrEmpty(groupFilter))
+            {
+                filteredArtists = filteredArtists.Where(x => x.Artist.Groups.Contains(groupFilter, StringComparison.CurrentCultureIgnoreCase));
+            }
+
+            return filteredArtists;
+        }
+    }
 
     protected override async Task OnInitializedAsync()
     {
@@ -54,8 +76,6 @@ else
         {
             artistChecks.Add(new ArtistCheck(artist, false));
         }
-
-        queryableArtistChecks = artistChecks.AsQueryable<ArtistCheck>();
     }
 
     private void CheckAll()
@@ -78,9 +98,9 @@ else
     {
         var emailToList = new List<string>();
 
-        if (queryableArtistChecks == null) { throw new InvalidOperationException("No artist checks exist."); }
+        if (QueryableArtistChecks == null) { throw new InvalidOperationException("No artist checks exist."); }
 
-        foreach (var artistCheck in queryableArtistChecks)
+        foreach (var artistCheck in QueryableArtistChecks)
         {
             if (artistCheck.SendEmail && artistCheck.Artist.Email != null)
             {

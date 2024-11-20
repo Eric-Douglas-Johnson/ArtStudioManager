@@ -19,6 +19,7 @@ namespace ArtStudioManager.Components
         public string? Email { get; set; }
         public string? ReferredBy { get; set; }
         public DateOnly? Birthday { get; set; }
+        public string Groups { get; set; } = string.Empty;
 
         public Artist() { }
 
