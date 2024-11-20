@@ -1,0 +1,46 @@
+﻿@page "/parties"
+@inject NavigationManager NavigationManager
+@using Microsoft.AspNetCore.Components.QuickGrid;
+@rendermode @(new InteractiveServerRenderMode(prerender:false))
+
+<PageTitle>Parties</PageTitle>
+
+@if (queryableParties == null)
+{
+    <p style="color: purple; font-size: 25px;"><em>Loading Parties.....</em></p>
+}
+else
+{
+    <div class="grid">
+        <QuickGrid Items="@queryableParties">
+            <PropertyColumn Property="@(p => p.Name)" Sortable="true" Title="Name" />
+            <PropertyColumn Property="@(p => p.Start.ToString("MMMM dd, yyyy"))" Sortable="true" Title="Date" />
+            <PropertyColumn Property="@(p => p.Start.ToString("h:mm tt"))" Title="Start Time" />
+            <PropertyColumn Property="@(p => p.End.ToString("h:mm tt"))" Title="End Time" />
+            <PropertyColumn Property="@(p => p.EmployeeName)" Title="Employee Responsible" />
+        </QuickGrid>
+    </div>
+}
+
+@code {
+    private List<Party> parties = new();
+    private IQueryable<Party>? queryableParties;
+
+    protected override async Task OnInitializedAsync()
+    {
+        IDataLoader<ICollection<Party>> partyLoader = new PartyTestDataLoader();
+        await Task.Run(() => partyLoader.Load(parties));
+        queryableParties = parties.AsQueryable<Party>();
+    }
+
+    private void EditClass(ArtClass artClass)
+    {
+        NavigationManager.NavigateTo("classes/" + artClass.Id);
+    }
+
+    private void EditAttendance(ArtClass artClass)
+    {
+        NavigationManager.NavigateTo("classes/attendance/" + artClass.Id);
+    }
+}
+

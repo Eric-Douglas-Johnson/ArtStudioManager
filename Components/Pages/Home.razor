@@ -3,6 +3,8 @@
 
 <PageTitle>Home Page</PageTitle>
 
+<h2 style="color: purple;">Borealis Art Guild</h2>
+
 @if (imageSource != null)
 {
     <p>
@@ -10,15 +12,33 @@
     </p>
 }
 
-<h1>Add the date and who is logged in. <br> Did that add a return?</h1>
-What other info can we show here?
-<p>for adding as space &nbsp;</p>
+<h3 style="color: purple;">@timeOfDayMessage</h3>
 
-    @code {
+@code {
     private string? imageSource;
+    private string timeOfDayMessage = "";
 
     protected override void OnInitialized()
     {
-        imageSource = "images/music-the-city-style-landscape-80s-hd-wallpaper-preview.jpg";
+        imageSource = "images/art-home.jpg";
+        SetTimeOfDayMessage();
+    }
+
+    private void SetTimeOfDayMessage()
+    {
+        var currentLocalDateTimeHour = DateTime.Now.ToLocalTime().Hour;
+
+        if (currentLocalDateTimeHour < 12)
+        {
+            timeOfDayMessage = "Good morning!";
+        }
+        else if (currentLocalDateTimeHour > 17)
+        {
+            timeOfDayMessage = "Good evening!";
+        }
+        else
+        {
+            timeOfDayMessage = "Good afternoon!";
+        }
     }
 }
