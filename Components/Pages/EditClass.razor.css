@@ -5,12 +5,10 @@
 }
 
 .child-div {
-    width: 200px;
+    width: 300px;
     margin: 5px;
 }
 
-.rad-div {
-    color: purple;
-    width: 100px;
-    margin: 5px;
+.child-component {
+    margin: 5px 5px 10px 10px;
 }

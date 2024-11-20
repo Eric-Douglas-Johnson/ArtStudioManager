@@ -34,10 +34,10 @@ namespace ArtStudioManager.Components
                 artClass.MemberDiscount = new FlatRateDiscount((decimal)_random.Next(100));
 
                 artClass.Materials = new List<Material> {
-                    new() { Name = "Some Material", Quantity = 2.5f },
-                    new() { Name = "Second Material", Quantity = 12.5f },
-                    new() { Name = "Other Material", Quantity = 33f },
-                    new() { Name = "Last Material", Quantity = 10.25f }
+                    new() { Name = "Some Material", Quantity = 2.5m, Cost = (decimal)_random.Next(10) },
+                    new() { Name = "Second Material", Quantity = 12.5m, Cost = (decimal)_random.Next(10) },
+                    new() { Name = "Other Material", Quantity = 33m, Cost = (decimal)_random.Next(10) },
+                    new() { Name = "Last Material", Quantity = 10.25m, Cost = (decimal)_random.Next(10) }
                 };
 
                 artClass.Attendance = new Attendance();
