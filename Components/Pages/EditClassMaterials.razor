@@ -1,0 +1,18 @@
+﻿@page "/classes/{classId:guid?}/edit-materials"
+@rendermode InteractiveServer
+
+<PageTitle>Edit Class Materials</PageTitle>
+
+<h3>Edit Class Materials</h3>
+
+@code {
+    private ArtClass? artClass;
+
+    [Parameter]
+    public Guid ClassId { get; set; }
+
+    protected override void OnInitialized()
+    {
+        artClass = new ArtClass(ClassId, new ArtClassTestDataLoader());
+    }
+}

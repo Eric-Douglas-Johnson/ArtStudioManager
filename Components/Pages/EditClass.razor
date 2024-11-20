@@ -1,5 +1,8 @@
 ﻿@page "/classes/{classId:guid?}"
+@inject NavigationManager NavigationManager
 @rendermode InteractiveServer
+
+<PageTitle>Edit Class</PageTitle>
 
 <h3>Edit Class</h3>
 
@@ -104,16 +107,16 @@
 
     private void EditInstructors()
     {
-
+        NavigationManager.NavigateTo("classes/" + artClass!.Id + "/edit-instructors");
     }
 
     private void EditAttendees()
     {
-
+        NavigationManager.NavigateTo("classes/" + artClass!.Id + "/edit-attendees");
     }
 
     private void EditMaterials()
     {
-
+        NavigationManager.NavigateTo("classes/" + artClass!.Id + "/edit-materials");
     }
 }

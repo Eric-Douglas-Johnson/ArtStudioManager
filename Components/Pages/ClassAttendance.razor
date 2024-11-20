@@ -2,6 +2,8 @@
 @using Microsoft.AspNetCore.Components.QuickGrid;
 @rendermode @(new InteractiveServerRenderMode(prerender:false))
 
+<PageTitle>Class Attendance</PageTitle>
+
 <h3>Class Attendance</h3>
 
 @if (artClass == null) { throw new InvalidOperationException("Art Class could not be initialized."); }

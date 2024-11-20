@@ -1,0 +1,18 @@
+﻿@page "/classes/{classId:guid?}/edit-instructors"
+@rendermode InteractiveServer
+
+<PageTitle>Edit Class Intructors</PageTitle>
+
+<h3>Edit Class Intructors</h3>
+
+@code {
+    private ArtClass? artClass;
+
+    [Parameter]
+    public Guid ClassId { get; set; }
+
+    protected override void OnInitialized()
+    {
+        artClass = new ArtClass(ClassId, new ArtClassTestDataLoader());
+    }
+}
