@@ -1,0 +1,34 @@
+﻿@page "/facebook"
+@rendermode InteractiveServer
+
+<PageTitle>Facebook</PageTitle>
+
+<h3 style="color: purple;">Facebook</h3>
+
+<div class="parent-div">
+    <div class="child-div" style="width:300px;">
+        <label for="name">Title</label>
+        <input type="text" @bind="post!.Title" class="form-control"></input>
+    </div>
+    <div class="child-div" style="width:300px;">
+        <label for="textarea">Body</label>
+        <textarea id="textarea" @bind="post!.Body" rows="10" cols="100"></textarea>
+    </div>
+    <label for="img">Select Images:</label>
+    <input type="file" id="img" name="img" accept="image/*">
+    <button class="btn btn-primary" @onclick="@(() => PostToFacebook())">Post</button>
+</div>
+
+@code {
+    private FacebookPost? post;
+
+    protected override void OnInitialized()
+    {
+        post = new FacebookPost();
+    }
+
+    private void PostToFacebook()
+    {
+
+    }
+}
