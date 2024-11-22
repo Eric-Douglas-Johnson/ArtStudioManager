@@ -1,5 +1,6 @@
 ﻿@page "/emails"
 @rendermode @(new InteractiveServerRenderMode(prerender:false))
+@inject IJSRuntime JsRuntime
 @using Microsoft.AspNetCore.Components.QuickGrid;
 
 <PageTitle>Email</PageTitle>
@@ -69,13 +70,21 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        IDataLoader<ICollection<Artist>> artistLoader = new ArtistTestLoader();
-        await Task.Run(() => artistLoader.Load(artists));
-
-        foreach (var artist in artists)
+        try
         {
-            artistChecks.Add(new ArtistCheck(artist, false));
+            IDataLoader<ICollection<Artist>> artistLoader = new ArtistsExcelLoader();
+            
+            await Task.Run(() => artistLoader.Load(artists));
+
+            foreach (var artist in artists)
+            {
+                artistChecks.Add(new ArtistCheck(artist, false));
+            }
         }
+        catch (Exception ex)
+        {
+            await JsRuntime.InvokeVoidAsync("alert", ex.Message);
+        }    
     }
 
     private void CheckAll()

@@ -14,17 +14,30 @@
         <label for="textarea">Body</label>
         <textarea id="textarea" @bind="post!.Body" rows="10" cols="100"></textarea>
     </div>
-    <label for="img">Select Images:</label>
-    <input type="file" id="img" name="img" accept="image/*">
-    <button class="btn btn-primary" @onclick="@(() => PostToFacebook())">Post</button>
+
+    <InputFile OnChange="@LoadPics" multiple />
 </div>
 
 @code {
+    private long maxFileSize = 1024 * 1024 * 10; // 10MB max pic size
+    private int maxPicsAllowed = 5;
     private FacebookPost? post;
 
     protected override void OnInitialized()
     {
         post = new FacebookPost();
+    }
+
+    private async Task LoadPics(InputFileChangeEventArgs e)
+    {
+        if (e.FileCount > maxPicsAllowed) { throw new InvalidOperationException($"Max number of pics is {maxPicsAllowed}"); }
+
+        post!.ImageFiles = new List<string>();
+
+        foreach (var file in e.GetMultipleFiles())
+        {
+            post.ImageFiles.Add(file.Name);
+        }
     }
 
     private void PostToFacebook()
