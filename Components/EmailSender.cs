@@ -1,22 +1,21 @@
 ﻿
+using System.Net;
 using System.Net.Mail;
 
 namespace ArtStudioManager.Components
 {
     public static class EmailSender
     {
-        private static readonly string _userName = ""; //add in borealis username and password when testing
-        private static readonly string _password = "";
-
         public static void SendEmails(
-            ICollection<string> emailAddresses, string fromAddress, string fromAddressDisplayName, string subject, string body)
+            string host, int port, string username, string password, ICollection<string> emailAddresses, 
+            string fromAddress, string fromAddressDisplayName, string subject, string body)
         {
-            SmtpClient client = new SmtpClient("smtp-mail.outlook.com", 587);
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
+            SmtpClient client = new SmtpClient(host, port);
             client.DeliveryMethod = SmtpDeliveryMethod.Network;
-            client.UseDefaultCredentials = false;
-            System.Net.NetworkCredential credentials = new System.Net.NetworkCredential(_userName, _password);
             client.EnableSsl = true;
-            client.Credentials = credentials;
+            client.UseDefaultCredentials = false;
+            client.Credentials = new NetworkCredential(username, password);
             MailAddress from = new MailAddress(fromAddress, fromAddressDisplayName, System.Text.Encoding.UTF8);
             MailAddress to;
             MailMessage message;
@@ -28,7 +27,7 @@ namespace ArtStudioManager.Components
                 message.SubjectEncoding = System.Text.Encoding.UTF8;
                 message.Subject = subject;
                 message.Body = body;
-                //client.Send(message);
+                client.Send(message);
                 System.Diagnostics.Debug.WriteLine("email sent for " + to.Address);
                 message.Dispose();
             }

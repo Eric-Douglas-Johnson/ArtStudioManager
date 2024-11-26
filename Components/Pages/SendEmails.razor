@@ -117,6 +117,7 @@ else
             }
         }
 
-        Task.Run(() => EmailSender.SendEmails(emailToList, "borealis@outlook.com", "Borealis", subject, body));
+        Task.Run(() => EmailSender.SendEmails(
+            "smtp.mail.yahoo.com", 587, "e_d_johnson2003", "ccqnygcnoqzcfsyl", emailToList, "e_d_johnson2003@yahoo.com", "Test", subject, body));
     }
 }
