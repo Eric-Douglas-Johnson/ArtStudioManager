@@ -5,17 +5,17 @@
      alt="Size Limit logo by Anton Lovchikov" width="120" height="178">
 -->
 
-The goal of the ArtStudioManager project is to provide software for art studios that is easy to use and revenue generative.
+The goal of the ArtStudioManager project is to provide management software for art studios.
 It provides functionality for the day-to-day tasks that must be completed, and prioritizes:
-1. The minimization of time and effort required to complete tasks.
-2. The generation of revenue through marketing functionality.
+1. Minimizing the time and effort required to complete those tasks.
+2. Revenue generation.
 
 ## Features
 
 * Send batched emails.
 * Create and manage art classes.
 * Post content to Facebook.
-* Manage members, patrons, and art buyers.
+* Manage member, patron, and art buyer/customer accounts.
 * Process payment transactions for classes, purchases, and donations.
 * Manage art supplies and inventory.
 
