@@ -23,20 +23,17 @@ It provides functionality for the day-to-day tasks that must be completed, prior
 <p align="center"> 
   <img src="./img/example.png" alt="Size Limit CLI" width="738">
 </p>
--->
 
 With `--why`, Size Limit can tell you *why* your library is of this size
 and show the real cost of all your internal dependencies.
 We are using [Statoscope] for this analysis.
 
-<!---
 <p align="center">
   <a href="https://evilmartians.com/?utm_source=size-limit">
     <img src="https://evilmartians.com/badges/sponsored-by-evil-martians.svg"
          alt="Sponsored by Evil Martians" width="236" height="54">
   </a>
 </p>
--->
 
 [Statoscope]:    https://github.com/statoscope/statoscope
 [Storeon]: https://github.com/ai/storeon/
@@ -49,15 +46,10 @@ We are using [Statoscope] for this analysis.
 * [Material-UI](https://github.com/callemall/material-ui)
 * [Ant Design](https://github.com/ant-design/ant-design/)
 * [Autoprefixer](https://github.com/postcss/autoprefixer)
-
+-->
 ## Usage
 
-### JS Applications
-
-Suitable for applications that have their own bundler and send the JS bundle
-directly to a client (without publishing it to npm). Think of a user-facing app
-or website, like an email client, a CRM, a landing page or a blog with
-interactive elements, using React/Vue/Svelte lib or vanilla JS.
+### Class Creation
 
 <details><summary><b>Show instructions</b></summary>
 
