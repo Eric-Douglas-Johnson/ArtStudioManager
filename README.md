@@ -5,9 +5,10 @@
      alt="Size Limit logo by Anton Lovchikov" width="120" height="178">
 -->
 
-The goal of the ArtStudioManager software project is to provide simple, easy-use software, specifically for art studios.
-It provides functionality for the day-to-day tasks that must be completed at an art studio, and prioritizes the minimization
-of time and effort required to complete these tasks.
+The goal of the ArtStudioManager project is to provide software for art studios that is easy to use and revenue generative.
+It provides functionality for the day-to-day tasks that must be completed, and prioritizes:
+1. The minimization of time and effort required to complete tasks.
+2. The generation of revenue through marketing functionality.
 
 ## Features
 
