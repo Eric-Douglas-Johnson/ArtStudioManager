@@ -22,6 +22,7 @@ It provides functionality for the day-to-day tasks that must be completed, prior
 <!---
 <p align="center"> 
   <img src="./img/example.png" alt="Size Limit CLI" width="738">
+  https://github.com/Eric-Douglas-Johnson/ArtStudioManager/blob/main/wwwroot/images/main-menu.png
 </p>
 
 With `--why`, Size Limit can tell you *why* your library is of this size
@@ -55,9 +56,7 @@ We are using [Statoscope] for this analysis.
 
 1. Click `Classes` in the main menu:
 
-    ```sh
-    npm install --save-dev size-limit @size-limit/file
-    ```
+    <img src="./main/wwwroot/images/main-menu.png" alt="Main Menu" width="738">
 
 2. Add the `size-limit` section and the `size` script to your `package.json`:
 
