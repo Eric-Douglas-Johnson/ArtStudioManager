@@ -1,10 +1,15 @@
-# Art Studio Manager [![Cult Of Martians][cult-img]][cult]
+# ArtStudioManager
 
+<!---
 <img src="https://ai.github.io/size-limit/logo.svg" align="right"
      alt="Size Limit logo by Anton Lovchikov" width="120" height="178">
+-->
 
-Art Studio Manager is software that can be used to manage the day-to-day operations
-of an art studio. 
+ArtStudioManager is a software project for art studio operations.
+Its intent is to provide functionality for day-to-day tasks that must be completed, and to
+minimize the time and effort required to complete said tasks.
+
+## Features
 
 * Send batched emails.
 * Create and manage art classes.
@@ -13,30 +18,31 @@ of an art studio.
 * Process payment transactions for classes, purchases, and donations.
 * Manage art supplies and inventory.
 
+<!---
 <p align="center"> 
   <img src="./img/example.png" alt="Size Limit CLI" width="738">
 </p>
+-->
 
 With `--why`, Size Limit can tell you *why* your library is of this size
 and show the real cost of all your internal dependencies.
 We are using [Statoscope] for this analysis.
 
+<!---
 <p align="center">
   <a href="https://evilmartians.com/?utm_source=size-limit">
     <img src="https://evilmartians.com/badges/sponsored-by-evil-martians.svg"
          alt="Sponsored by Evil Martians" width="236" height="54">
   </a>
 </p>
+-->
 
-[GitHub action]: https://github.com/andresz1/size-limit-action
 [Statoscope]:    https://github.com/statoscope/statoscope
-[cult-img]:      http://cultofmartians.com/assets/badges/badge.svg
-[cult]:          http://cultofmartians.com/tasks/size-limit-config.html
 [Storeon]: https://github.com/ai/storeon/
 [Nano ID]: https://github.com/ai/nanoid/
 [React]: https://github.com/facebook/react/
 
-## Who Uses Size Limit
+## Who Uses ArtStudioManager
 
 * [MobX](https://github.com/mobxjs/mobx)
 * [Material-UI](https://github.com/callemall/material-ui)
