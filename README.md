@@ -5,9 +5,9 @@
      alt="Size Limit logo by Anton Lovchikov" width="120" height="178">
 -->
 
-ArtStudioManager is a software project for art studio operations.
-Its intent is to provide functionality for day-to-day tasks that must be completed, and to
-minimize the time and effort required to complete said tasks.
+The goal of the ArtStudioManager software project is to provide simple, easy-use software, specifically for art studios.
+It provides functionality for the day-to-day tasks that must be completed at an art studio, and prioritizes the minimization
+of time and effort required to complete these tasks.
 
 ## Features
 
