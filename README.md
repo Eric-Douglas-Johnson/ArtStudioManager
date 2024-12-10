@@ -53,7 +53,7 @@ We are using [Statoscope] for this analysis.
 
 <details><summary><b>Show instructions</b></summary>
 
-1. Install the preset:
+1. Click `Classes` in the main menu:
 
     ```sh
     npm install --save-dev size-limit @size-limit/file
