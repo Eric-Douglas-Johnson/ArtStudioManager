@@ -6,8 +6,8 @@
 -->
 
 The goal of the ArtStudioManager project is to provide functionality for day-to-day art studio management tasks, prioritizing:
-1. The minimization of time and effort required to complete tasks.
-2. The generation of revenue.
+1. The minimization of time and effort required to complete those tasks.
+2. Revenue generation.
 
 ## Features
 
