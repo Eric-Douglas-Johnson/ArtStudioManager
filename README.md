@@ -28,30 +28,15 @@ The goal of the ArtStudioManager project is to provide functionality for day-to-
 
     <img src="./wwwroot/images/main-menu-classes.png" width="738">
 
-2. Add the `size-limit` section and the `size` script to your `package.json`:
+2. Click `Add New Class` button:
 
-    ```diff
-    + "size-limit": [
-    +   {
-    +     "path": "dist/app-*.js"
-    +   }
-    + ],
-      "scripts": {
-        "build": "webpack ./webpack.config.js",
-    +   "size": "npm run build && size-limit",
-        "test": "vitest && eslint ."
-      }
-    ```
+     <img src="./wwwroot/images/classes-addnew-btn.png" width="738">
 
-3. Here’s how you can get the size for your current project:
+3. Enter class information into fields:
 
-    ```sh
-    $ npm run size
+    <img src="./wwwroot/images/addnew-class-page.png" width="738">
 
-      Package size: 30.08 kB with all dependencies, minified and brotlied
-    ```
-
-4. Now, let’s set the limit. Add 25% to the current total size and use that as
+5. Now, let’s set the limit. Add 25% to the current total size and use that as
    the limit in your `package.json`:
 
     ```diff
@@ -63,7 +48,7 @@ The goal of the ArtStudioManager project is to provide functionality for day-to-
       ],
     ```
 
-5. Add the `size` script to your test suite:
+6. Add the `size` script to your test suite:
 
     ```diff
       "scripts": {
@@ -74,7 +59,7 @@ The goal of the ArtStudioManager project is to provide functionality for day-to-
       }
     ```
 
-6. If you don’t have a continuous integration service running, don’t forget
+7. If you don’t have a continuous integration service running, don’t forget
    to add one — start with Github Actions.
 
 </details>
