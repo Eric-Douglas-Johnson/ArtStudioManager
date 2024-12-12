@@ -5,10 +5,9 @@
      alt="Size Limit logo by Anton Lovchikov" width="120" height="178">
 -->
 
-The goal of the ArtStudioManager project is to provide management software for art studios.
-It provides functionality for the day-to-day tasks that must be completed, prioritizing:
+The goal of the ArtStudioManager project is to provide functionality for day-to-day art studio management tasks, prioritizing:
 1. The minimization of time and effort required to complete those tasks.
-2. The generation of revenue.
+2. Revenue generation.
 
 ## Features
 
@@ -18,35 +17,7 @@ It provides functionality for the day-to-day tasks that must be completed, prior
 * Manage member, patron, and art buyer/customer accounts.
 * Process payment transactions for classes, purchases, and donations.
 * Manage art supplies and inventory.
-
-<!---
-<p align="center"> 
-  <img src="./img/example.png" alt="Size Limit CLI" width="738">
-</p>
-
-With `--why`, Size Limit can tell you *why* your library is of this size
-and show the real cost of all your internal dependencies.
-We are using [Statoscope] for this analysis.
-
-<p align="center">
-  <a href="https://evilmartians.com/?utm_source=size-limit">
-    <img src="https://evilmartians.com/badges/sponsored-by-evil-martians.svg"
-         alt="Sponsored by Evil Martians" width="236" height="54">
-  </a>
-</p>
-
-[Statoscope]:    https://github.com/statoscope/statoscope
-[Storeon]: https://github.com/ai/storeon/
-[Nano ID]: https://github.com/ai/nanoid/
-[React]: https://github.com/facebook/react/
-
-## Who Uses ArtStudioManager
-
-* [MobX](https://github.com/mobxjs/mobx)
-* [Material-UI](https://github.com/callemall/material-ui)
-* [Ant Design](https://github.com/ant-design/ant-design/)
-* [Autoprefixer](https://github.com/postcss/autoprefixer)
--->
+* 
 ## Usage
 
 ### Class Creation
@@ -55,9 +26,7 @@ We are using [Statoscope] for this analysis.
 
 1. Click `Classes` in the main menu:
 
-    ```sh
-    npm install --save-dev size-limit @size-limit/file
-    ```
+    <img src="./wwwroot/images/main-menu.png" width="738">
 
 2. Add the `size-limit` section and the `size` script to your `package.json`:
 
@@ -153,3 +122,32 @@ Size Limits supports three ways to define limits config.
        }
      ]
    ```
+<!---
+<p align="center"> 
+  <img src="./img/example.png" alt="Size Limit CLI" width="738">
+  https://github.com/Eric-Douglas-Johnson/ArtStudioManager/blob/main/wwwroot/images/main-menu.png
+</p>
+
+With `--why`, Size Limit can tell you *why* your library is of this size
+and show the real cost of all your internal dependencies.
+We are using [Statoscope] for this analysis.
+
+<p align="center">
+  <a href="https://evilmartians.com/?utm_source=size-limit">
+    <img src="https://evilmartians.com/badges/sponsored-by-evil-martians.svg"
+         alt="Sponsored by Evil Martians" width="236" height="54">
+  </a>
+</p>
+
+[Statoscope]:    https://github.com/statoscope/statoscope
+[Storeon]: https://github.com/ai/storeon/
+[Nano ID]: https://github.com/ai/nanoid/
+[React]: https://github.com/facebook/react/
+
+## Who Uses ArtStudioManager
+
+* [MobX](https://github.com/mobxjs/mobx)
+* [Material-UI](https://github.com/callemall/material-ui)
+* [Ant Design](https://github.com/ant-design/ant-design/)
+* [Autoprefixer](https://github.com/postcss/autoprefixer)
+-->
