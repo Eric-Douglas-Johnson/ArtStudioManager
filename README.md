@@ -36,32 +36,6 @@ The goal of the ArtStudioManager project is to provide functionality for day-to-
 
     <img src="./wwwroot/images/addnew-class-page.png" width="738">
 
-5. Now, let’s set the limit. Add 25% to the current total size and use that as
-   the limit in your `package.json`:
-
-    ```diff
-      "size-limit": [
-        {
-    +     "limit": "35 kB",
-          "path": "dist/app-*.js"
-        }
-      ],
-    ```
-
-6. Add the `size` script to your test suite:
-
-    ```diff
-      "scripts": {
-        "build": "webpack ./webpack.config.js",
-        "size": "npm run build && size-limit",
-    -   "test": "vitest && eslint ."
-    +   "test": "vitest && eslint . && npm run size"
-      }
-    ```
-
-7. If you don’t have a continuous integration service running, don’t forget
-   to add one — start with Github Actions.
-
 </details>
 
 ## Reports
