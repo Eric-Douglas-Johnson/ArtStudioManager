@@ -26,7 +26,7 @@ The goal of the ArtStudioManager project is to provide functionality for day-to-
 
 1. Click `Classes` in the main menu:
 
-    <img src="./wwwroot/images/main-menu.png" width="738">
+    <img src="./wwwroot/images/main-menu-classes.png" width="738">
 
 2. Add the `size-limit` section and the `size` script to your `package.json`:
 
