@@ -1,0 +1,120 @@
+﻿@page "/classes/new"
+@inject NavigationManager NavigationManager
+@rendermode InteractiveServer
+
+<PageTitle>Add New Class</PageTitle>
+
+<h3>Add New Class</h3>
+
+<EditForm Model="@artClass" OnValidSubmit="Save" OnInvalidSubmit="ShowSubmitError">
+    <div class="parent-div">
+        <div class="child-div">
+            <label for="name">Name</label>
+            <InputText id="name" @bind-Value="artClass!.Name" class="form-control"></InputText>
+        </div>
+        <div class="child-div" style="width:300px;">
+            <label for="desc">Description</label>
+            <InputText id="desc" @bind-Value="artClass.Description" class="form-control"></InputText>
+        </div>
+    </div>
+    <br />
+    <div class="parent-div">
+        <div class="child-div">
+            <label for="dateandtime">Starts</label>
+            <InputDate id="dateandtime" Type="InputDateType.DateTimeLocal" @bind-Value="artClass.Start" class="form-control"></InputDate>
+        </div>
+        <div class="child-div">
+            <label for="dateandtime">Ends</label>
+            <InputDate id="dateandtime" Type="InputDateType.DateTimeLocal" @bind-Value="artClass.End" class="form-control"></InputDate>
+        </div>
+        <div class="child-div">
+            <label for="cost">Cost($)</label>
+            <InputNumber id="costpercustomer" @bind-Value="artClass.Cost" class="form-control"></InputNumber>
+        </div>
+    </div>
+    <br />
+    <div class="parent-div">
+        <div class="child-div" style="border:1px groove purple">
+            <label class="child-component">Instructor(s)</label>
+            <ul class="child-component">
+                @if (artClass.Instructors is IEnumerable<Instructor> instructors)
+                {
+                    @foreach (var instructor in instructors)
+                    {
+                        <li>@instructor.Name</li>
+                    }
+                }
+            </ul>
+            <button class="btn btn-primary" style="margin-left: 10px" @onclick="EditInstructors">Edit</button>
+        </div>
+        <div class="child-div" style="border:1px groove purple">
+            <label class="child-component">Artists Signed Up</label>
+            <ul class="child-component">
+                @if (artClass.Artists is IEnumerable<Artist> attendees)
+                {
+                    @foreach (var attendee in attendees)
+                    {
+                        <li>@attendee.Name</li>
+                    }
+                }
+            </ul>
+            <button class="btn btn-primary" style="margin-left: 10px" @onclick="EditAttendees">Edit</button>
+        </div>
+        <div class="child-div" style="border:1px groove purple">
+            <label class="child-component">Materials</label>
+            <ul class="child-component">
+                @if (artClass.Materials is IEnumerable<Material> materials)
+                {
+                    @foreach (var material in materials)
+                    {
+                        <li>@material.Name : @material.Quantity at $@material.Cost</li>
+                    }
+                    <br />
+                    <li>Total Material Cost: $@materials.Sum(x => x.Cost)</li>
+                }
+            </ul>
+            <button class="btn btn-primary" style="margin: 5px 5px 10px 10px" @onclick="EditMaterials">Edit</button>
+        </div>
+    </div>
+</EditForm>
+
+@code {
+    private ArtClass? artClass;
+
+    private string newInstructorName = "";
+    private string newMemberName = "";
+    private string newCustomerName = "";
+
+    [Parameter]
+    public Guid ClassId { get; set; }
+
+    protected override void OnInitialized()
+    {
+        artClass = new ArtClass();
+    }
+
+    private void Save()
+    {
+
+    }
+
+    private void ShowSubmitError()
+    {
+
+    }
+
+    private void EditInstructors()
+    {
+        NavigationManager.NavigateTo("classes/" + artClass!.Id + "/edit-instructors");
+    }
+
+    private void EditAttendees()
+    {
+        NavigationManager.NavigateTo("classes/" + artClass!.Id + "/edit-attendees");
+    }
+
+    private void EditMaterials()
+    {
+        NavigationManager.NavigateTo("classes/" + artClass!.Id + "/edit-materials");
+    }
+}

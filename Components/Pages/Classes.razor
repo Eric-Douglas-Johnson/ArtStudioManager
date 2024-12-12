@@ -5,9 +5,13 @@
 
 <PageTitle>Classes</PageTitle>
 
+<button class="btn btn-primary" @onclick="@(() => AddClass())">Add New Class</button>
+<br />
+<br />
+
 @if (queryableClasses == null)
 {
-    <p style="color: purple; font-size: 25px;"><em>Loading Classes.....</em></p>
+    <p style="color: purple; font-size: 25px;"><em>Loading Future Classes.....</em></p>
 }
 else
 {
@@ -36,6 +40,11 @@ else
         IDataLoader<ICollection<ArtClass>> classLoader = new ArtClassesTestDataLoader();
         await Task.Run(() => classLoader.Load(classes));
         queryableClasses = classes.AsQueryable<ArtClass>();
+    }
+
+    private void AddClass()
+    {
+        NavigationManager.NavigateTo("classes/new");
     }
 
     private void EditClass(ArtClass artClass)

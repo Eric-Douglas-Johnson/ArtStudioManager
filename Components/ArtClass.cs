@@ -5,7 +5,7 @@ namespace ArtStudioManager.Components
     {
         public Guid Id { get; private set; }
         public ClassType Type { get; set; }
-        public string? Name { get; set; }
+        public string Name { get; set; }
         public string? Description { get; set; }
         public DateTime Start { get; set; }
         public DateTime End { get; set; }
@@ -19,11 +19,13 @@ namespace ArtStudioManager.Components
         public ArtClass()
         {
             Id = Guid.NewGuid();
+            Name = "New Class";
         }
 
         public ArtClass(Guid id, IDataLoader<ArtClass> dataLoader)
         {
             Id = id;
+            Name = "New Class";
             dataLoader.Load(this);
         }
 
