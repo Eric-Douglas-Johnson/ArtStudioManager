@@ -38,6 +38,7 @@ The goal of the ArtStudioManager project is to provide solutions for day-to-day 
 
 </details>
 
+<!---
 ## Reports
 
 Size Limit has a [GitHub action] that comments and rejects pull requests based
@@ -81,7 +82,7 @@ Size Limits supports three ways to define limits config.
        }
      ]
    ```
-<!---
+
 <p align="center"> 
   <img src="./img/example.png" alt="Size Limit CLI" width="738">
   https://github.com/Eric-Douglas-Johnson/ArtStudioManager/blob/main/wwwroot/images/main-menu.png
