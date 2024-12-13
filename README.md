@@ -5,7 +5,7 @@
      alt="Size Limit logo by Anton Lovchikov" width="120" height="178">
 -->
 
-The goal of the ArtStudioManager project is to provide functionality for day-to-day art studio management tasks, prioritizing:
+The goal of the ArtStudioManager project is to provide solutions for day-to-day art studio management tasks, prioritizing:
 1. The minimization of time and effort required to complete those tasks.
 2. Revenue generation.
 
