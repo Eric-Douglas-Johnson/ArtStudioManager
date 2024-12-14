@@ -5,7 +5,7 @@
      alt="Size Limit logo by Anton Lovchikov" width="120" height="178">
 -->
 
-The goal of the ArtStudioManager project is to provide functionality for day-to-day art studio management tasks, prioritizing:
+The goal of the ArtStudioManager project is to provide solutions for day-to-day art studio management tasks, prioritizing:
 1. The minimization of time and effort required to complete those tasks.
 2. Revenue generation.
 
@@ -28,57 +28,17 @@ The goal of the ArtStudioManager project is to provide functionality for day-to-
 
     <img src="./wwwroot/images/main-menu-classes.png" width="738">
 
-2. Add the `size-limit` section and the `size` script to your `package.json`:
+2. Click `Add New Class` button:
 
-    ```diff
-    + "size-limit": [
-    +   {
-    +     "path": "dist/app-*.js"
-    +   }
-    + ],
-      "scripts": {
-        "build": "webpack ./webpack.config.js",
-    +   "size": "npm run build && size-limit",
-        "test": "vitest && eslint ."
-      }
-    ```
+     <img src="./wwwroot/images/classes-addnew-btn.png" width="738">
 
-3. Here’s how you can get the size for your current project:
+3. Enter class information into fields:
 
-    ```sh
-    $ npm run size
-
-      Package size: 30.08 kB with all dependencies, minified and brotlied
-    ```
-
-4. Now, let’s set the limit. Add 25% to the current total size and use that as
-   the limit in your `package.json`:
-
-    ```diff
-      "size-limit": [
-        {
-    +     "limit": "35 kB",
-          "path": "dist/app-*.js"
-        }
-      ],
-    ```
-
-5. Add the `size` script to your test suite:
-
-    ```diff
-      "scripts": {
-        "build": "webpack ./webpack.config.js",
-        "size": "npm run build && size-limit",
-    -   "test": "vitest && eslint ."
-    +   "test": "vitest && eslint . && npm run size"
-      }
-    ```
-
-6. If you don’t have a continuous integration service running, don’t forget
-   to add one — start with Github Actions.
+    <img src="./wwwroot/images/addnew-class-page.png" width="738">
 
 </details>
 
+<!---
 ## Reports
 
 Size Limit has a [GitHub action] that comments and rejects pull requests based
@@ -122,7 +82,7 @@ Size Limits supports three ways to define limits config.
        }
      ]
    ```
-<!---
+
 <p align="center"> 
   <img src="./img/example.png" alt="Size Limit CLI" width="738">
   https://github.com/Eric-Douglas-Johnson/ArtStudioManager/blob/main/wwwroot/images/main-menu.png
