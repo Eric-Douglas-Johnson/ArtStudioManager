@@ -1,0 +1,68 @@
+﻿@page "/classes/attendance"
+@using Microsoft.AspNetCore.Components.QuickGrid;
+@rendermode @(new InteractiveServerRenderMode(prerender:false))
+
+<PageTitle>New Class Attendance</PageTitle>
+
+<h3>New Class Attendance</h3>
+
+@if (artClass == null) { throw new InvalidOperationException("Art Class could not be initialized."); }
+
+<br />
+<div class="parent-div">
+    <div class="child-div" style="width:300px;">
+        <label for="name">Add Member</label>
+        <InputSelect id="members" @bind-Value="members" class="form-select"></InputSelect>
+    </div>
+    <br />
+    <button class="btn btn-primary" @onclick="@(() => AddAttendee(newAttendeeName))">Add Member</button>
+    <br /><br />
+    <div class="child-div" style="width:300px;">
+        <label for="name">Non Member Name</label>
+        <InputText id="name" @bind-Value="newAttendeeName" class="form-control"></InputText>
+    </div>
+    <br />
+    <button class="btn btn-primary" @onclick="@(() => AddAttendee(newAttendeeName))">Add Non Member</button>
+</div>
+<br /><br />
+
+<QuickGrid Items="@queryableAttendanceRecord">
+    <PropertyColumn Property="@(p => p.Artist!.Name)" Sortable="true" Title="Attendee Name" />
+    <TemplateColumn Title="Actions">
+        <button class="btn btn-primary" @onclick="@(() => RemoveAttendee(context.Artist!.Name!))">Remove</button>
+    </TemplateColumn>
+</QuickGrid>
+<br />
+<button class="btn btn-primary" @onclick="@(() => Save())">Save</button>
+
+@code {
+    private ArtClass? artClass;
+    private IQueryable<AttendanceMark>? queryableAttendanceRecord;
+    private ICollection<Artist>? members;
+    private string newAttendeeName = "";
+
+    protected override void OnInitialized()
+    {
+        artClass = new ArtClass();
+        artClass.Attendance = new();
+        //load members
+    }
+
+    private void AddAttendee(string attendeeName)
+    {
+        if (!string.IsNullOrEmpty(attendeeName)) 
+        {
+            //artClass.Attendance.AddAttendee();
+        }
+    }
+
+    private void RemoveAttendee(string artistName)
+    {
+        
+    }
+
+    private void Save()
+    {
+        artClass!.SaveAttendance();
+    }
+}

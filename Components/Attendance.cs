@@ -10,6 +10,11 @@ namespace ArtStudioManager.Components
             AttendanceRecord = new List<AttendanceMark>();
         }
 
+        public void AddAttendee(Artist artist)
+        {
+            AddAttendanceMark(artist, false);
+        }
+
         public void AddAttendees(ICollection<Artist> artists)
         {
             foreach (var artist in artists)

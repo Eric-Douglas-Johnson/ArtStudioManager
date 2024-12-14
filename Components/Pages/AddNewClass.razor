@@ -36,44 +36,16 @@
     <div class="parent-div">
         <div class="child-div" style="border:1px groove purple">
             <label class="child-component">Instructor(s)</label>
-            <ul class="child-component">
-                @if (artClass.Instructors is IEnumerable<Instructor> instructors)
-                {
-                    @foreach (var instructor in instructors)
-                    {
-                        <li>@instructor.Name</li>
-                    }
-                }
-            </ul>
-            <button class="btn btn-primary" style="margin-left: 10px" @onclick="EditInstructors">Edit</button>
+            
         </div>
+        <br />
         <div class="child-div" style="border:1px groove purple">
-            <label class="child-component">Artists Signed Up</label>
-            <ul class="child-component">
-                @if (artClass.Artists is IEnumerable<Artist> attendees)
-                {
-                    @foreach (var attendee in attendees)
-                    {
-                        <li>@attendee.Name</li>
-                    }
-                }
-            </ul>
-            <button class="btn btn-primary" style="margin-left: 10px" @onclick="EditAttendees">Edit</button>
+            <button class="btn btn-primary" @onclick="@(() => CreateNewAttendance())">Sign Up Artists</button>
         </div>
+        <br />
         <div class="child-div" style="border:1px groove purple">
             <label class="child-component">Materials</label>
-            <ul class="child-component">
-                @if (artClass.Materials is IEnumerable<Material> materials)
-                {
-                    @foreach (var material in materials)
-                    {
-                        <li>@material.Name : @material.Quantity at $@material.Cost</li>
-                    }
-                    <br />
-                    <li>Total Material Cost: $@materials.Sum(x => x.Cost)</li>
-                }
-            </ul>
-            <button class="btn btn-primary" style="margin: 5px 5px 10px 10px" @onclick="EditMaterials">Edit</button>
+            
         </div>
     </div>
 </EditForm>
@@ -103,18 +75,8 @@
 
     }
 
-    private void EditInstructors()
+    private void CreateNewAttendance()
     {
-        NavigationManager.NavigateTo("classes/" + artClass!.Id + "/edit-instructors");
-    }
-
-    private void EditAttendees()
-    {
-        NavigationManager.NavigateTo("classes/" + artClass!.Id + "/edit-attendees");
-    }
-
-    private void EditMaterials()
-    {
-        NavigationManager.NavigateTo("classes/" + artClass!.Id + "/edit-materials");
+        NavigationManager.NavigateTo("classes/attendance");
     }
 }
