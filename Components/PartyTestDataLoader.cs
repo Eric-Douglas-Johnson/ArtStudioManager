@@ -1,7 +1,7 @@
 ﻿
 namespace ArtStudioManager.Components
 {
-    public class PartyTestDataLoader : IDataLoader<ICollection<Party>>
+    public class PartyTestDataLoader : IEntityLoader<ICollection<Party>>
     {
         private Random _random = new();
         private Array _partyNames = new[] {

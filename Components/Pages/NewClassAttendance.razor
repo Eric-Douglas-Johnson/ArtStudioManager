@@ -1,22 +1,27 @@
 ﻿@page "/classes/attendance"
 @using Microsoft.AspNetCore.Components.QuickGrid;
 @rendermode @(new InteractiveServerRenderMode(prerender:false))
+@inject IJSRuntime JsRuntime
 
 <PageTitle>New Class Attendance</PageTitle>
 
 <h3>New Class Attendance</h3>
 
-@if (artClass == null) { throw new InvalidOperationException("Art Class could not be initialized."); }
-
 <br />
 <div class="parent-div">
     <div class="child-div" style="width:300px;">
         <label for="name">Add Member</label>
-        <InputSelect id="members" @bind-Value="members" class="form-select"></InputSelect>
+        <InputSelect @bind-Value="selectedMember" @onchange="HandleSelectionChange">
+            @foreach (var member in members!)
+            {
+                <option value="@member">@member.Name</option>
+            }
+        </InputSelect>
     </div>
     <br />
-    <button class="btn btn-primary" @onclick="@(() => AddAttendee(newAttendeeName))">Add Member</button>
+    <button class="btn btn-primary" @onclick="@(() => AddMember(selectedMember!))">Add Member</button>
     <br /><br />
+
     <div class="child-div" style="width:300px;">
         <label for="name">Non Member Name</label>
         <InputText id="name" @bind-Value="newAttendeeName" class="form-control"></InputText>
@@ -38,14 +43,27 @@
 @code {
     private ArtClass? artClass;
     private IQueryable<AttendanceMark>? queryableAttendanceRecord;
-    private ICollection<Artist>? members;
+    private ICollection<Member>? members;
+    private Member? selectedMember;
     private string newAttendeeName = "";
 
     protected override void OnInitialized()
     {
         artClass = new ArtClass();
         artClass.Attendance = new();
-        //load members
+
+        members = ArtistService.GetMembers(new MembersTestCollectionLoader());
+        selectedMember = members.First();
+    }
+
+    private void HandleSelectionChange(ChangeEventArgs e)
+    {
+        selectedMember = (Member)e.Value!;
+    }
+
+    private void AddMember(Member memberToAdd)
+    {
+        JsRuntime.InvokeVoidAsync("alert", memberToAdd.Name);
     }
 
     private void AddAttendee(string attendeeName)

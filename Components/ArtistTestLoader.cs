@@ -1,7 +1,7 @@
 ﻿
 namespace ArtStudioManager.Components
 {
-    public class ArtistTestLoader : IDataLoader<ICollection<Artist>>
+    public class ArtistTestLoader : IEntityLoader<ICollection<Artist>>
     {
         private Random _random = new();
         private Array _memberTypes = Enum.GetValues(typeof(Member.MembershipType));

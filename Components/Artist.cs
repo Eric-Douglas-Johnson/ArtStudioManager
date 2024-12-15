@@ -41,7 +41,7 @@ namespace ArtStudioManager.Components
 
         public Member() : base() { }
 
-        public Member(IDataLoader<Member> dataLoader)
+        public Member(IEntityLoader<Member> dataLoader)
         {
             dataLoader.Load(this);
         }
@@ -56,7 +56,7 @@ namespace ArtStudioManager.Components
     {
         public NonMember() : base() { }
 
-        public NonMember(IDataLoader<NonMember> dataLoader)
+        public NonMember(IEntityLoader<NonMember> dataLoader)
         {
             dataLoader.Load(this);
         }

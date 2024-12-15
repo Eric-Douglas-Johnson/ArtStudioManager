@@ -22,7 +22,7 @@ namespace ArtStudioManager.Components
             Name = "New Class";
         }
 
-        public ArtClass(Guid id, IDataLoader<ArtClass> dataLoader)
+        public ArtClass(Guid id, IEntityLoader<ArtClass> dataLoader)
         {
             Id = id;
             Name = "New Class";
