@@ -11,21 +11,28 @@ namespace ArtStudioManager.Components
         public DateTime End { get; set; }
         public decimal Cost { get; set; }
         public Discount? MemberDiscount { get; set; }
-        public ICollection<Instructor>? Instructors { get; set; }
-        public ICollection<Artist>? Artists { get; set; }
+        public ICollection<Instructor> Instructors { get; set; }
+        public ICollection<Artist> Artists { get; set; }
         public ICollection<Material>? Materials { get; set; }
-        public Attendance? Attendance { get; set; }
+        public Attendance Attendance { get; set; }
        
         public ArtClass()
         {
             Id = Guid.NewGuid();
             Name = "New Class";
+            Instructors = new List<Instructor>();
+            Artists = new List<Artist>();
+            Attendance = new Attendance();
         }
 
         public ArtClass(Guid id, IEntityLoader<ArtClass> dataLoader)
         {
             Id = id;
             Name = "New Class";
+            Instructors = new List<Instructor>();
+            Artists = new List<Artist>();
+            Attendance = new Attendance();
+
             dataLoader.Load(this);
         }
 

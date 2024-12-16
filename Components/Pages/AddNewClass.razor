@@ -8,7 +8,7 @@
 
 <EditForm Model="@artClass" OnValidSubmit="Save" OnInvalidSubmit="ShowSubmitError">
     <div class="parent-div">
-        <div class="child-div">
+        <div class="child-div" style="width:300px;">
             <label for="name">Name</label>
             <InputText id="name" @bind-Value="artClass!.Name" class="form-control"></InputText>
         </div>
@@ -19,64 +19,60 @@
     </div>
     <br />
     <div class="parent-div">
-        <div class="child-div">
+        <div class="child-div" style="width:300px;">
             <label for="dateandtime">Starts</label>
             <InputDate id="dateandtime" Type="InputDateType.DateTimeLocal" @bind-Value="artClass.Start" class="form-control"></InputDate>
         </div>
-        <div class="child-div">
+        <div class="child-div" style="width:300px;">
             <label for="dateandtime">Ends</label>
             <InputDate id="dateandtime" Type="InputDateType.DateTimeLocal" @bind-Value="artClass.End" class="form-control"></InputDate>
         </div>
-        <div class="child-div">
+        <div class="child-div" style="width:300px;">
             <label for="cost">Cost($)</label>
             <InputNumber id="costpercustomer" @bind-Value="artClass.Cost" class="form-control"></InputNumber>
         </div>
+        <div class="child-div" style="width:300px;">
+            <label for="cost">Member Discount</label>
+            <InputNumber id="memberdiscount" @bind-Value="basicFlatRateMemberDiscount" class="form-control"></InputNumber>
+        </div>
     </div>
     <br />
-    <div class="parent-div">
-        <div class="child-div" style="border:1px groove purple">
-            <label class="child-component">Instructor(s)</label>
-            
-        </div>
-        <br />
-        <div class="child-div" style="border:1px groove purple">
-            <button class="btn btn-primary" @onclick="@(() => CreateNewAttendance())">Sign Up Artists</button>
-        </div>
-        <br />
-        <div class="child-div" style="border:1px groove purple">
-            <label class="child-component">Materials</label>
-            
-        </div>
-    </div>
+    <label class="child-component">Primary Instructor</label>
+    <InputSelect @bind-Value="selectedInstructorId" @onchange="HandleSelectionChange">
+        @foreach (var instructor in instructors!)
+        {
+            <option value="@instructor.Id.ToString()">@instructor.Name</option>
+        }
+    </InputSelect>
+    <br /><br />
+    <button type="submit" class="btn btn-primary">Save</button>
 </EditForm>
 
 @code {
     private ArtClass? artClass;
-
-    private string newInstructorName = "";
-    private string newMemberName = "";
-    private string newCustomerName = "";
-
-    [Parameter]
-    public Guid ClassId { get; set; }
+    private string? selectedInstructorId;
+    private ICollection<Instructor>? instructors;
+    private decimal basicFlatRateMemberDiscount;
 
     protected override void OnInitialized()
     {
         artClass = new ArtClass();
+        instructors = InstructorService.GetInstructors(new InstructorsTestCollectionLoader());
+        selectedInstructorId = instructors.First().Id.ToString();
+    }
+
+    private void HandleSelectionChange(ChangeEventArgs e)
+    {
+        selectedInstructorId = e.Value!.ToString();
     }
 
     private void Save()
     {
-
+        artClass!.MemberDiscount = new FlatRateDiscount(basicFlatRateMemberDiscount);
     }
 
     private void ShowSubmitError()
     {
 
-    }
-
-    private void CreateNewAttendance()
-    {
-        NavigationManager.NavigateTo("classes/attendance");
     }
 }

@@ -72,7 +72,7 @@ else
     {
         try
         {
-            IEntityLoader<ICollection<Artist>> artistLoader = new ArtistsExcelLoader();
+            ICollectionLoader<Artist> artistLoader = new ArtistsExcelLoader();
             
             await Task.Run(() => artistLoader.Load(artists));
 

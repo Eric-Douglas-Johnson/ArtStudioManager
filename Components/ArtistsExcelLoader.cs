@@ -3,7 +3,7 @@ using Microsoft.Office.Interop.Excel;
 
 namespace ArtStudioManager.Components
 {
-    public class ArtistsExcelLoader : IEntityLoader<ICollection<Artist>>
+    public class ArtistsExcelLoader : ICollectionLoader<Artist>
     {
         // replace with config value at some point
         private string _fileName = @"C:\Users\e_d_j\OneDrive\Desktop\ArtistData.xlsx";
