@@ -7,7 +7,7 @@ namespace ArtStudioManager.Components
         {
             collectionToLoadInto.Add(
                 new Member() { 
-                    Id = Guid.NewGuid().ToString(),
+                    MemberId = Guid.NewGuid().ToString(),
                     Name = "Eric Johnson",
                     MemberType = Member.MembershipType.Family,
                     DateJoined = DateOnly.FromDateTime(DateTime.Now),
@@ -18,7 +18,7 @@ namespace ArtStudioManager.Components
             collectionToLoadInto.Add(
                 new Member()
                 {
-                    Id = Guid.NewGuid().ToString(),
+                    MemberId = Guid.NewGuid().ToString(),
                     Name = "Paula Ramos",
                     MemberType = Member.MembershipType.Single,
                     DateJoined = DateOnly.FromDateTime(DateTime.Now),
@@ -29,7 +29,7 @@ namespace ArtStudioManager.Components
             collectionToLoadInto.Add(
                 new Member()
                 {
-                    Id = Guid.NewGuid().ToString(),
+                    MemberId = Guid.NewGuid().ToString(),
                     Name = "Bob Rye",
                     MemberType = Member.MembershipType.Family,
                     DateJoined = DateOnly.FromDateTime(DateTime.Now),
@@ -40,7 +40,7 @@ namespace ArtStudioManager.Components
             collectionToLoadInto.Add(
                 new Member()
                 {
-                    Id = Guid.NewGuid().ToString(),
+                    MemberId = Guid.NewGuid().ToString(),
                     Name = "Apple Gato",
                     MemberType = Member.MembershipType.Student,
                     DateJoined = DateOnly.FromDateTime(DateTime.Now),

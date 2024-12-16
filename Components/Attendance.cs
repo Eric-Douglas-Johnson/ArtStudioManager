@@ -3,7 +3,7 @@ namespace ArtStudioManager.Components
 {
     public class Attendance
     {
-        public ICollection<AttendanceMark> AttendanceRecord { get; set; }
+        public IList<AttendanceMark> AttendanceRecord { get; set; }
 
         public Attendance()
         {
@@ -23,7 +23,7 @@ namespace ArtStudioManager.Components
             }
         }
 
-        public void AddAttendanceMark(Artist artist, bool mark)
+        private void AddAttendanceMark(Artist artist, bool mark)
         {
             if (artist == null) { throw new ArgumentException("Artist is null."); }
             if (artist.Name == null) { throw new ArgumentException("Artist must have a name."); }
@@ -31,15 +31,20 @@ namespace ArtStudioManager.Components
             AttendanceRecord.Add(new AttendanceMark { Artist = artist, Attended = mark });
         }
 
-        public void EditAttendanceMark(string artistName, bool mark)
+        public void RemoveAttendee(Guid artistId)
         {
-            foreach (var attendanceMark in AttendanceRecord)
+            for (int i = 0;  i < AttendanceRecord.Count; i++)
             {
-                if (attendanceMark.Artist!.Name! == artistName)
+                if (AttendanceRecord[i].Artist!.Id == artistId)
                 {
-                    attendanceMark.Attended = mark;
+                    AttendanceRecord.RemoveAt(i);
                 }
             }
+        }
+
+        public bool ArtistIsAttending(Guid artistId)
+        {
+            return AttendanceRecord.Any(x => x.Artist!.Id == artistId);
         }
     }
 }

@@ -9,6 +9,7 @@ namespace ArtStudioManager.Components
             NonMember
         }
 
+        public Guid Id { get; set; }
         public string? Name { get; set; }
         public string? PrimaryPhone { get; set; }
         public string? SecondaryPhone { get; set; }
@@ -21,49 +22,11 @@ namespace ArtStudioManager.Components
         public DateOnly? Birthday { get; set; }
         public string Groups { get; set; } = string.Empty;
 
-        public Artist() { }
+        public Artist()
+        {
+            Id = Guid.NewGuid();
+        }
 
         public abstract ArtistType GetArtistType();
-    }
-
-    public class Member : Artist
-    {
-        public enum MembershipType
-        {
-            Student,
-            Single,
-            Family
-        }
-
-        public string? Id { get; set; }      
-        public MembershipType MemberType { get; set; }
-        public DateOnly? DateJoined { get; set; }
-
-        public Member() : base() { }
-
-        public Member(IEntityLoader<Member> dataLoader)
-        {
-            dataLoader.Load(this);
-        }
-
-        public override ArtistType GetArtistType()
-        {
-            return ArtistType.Member;
-        }
-    }
-
-    public class NonMember : Artist
-    {
-        public NonMember() : base() { }
-
-        public NonMember(IEntityLoader<NonMember> dataLoader)
-        {
-            dataLoader.Load(this);
-        }
-
-        public override ArtistType GetArtistType()
-        {
-            return ArtistType.NonMember;
-        }
     }
 }
