@@ -1,5 +1,8 @@
 ﻿
-namespace ArtStudioManager.Components
+using ArtStudioManager.Components.Interfaces;
+using ArtStudioManager.Components.Models;
+
+namespace ArtStudioManager.Components.Loaders
 {
     public class ArtClassesTestDataLoader : ICollectionLoader<ArtClass>
     {
@@ -30,14 +33,14 @@ namespace ArtStudioManager.Components
                     new NonMember() { Name = "Trevor" },
                 };
 
-                artClass.Cost = (decimal)_random.Next(100);
-                artClass.MemberDiscount = new FlatRateDiscount((decimal)_random.Next(100));
+                artClass.Cost = _random.Next(100);
+                artClass.MemberDiscount = new FlatRateDiscount(_random.Next(100));
 
                 artClass.Materials = new List<Material> {
-                    new() { Name = "Some Material", Quantity = 2.5m, Cost = (decimal)_random.Next(10) },
-                    new() { Name = "Second Material", Quantity = 12.5m, Cost = (decimal)_random.Next(10) },
-                    new() { Name = "Other Material", Quantity = 33m, Cost = (decimal)_random.Next(10) },
-                    new() { Name = "Last Material", Quantity = 10.25m, Cost = (decimal)_random.Next(10) }
+                    new() { Name = "Some Material", Quantity = 2.5m, Cost = _random.Next(10) },
+                    new() { Name = "Second Material", Quantity = 12.5m, Cost = _random.Next(10) },
+                    new() { Name = "Other Material", Quantity = 33m, Cost = _random.Next(10) },
+                    new() { Name = "Last Material", Quantity = 10.25m, Cost = _random.Next(10) }
                 };
 
                 artClass.Attendance = new Attendance();

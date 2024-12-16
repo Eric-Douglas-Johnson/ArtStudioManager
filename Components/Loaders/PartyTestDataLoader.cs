@@ -1,5 +1,7 @@
-﻿
-namespace ArtStudioManager.Components
+﻿using ArtStudioManager.Components.Interfaces;
+using ArtStudioManager.Components.Models;
+
+namespace ArtStudioManager.Components.Loaders
 {
     public class PartyTestDataLoader : IEntityLoader<ICollection<Party>>
     {

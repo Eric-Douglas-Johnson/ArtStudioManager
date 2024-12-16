@@ -1,7 +1,9 @@
 ﻿
+using ArtStudioManager.Components.Models;
+using ArtStudioManager.Components.Interfaces;
 using Microsoft.Office.Interop.Excel;
 
-namespace ArtStudioManager.Components
+namespace ArtStudioManager.Components.Loaders
 {
     public class ArtistsExcelLoader : ICollectionLoader<Artist>
     {
@@ -32,7 +34,7 @@ namespace ArtStudioManager.Components
 
             for (int i = 2; i <= range.Rows.Count; i++)
             {
-                artists.Add(new Member { Email = range.Cells[i, emailColumnIndex].Value.ToString() } );
+                artists.Add(new Member { Email = range.Cells[i, emailColumnIndex].Value.ToString() });
             }
 
             xlWorkBook.Close();

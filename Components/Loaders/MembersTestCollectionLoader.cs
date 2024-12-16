@@ -1,12 +1,15 @@
-﻿
-namespace ArtStudioManager.Components
+﻿using ArtStudioManager.Components.Interfaces;
+using ArtStudioManager.Components.Models;
+
+namespace ArtStudioManager.Components.Loaders
 {
     public class MembersTestCollectionLoader : ICollectionLoader<Member>
     {
         public Task Load(ICollection<Member> collectionToLoadInto)
         {
             collectionToLoadInto.Add(
-                new Member() { 
+                new Member()
+                {
                     MemberId = Guid.NewGuid().ToString(),
                     Name = "Eric Johnson",
                     MemberType = Member.MembershipType.Family,

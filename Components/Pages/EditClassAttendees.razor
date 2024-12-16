@@ -1,7 +1,11 @@
 ﻿@page "/classes/{classId:guid?}/edit-attendees"
-@using Microsoft.AspNetCore.Components.QuickGrid;
 @rendermode @(new InteractiveServerRenderMode(prerender:false))
 @inject IJSRuntime JsRuntime
+@using Microsoft.AspNetCore.Components.QuickGrid;
+@using ArtStudioManager.Components.Interfaces;
+@using ArtStudioManager.Components.Models;
+@using ArtStudioManager.Components.Loaders;
+@using ArtStudioManager.Components.Services;
 
 <PageTitle>Edit Class Attendance</PageTitle>
 

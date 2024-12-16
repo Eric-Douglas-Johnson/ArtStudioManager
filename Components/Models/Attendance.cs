@@ -1,5 +1,5 @@
 ﻿
-namespace ArtStudioManager.Components
+namespace ArtStudioManager.Components.Models
 {
     public class Attendance
     {
@@ -33,7 +33,7 @@ namespace ArtStudioManager.Components
 
         public void RemoveAttendee(Guid artistId)
         {
-            for (int i = 0;  i < AttendanceRecord.Count; i++)
+            for (int i = 0; i < AttendanceRecord.Count; i++)
             {
                 if (AttendanceRecord[i].Artist!.Id == artistId)
                 {

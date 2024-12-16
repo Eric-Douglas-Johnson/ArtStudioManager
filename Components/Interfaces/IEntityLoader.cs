@@ -1,5 +1,4 @@
-﻿
-namespace ArtStudioManager.Components
+﻿namespace ArtStudioManager.Components.Interfaces
 {
     /// <summary>
     /// A form of strategy pattern that allows different data loading implementations.

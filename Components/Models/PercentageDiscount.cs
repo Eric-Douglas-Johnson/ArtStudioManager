@@ -1,8 +1,8 @@
 ﻿
-namespace ArtStudioManager.Components
+namespace ArtStudioManager.Components.Models
 {
     public class PercentageDiscount : Discount
-    {   
+    {
         public decimal Cost { get; private set; }
         public decimal Percentage { get; private set; }
 

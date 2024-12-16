@@ -1,5 +1,7 @@
 ﻿
-namespace ArtStudioManager.Components
+using ArtStudioManager.Components.Interfaces;
+
+namespace ArtStudioManager.Components.Models
 {
     public class Member : Artist
     {
@@ -10,7 +12,7 @@ namespace ArtStudioManager.Components
             Family
         }
 
-        public string? MemberId { get; set; }      
+        public string? MemberId { get; set; }
         public MembershipType MemberType { get; set; }
         public DateOnly? DateJoined { get; set; }
 

@@ -1,7 +1,11 @@
 ﻿@page "/classes"
 @inject NavigationManager NavigationManager
-@using Microsoft.AspNetCore.Components.QuickGrid;
 @rendermode @(new InteractiveServerRenderMode(prerender:false))
+@using Microsoft.AspNetCore.Components.QuickGrid;
+@using ArtStudioManager.Components.Interfaces;
+@using ArtStudioManager.Components.Models;
+@using ArtStudioManager.Components.Loaders;
+@using ArtStudioManager.Components.Services;
 
 <PageTitle>Classes</PageTitle>
 

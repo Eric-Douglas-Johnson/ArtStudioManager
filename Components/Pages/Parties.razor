@@ -1,6 +1,9 @@
 ﻿@page "/parties"
 @inject NavigationManager NavigationManager
 @using Microsoft.AspNetCore.Components.QuickGrid;
+@using ArtStudioManager.Components.Interfaces;
+@using ArtStudioManager.Components.Models;
+@using ArtStudioManager.Components.Loaders;
 @rendermode @(new InteractiveServerRenderMode(prerender:false))
 
 <PageTitle>Parties</PageTitle>

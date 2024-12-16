@@ -1,6 +1,10 @@
 ﻿@page "/classes/attendance/{classId:guid?}"
 @using Microsoft.AspNetCore.Components.QuickGrid;
 @rendermode @(new InteractiveServerRenderMode(prerender:false))
+@using ArtStudioManager.Components.Interfaces;
+@using ArtStudioManager.Components.Models;
+@using ArtStudioManager.Components.Loaders;
+@using ArtStudioManager.Components.Services;
 
 <PageTitle>Class Attendance</PageTitle>
 

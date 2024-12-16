@@ -1,5 +1,4 @@
-﻿
-namespace ArtStudioManager.Components
+﻿namespace ArtStudioManager.Components.Models
 {
     public class Material
     {

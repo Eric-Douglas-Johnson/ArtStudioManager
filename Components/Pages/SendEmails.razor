@@ -2,6 +2,10 @@
 @rendermode @(new InteractiveServerRenderMode(prerender:false))
 @inject IJSRuntime JsRuntime
 @using Microsoft.AspNetCore.Components.QuickGrid;
+@using ArtStudioManager.Components.Interfaces;
+@using ArtStudioManager.Components.Models;
+@using ArtStudioManager.Components.Loaders;
+@using ArtStudioManager.Components.Services;
 
 <PageTitle>Email</PageTitle>
 
@@ -117,7 +121,7 @@ else
             }
         }
 
-        Task.Run(() => EmailSender.SendEmails(
+        Task.Run(() => EmailService.SendEmails(
             "smtp.mail.yahoo.com", 587, "e_d_johnson2003", "ccqnygcnoqzcfsyl", emailToList, "e_d_johnson2003@yahoo.com", "Test", subject, body));
     }
 }

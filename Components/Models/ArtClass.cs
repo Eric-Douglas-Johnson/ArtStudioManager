@@ -1,5 +1,7 @@
 ﻿
-namespace ArtStudioManager.Components
+using ArtStudioManager.Components.Interfaces;
+
+namespace ArtStudioManager.Components.Models
 {
     public class ArtClass
     {
@@ -15,7 +17,7 @@ namespace ArtStudioManager.Components
         public ICollection<Artist> Artists { get; set; }
         public ICollection<Material>? Materials { get; set; }
         public Attendance Attendance { get; set; }
-       
+
         public ArtClass()
         {
             Id = Guid.NewGuid();
@@ -48,7 +50,7 @@ namespace ArtStudioManager.Components
             {
                 var memberCount = Artists.Where(x => x.GetArtistType() == Artist.ArtistType.Member).Count();
                 var nonMemberCount = Artists.Count - memberCount;
-                decimal totalCostForAllMembers;     
+                decimal totalCostForAllMembers;
 
                 if (MemberDiscount is Discount discount)
                 {
@@ -70,7 +72,7 @@ namespace ArtStudioManager.Components
 
         public Instructor GetPrimaryInstructor()
         {
-            if (Instructors != null &&  Instructors.Count > 0)
+            if (Instructors != null && Instructors.Count > 0)
             {
                 foreach (var instructor in Instructors)
                 {

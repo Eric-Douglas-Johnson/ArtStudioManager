@@ -1,5 +1,6 @@
 
 using ArtStudioManager.Components;
+using ArtStudioManager.Components.Models;
 
 namespace UnitTesting
 {

@@ -1,5 +1,5 @@
 ﻿
-namespace ArtStudioManager.Components
+namespace ArtStudioManager.Components.Models
 {
     public abstract class Artist
     {

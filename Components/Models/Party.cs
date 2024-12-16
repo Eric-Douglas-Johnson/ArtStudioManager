@@ -1,5 +1,4 @@
-﻿
-namespace ArtStudioManager.Components
+﻿namespace ArtStudioManager.Components.Models
 {
     public class Party
     {
@@ -11,9 +10,9 @@ namespace ArtStudioManager.Components
         public string? ContactPhoneNumber { get; set; }
         public string? ContactEmail { get; set; }
         public int AttendeeCount { get; set; } = 0;
-        public string? EmployeeName {  get; set; }
+        public string? EmployeeName { get; set; }
         public ICollection<Material>? Materials { get; set; }
-        public decimal? DollarAmountCharged { get; set; } 
+        public decimal? DollarAmountCharged { get; set; }
 
         public decimal GetTotalMaterialCost()
         {

@@ -1,13 +1,12 @@
-﻿
-using System.Net;
+﻿using System.Net;
 using System.Net.Mail;
 
-namespace ArtStudioManager.Components
+namespace ArtStudioManager.Components.Services
 {
-    public static class EmailSender
+    public static class EmailService
     {
         public static void SendEmails(
-            string host, int port, string username, string password, ICollection<string> emailAddresses, 
+            string host, int port, string username, string password, ICollection<string> emailAddresses,
             string fromAddress, string fromAddressDisplayName, string subject, string body)
         {
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;

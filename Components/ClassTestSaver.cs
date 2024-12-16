@@ -1,5 +1,8 @@
 ﻿
 
+using ArtStudioManager.Components.Interfaces;
+using ArtStudioManager.Components.Models;
+
 namespace ArtStudioManager.Components
 {
     public class ClassTestSaver : IEntitySaver<ArtClass>

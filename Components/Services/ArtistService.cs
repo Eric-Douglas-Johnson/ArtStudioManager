@@ -1,7 +1,8 @@
-﻿
+﻿using ArtStudioManager.Components.Interfaces;
+using ArtStudioManager.Components.Models;
 using System.Collections.ObjectModel;
 
-namespace ArtStudioManager.Components
+namespace ArtStudioManager.Components.Services
 {
     public static class ArtistService
     {
