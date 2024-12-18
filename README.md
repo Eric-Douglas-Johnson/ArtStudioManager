@@ -12,7 +12,7 @@ The goal of the ArtStudioManager project is to provide solutions for day-to-day 
 ## Code Architecture
 
 * Data persistence is decoupled from concrete storage medium. Realized through loading and saving interfaces.
-* Models instantiation must be done through a factory and an IModelLoader must be injected for loading of existing. 
+* Model instantiation must be done through a factory--an IModelLoader must be injected into the factory method that loads from stored data.
 
 ## Features
 
