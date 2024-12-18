@@ -5,8 +5,7 @@ namespace ArtStudioManager.Components.Loaders
 {
     public class MembersTestCollectionLoader : ICollectionLoader<Member>
     {
-        public Task Load(ICollection<Member> collectionToLoadInto)
-        {
+        public void Load(ICollection<Member> collectionToLoadInto){
             collectionToLoadInto.Add(
                 new Member()
                 {
@@ -50,8 +49,11 @@ namespace ArtStudioManager.Components.Loaders
                     Email = "apple@yahoo.com"
                 }
             );
+        }
 
-            return Task.CompletedTask;
+        public Task LoadAsync(ICollection<Member> collectionObj)
+        {
+            throw new NotImplementedException();
         }
     }
 }

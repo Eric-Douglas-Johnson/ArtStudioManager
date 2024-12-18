@@ -7,6 +7,7 @@
     /// <typeparam name="T"></typeparam>
     public interface IEntitySaver<T> where T : class
     {
-        Task Save(T entityObj);
+        void Save(T entityObj);
+        Task SaveAsync(T entityObj);
     }
 }

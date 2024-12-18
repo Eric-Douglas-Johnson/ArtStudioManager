@@ -5,34 +5,33 @@ namespace ArtStudioManager.Components.Models
 {
     public class ArtClass
     {
-        public Guid Id { get; private set; }
+        public Guid Id { get; set; }
         public ClassType Type { get; set; }
-        public string Name { get; set; }
+        public string? Name { get; set; }
         public string? Description { get; set; }
-        public DateTime Start { get; set; }
-        public DateTime End { get; set; }
+        public DateTime Start { get; set; } = DateTime.Now;
+        public DateTime End { get; set; } = DateTime.Now;
         public decimal Cost { get; set; }
         public Discount? MemberDiscount { get; set; }
         public ICollection<Instructor> Instructors { get; set; }
         public ICollection<Artist> Artists { get; set; }
-        public ICollection<Material>? Materials { get; set; }
+        public ICollection<Material> Materials { get; set; }
         public Attendance Attendance { get; set; }
 
         public ArtClass()
         {
-            Id = Guid.NewGuid();
-            Name = "New Class";
             Instructors = new List<Instructor>();
             Artists = new List<Artist>();
+            Materials = new List<Material>();
             Attendance = new Attendance();
         }
 
         public ArtClass(Guid id, IEntityLoader<ArtClass> dataLoader)
         {
             Id = id;
-            Name = "New Class";
             Instructors = new List<Instructor>();
             Artists = new List<Artist>();
+            Materials = new List<Material>();
             Attendance = new Attendance();
 
             dataLoader.Load(this);

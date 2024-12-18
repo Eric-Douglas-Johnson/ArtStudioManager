@@ -10,7 +10,7 @@ namespace ArtStudioManager.Components.Loaders
         // replace with config value at some point
         private string _fileName = @"C:\Users\e_d_j\OneDrive\Desktop\ArtistData.xlsx";
 
-        public Task Load(ICollection<Artist> artists)
+        public void Load(ICollection<Artist> artists)
         {
             if (!File.Exists(_fileName)) { throw new InvalidOperationException("ExcelFilePath is not a valid file."); }
 
@@ -38,7 +38,11 @@ namespace ArtStudioManager.Components.Loaders
             }
 
             xlWorkBook.Close();
-            return Task.CompletedTask;
+        }
+
+        public Task LoadAsync(ICollection<Artist> collectionObj)
+        {
+            throw new NotImplementedException();
         }
     }
 }

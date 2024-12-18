@@ -70,9 +70,12 @@
         selectedInstructorId = e.Value!.ToString();
     }
 
-    private void Save()
+    private async Task Save()
     {
         artClass!.MemberDiscount = new FlatRateDiscount(basicFlatRateMemberDiscount);
+        var saver = new ArtClassFileSaver();
+        await saver.SaveAsync(artClass);
+        NavigationManager.NavigateTo("classes");
     }
 
     private void ShowSubmitError()

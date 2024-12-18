@@ -41,7 +41,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        ICollectionLoader<ArtClass> classLoader = new ArtClassesTestDataLoader();
+        ICollectionLoader<ArtClass> classLoader = new ArtClassesFileCollectionLoader();
         await Task.Run(() => classLoader.Load(classes));
         queryableClasses = classes.AsQueryable<ArtClass>();
     }
