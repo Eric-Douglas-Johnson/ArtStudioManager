@@ -30,7 +30,7 @@
 
     protected override void OnInitialized()
     {
-        artClass = new ArtClass(ClassId, new ArtClassTestDataLoader());
+        artClass = new ArtClass(ClassId, new ArtClassFileLoader());
 
         if (artClass.Attendance is Attendance attendance)
         {

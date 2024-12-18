@@ -1,4 +1,5 @@
-﻿using ArtStudioManager.Components.Interfaces;
+﻿
+using ArtStudioManager.Components.Interfaces;
 using ArtStudioManager.Components.Models;
 using System.Collections.ObjectModel;
 

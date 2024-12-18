@@ -5,7 +5,7 @@ namespace ArtStudioManager.Components.Models
 {
     public class ArtClass
     {
-        public Guid Id { get; set; }
+        public Guid Id { get; private set; }
         public ClassType Type { get; set; }
         public string? Name { get; set; }
         public string? Description { get; set; }
@@ -18,23 +18,13 @@ namespace ArtStudioManager.Components.Models
         public ICollection<Material> Materials { get; set; }
         public Attendance Attendance { get; set; }
 
-        public ArtClass()
-        {
-            Instructors = new List<Instructor>();
-            Artists = new List<Artist>();
-            Materials = new List<Material>();
-            Attendance = new Attendance();
-        }
-
-        public ArtClass(Guid id, IEntityLoader<ArtClass> dataLoader)
+        public ArtClass(Guid id)
         {
             Id = id;
             Instructors = new List<Instructor>();
             Artists = new List<Artist>();
             Materials = new List<Material>();
             Attendance = new Attendance();
-
-            dataLoader.Load(this);
         }
 
         /// <summary>

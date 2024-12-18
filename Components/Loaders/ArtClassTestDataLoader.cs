@@ -4,14 +4,14 @@ using ArtStudioManager.Components.Models;
 
 namespace ArtStudioManager.Components.Loaders
 {
-    public class ArtClassTestDataLoader : IEntityLoader<ArtClass>
+    public class ArtClassTestDataLoader : IModelLoader<ArtClass>
     {
         private Random _random = new();
         private Array _classTypes = Enum.GetValues(typeof(ClassType));
         private Array _classNames = new[] {
             "Record Acrylic Pour", "Acrylic Canvas", "Bowl Pottery", "Finnish Bracelet", "Dog Scratch", "Coffee Face" };
 
-        public Task Load(ArtClass artClass)
+        public void Load(ArtClass artClass)
         {
             artClass.Type = (ClassType)_classTypes.GetValue(_random.Next(_classTypes.Length))!;
             artClass.Name = (string)_classNames.GetValue(_random.Next(_classNames.Length))!;
@@ -42,8 +42,11 @@ namespace ArtStudioManager.Components.Loaders
 
             artClass.Attendance = new Attendance();
             artClass.Attendance.AddAttendees(artClass.Artists);
+        }
 
-            return Task.CompletedTask;
+        public Task LoadAsync(ArtClass entityObj)
+        {
+            throw new NotImplementedException();
         }
     }
 }

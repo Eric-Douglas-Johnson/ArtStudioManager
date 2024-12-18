@@ -7,7 +7,7 @@ namespace ArtStudioManager.Components.Models
     {
         public NonMember() : base() { }
 
-        public NonMember(IEntityLoader<NonMember> dataLoader)
+        public NonMember(IModelLoader<NonMember> dataLoader)
         {
             dataLoader.Load(this);
         }

@@ -5,7 +5,7 @@ using System.Text.Json;
 
 namespace ArtStudioManager.Components
 {
-    public class ArtClassFileSaver : IEntitySaver<ArtClass>
+    public class ArtClassFileSaver : IModelSaver<ArtClass>
     {
         public void Save(ArtClass artClass)
         {

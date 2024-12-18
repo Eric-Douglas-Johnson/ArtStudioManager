@@ -5,7 +5,7 @@
     /// The Save method saves the entity object to some storage.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public interface IEntitySaver<T> where T : class
+    public interface IModelSaver<T> where T : class
     {
         void Save(T entityObj);
         Task SaveAsync(T entityObj);

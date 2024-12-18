@@ -5,8 +5,9 @@
     /// The Load method loads data into the entity object.
     /// </summary>
     /// <typeparam name="T">The type of object needing data load</typeparam>
-    public interface IEntityLoader<T> where T : class
+    public interface IModelLoader<T> where T : class
     {
-        Task Load(T entityObj);
+        void Load(T entityObj);
+        Task LoadAsync(T entityObj);
     }
 }

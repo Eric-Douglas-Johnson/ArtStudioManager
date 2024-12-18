@@ -55,7 +55,7 @@
 
     protected override void OnInitialized()
     {
-        artClass = new ArtClass(ClassId, new ArtClassTestDataLoader());
+        artClass = new ArtClass(ClassId, new ArtClassFileLoader());
         queryableAttendanceRecord = artClass.Attendance.AttendanceRecord.AsQueryable<AttendanceMark>();
 
         members = ArtistService.GetMembers(new MembersTestCollectionLoader());

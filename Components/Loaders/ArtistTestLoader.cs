@@ -4,7 +4,7 @@ using ArtStudioManager.Components.Models;
 
 namespace ArtStudioManager.Components.Loaders
 {
-    public class ArtistTestLoader : IEntityLoader<ICollection<Artist>>
+    public class ArtistTestLoader : IModelLoader<ICollection<Artist>>
     {
         private Random _random = new();
         private Array _memberTypes = Enum.GetValues(typeof(Member.MembershipType));
@@ -17,7 +17,7 @@ namespace ArtStudioManager.Components.Loaders
         private Array _groups = new[] {
             "clay, paint, pottery", "drawing, acrylic, diamond", "coffee, drawing, paint", "pottery, coffee, acrylic", "painting, acrylic pour" };
 
-        public Task Load(ICollection<Artist> artists)
+        public void Load(ICollection<Artist> artists)
         {
             for (int i = 0; i < 50; i++)
             {
@@ -39,8 +39,11 @@ namespace ArtStudioManager.Components.Loaders
                     artists.Add(artist);
                 }
             }
+        }
 
-            return Task.CompletedTask;
+        public Task LoadAsync(ICollection<Artist> entityObj)
+        {
+            throw new NotImplementedException();
         }
     }
 }

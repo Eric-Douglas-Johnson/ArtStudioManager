@@ -3,13 +3,13 @@ using ArtStudioManager.Components.Models;
 
 namespace ArtStudioManager.Components.Loaders
 {
-    public class PartyTestDataLoader : IEntityLoader<ICollection<Party>>
+    public class PartyTestDataLoader : ICollectionLoader<Party>
     {
         private Random _random = new();
         private Array _partyNames = new[] {
             "Birthday, Painting", "Birthday, Drawing", "Christmas, Painting", "Cat's Birthday", "Birthday", "Family Misc" };
 
-        public Task Load(ICollection<Party> parties)
+        public void Load(ICollection<Party> parties)
         {
             for (int i = 0; i < 10000; i++)
             {
@@ -40,8 +40,11 @@ namespace ArtStudioManager.Components.Loaders
 
                 parties.Add(party);
             }
+        }
 
-            return Task.CompletedTask;
+        public Task LoadAsync(ICollection<Party> parties)
+        {
+            throw new NotImplementedException();
         }
     }
 }

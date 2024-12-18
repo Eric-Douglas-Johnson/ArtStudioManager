@@ -18,7 +18,7 @@ namespace ArtStudioManager.Components.Models
 
         public Member() : base() { }
 
-        public Member(IEntityLoader<Member> dataLoader)
+        public Member(IModelLoader<Member> dataLoader)
         {
             dataLoader.Load(this);
         }

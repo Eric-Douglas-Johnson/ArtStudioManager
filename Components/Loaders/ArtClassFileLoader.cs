@@ -5,9 +5,9 @@ using System.Text.Json;
 
 namespace ArtStudioManager.Components.Loaders
 {
-    public class ArtClassFileLoader : IEntityLoader<ArtClass>
+    public class ArtClassFileLoader : IModelLoader<ArtClass>
     {
-        public Task Load(ArtClass artClass)
+        public void Load(ArtClass artClass)
         {
             var targetFile = Environment.CurrentDirectory + @"\Files\ArtClasses\" + artClass.Id.ToString();
             if (!File.Exists(targetFile)) { throw new FileNotFoundException(); }
@@ -19,7 +19,6 @@ namespace ArtStudioManager.Components.Loaders
             var savedArtClass = JsonSerializer.Deserialize<ArtClass>(dataStr) ?? 
                 throw new InvalidOperationException("Art Class file was found, but there was no object data.");
 
-            artClass.Id = savedArtClass.Id;
             artClass.Type = savedArtClass.Type;
             artClass.Name = savedArtClass.Name;
             artClass.Description = savedArtClass.Description;
@@ -31,8 +30,11 @@ namespace ArtStudioManager.Components.Loaders
             artClass.MemberDiscount = savedArtClass.MemberDiscount;
             artClass.Materials = savedArtClass.Materials;
             artClass.Attendance = savedArtClass.Attendance;
+        }
 
-            return Task.CompletedTask;
+        public Task LoadAsync(ArtClass entityObj)
+        {
+            throw new NotImplementedException();
         }
     }
 }

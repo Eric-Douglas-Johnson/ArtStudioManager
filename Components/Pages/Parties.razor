@@ -31,7 +31,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        IEntityLoader<ICollection<Party>> partyLoader = new PartyTestDataLoader();
+        ICollectionLoader<Party> partyLoader = new PartyTestDataLoader();
         await Task.Run(() => partyLoader.Load(parties));
         queryableParties = parties.AsQueryable<Party>();
     }
