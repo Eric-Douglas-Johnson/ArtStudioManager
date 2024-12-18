@@ -9,6 +9,11 @@ The goal of the ArtStudioManager project is to provide solutions for day-to-day 
 1. The minimization of time and effort required to complete those tasks.
 2. Revenue generation.
 
+## Code Architecture
+
+* Data persistence is decoupled from concrete storage medium. Realized through loading and saving interfaces.
+* Models instantiation must be done through a factory and an IModelLoader must be injected for loading of existing. 
+
 ## Features
 
 * Send batched emails.
