@@ -1,6 +1,4 @@
 ﻿
-using ArtStudioManager.Components.Interfaces;
-
 namespace ArtStudioManager.Components.Models
 {
     public class ArtClass
@@ -77,8 +75,6 @@ namespace ArtStudioManager.Components.Models
 
         public void SaveAttendance()
         {
-            if (Attendance == null) { throw new InvalidOperationException("Attendance does not exist."); }
-
             foreach (var mark in Attendance.AttendanceRecord)
             {
                 System.Diagnostics.Debug.WriteLine(mark.Artist!.Name + " - " + mark.Attended);

@@ -1,4 +1,5 @@
 ﻿
+using ArtStudioManager.Components.Factories;
 using ArtStudioManager.Components.Interfaces;
 using ArtStudioManager.Components.Models;
 
@@ -15,7 +16,7 @@ namespace ArtStudioManager.Components.Loaders
         {
             for (int i = 0; i < 10000; i++)
             {
-                var artClass = new ArtClass();
+                var artClass = ArtClassFactory.Create();
                 artClass.Type = (ClassType)_classTypes.GetValue(_random.Next(_classTypes.Length))!;
                 artClass.Name = (string)_classNames.GetValue(_random.Next(_classNames.Length))!;
                 artClass.Description = "Any added description details";
@@ -54,7 +55,7 @@ namespace ArtStudioManager.Components.Loaders
         {
             for (int i = 0; i < 10000; i++)
             {
-                var artClass = new ArtClass();
+                var artClass = ArtClassFactory.Create();
                 artClass.Type = (ClassType)_classTypes.GetValue(_random.Next(_classTypes.Length))!;
                 artClass.Name = (string)_classNames.GetValue(_random.Next(_classNames.Length))!;
                 artClass.Description = "Any added description details";

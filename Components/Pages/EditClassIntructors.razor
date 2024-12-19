@@ -4,6 +4,7 @@
 @using ArtStudioManager.Components.Models;
 @using ArtStudioManager.Components.Loaders;
 @using ArtStudioManager.Components.Services;
+@using ArtStudioManager.Components.Factories;
 
 <PageTitle>Edit Class Intructors</PageTitle>
 
@@ -17,6 +18,6 @@
 
     protected override void OnInitialized()
     {
-        artClass = new ArtClass(ClassId, new ArtClassFileLoader());
+        artClass = ArtClassFactory.Create(ClassId, new ArtClassFileLoader());
     }
 }

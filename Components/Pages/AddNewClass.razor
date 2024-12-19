@@ -5,6 +5,7 @@
 @using ArtStudioManager.Components.Models;
 @using ArtStudioManager.Components.Loaders;
 @using ArtStudioManager.Components.Services;
+@using ArtStudioManager.Components.Factories;
 
 <PageTitle>Add New Class</PageTitle>
 
@@ -60,7 +61,7 @@
 
     protected override void OnInitialized()
     {
-        artClass = new ArtClass();
+        artClass = ArtClassFactory.Create();
         instructors = InstructorService.GetInstructors(new InstructorsTestCollectionLoader());
         selectedInstructorId = instructors.First().Id.ToString();
     }
