@@ -24,7 +24,7 @@
 
 @code {
     private ArtClass? artClass;
-    private IQueryable<AttendanceMark>? queryableAttendance;
+    private IQueryable<Attendance>? queryableAttendance;
 
     [Parameter]
     public Guid ClassId { get; set; }
@@ -33,9 +33,9 @@
     {
         artClass = ArtClassFactory.Create(ClassId, new ArtClassFileLoader());
 
-        if (artClass.Attendance is Attendance attendance)
+        if (artClass.Attendance is AttendanceRecord attendance)
         {
-            queryableAttendance = attendance.AttendanceRecord.AsQueryable<AttendanceMark>();
+            queryableAttendance = attendance.Attendances.AsQueryable<Attendance>();
         }
     }
 

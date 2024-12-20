@@ -14,7 +14,7 @@ namespace ArtStudioManager.Components.Models
         public ICollection<Instructor> Instructors { get; set; }
         public ICollection<Artist> Artists { get; set; }
         public ICollection<Material> Materials { get; set; }
-        public Attendance Attendance { get; set; }
+        public AttendanceRecord Attendance { get; set; }
 
         public ArtClass(Guid id)
         {
@@ -22,7 +22,7 @@ namespace ArtStudioManager.Components.Models
             Instructors = new List<Instructor>();
             Artists = new List<Artist>();
             Materials = new List<Material>();
-            Attendance = new Attendance();
+            Attendance = new AttendanceRecord();
         }
 
         /// <summary>
@@ -75,7 +75,7 @@ namespace ArtStudioManager.Components.Models
 
         public void SaveAttendance()
         {
-            foreach (var mark in Attendance.AttendanceRecord)
+            foreach (var mark in Attendance.Attendances)
             {
                 System.Diagnostics.Debug.WriteLine(mark.Artist!.Name + " - " + mark.Attended);
             }

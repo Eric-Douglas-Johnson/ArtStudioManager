@@ -13,7 +13,6 @@ namespace ArtStudioManager.Components.Factories
         /// <returns>ArtClass</returns>
         public static ArtClass Create()
         {
-
             return new ArtClass(Guid.NewGuid());
         }
 

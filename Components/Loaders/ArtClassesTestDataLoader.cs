@@ -44,7 +44,7 @@ namespace ArtStudioManager.Components.Loaders
                     new() { Name = "Last Material", Quantity = 10.25m, Cost = _random.Next(10) }
                 };
 
-                artClass.Attendance = new Attendance();
+                artClass.Attendance = new AttendanceRecord();
                 artClass.Attendance.AddAttendees(artClass.Artists);
 
                 artClasses.Add(artClass);
@@ -83,7 +83,7 @@ namespace ArtStudioManager.Components.Loaders
                     new() { Name = "Last Material", Quantity = 10.25m, Cost = _random.Next(10) }
                 };
 
-                artClass.Attendance = new Attendance();
+                artClass.Attendance = new AttendanceRecord();
                 artClass.Attendance.AddAttendees(artClass.Artists);
 
                 artClasses.Add(artClass);

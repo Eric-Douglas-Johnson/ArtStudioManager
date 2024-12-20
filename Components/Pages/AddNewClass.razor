@@ -73,10 +73,27 @@
 
     private async Task Save()
     {
+        var primaryInstructor = GetInstructor(selectedInstructorId!);
+        artClass!.Instructors = new List<Instructor>() { primaryInstructor };
         artClass!.MemberDiscount = new FlatRateDiscount(basicFlatRateMemberDiscount);
         var saver = new ArtClassFileSaver();
         await saver.SaveAsync(artClass);
-        NavigationManager.NavigateTo("classes");
+       // NavigationManager.NavigateTo("classes");
+    }
+
+    private Instructor GetInstructor(string idStr)
+    {
+        if (instructors == null) { throw new InvalidOperationException("Instuctor list was not created by service correctly."); }
+
+        foreach (var instructor in instructors)
+        {
+            if (instructor.Id.ToString().Equals(idStr))
+            {
+                return instructor;
+            }
+        }
+
+        throw new InvalidOperationException($"Instructor with id {idStr} could not be found.");
     }
 
     private void ShowSubmitError()
