@@ -1,8 +1,7 @@
-﻿
-using ArtStudioManager.Components.Interfaces;
+﻿using ArtStudioManager.Components.Interfaces;
 using ArtStudioManager.Components.Models;
 
-namespace ArtStudioManager.Components
+namespace ArtStudioManager.Components.Savers
 {
     public class ArtClassFileSaver : IModelSaver<ArtClass>
     {
