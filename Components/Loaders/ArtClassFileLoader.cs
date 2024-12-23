@@ -7,9 +7,16 @@ namespace ArtStudioManager.Components.Loaders
 {
     public class ArtClassFileLoader : IModelLoader<ArtClass>
     {
+        private readonly string _artClassFolderPath;
+
+        public ArtClassFileLoader(string artClassFolderPath)
+        {
+            _artClassFolderPath = artClassFolderPath;
+        }
+
         public void Load(ArtClass artClass)
         {
-            var targetFile = Environment.CurrentDirectory + @"\Files\ArtClasses\" + artClass.Id.ToString();
+            var targetFile = _artClassFolderPath + artClass.Id.ToString();
             if (!File.Exists(targetFile)) { throw new FileNotFoundException(); }
 
             using var fileStream = File.OpenRead(targetFile);

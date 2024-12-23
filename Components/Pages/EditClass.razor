@@ -97,7 +97,7 @@
 
     protected override void OnInitialized()
     {
-        artClass = ArtClassFactory.Create(ClassId, new ArtClassFileLoader());
+        artClass = ArtClassFactory.Create(ClassId, new ArtClassFileLoader(Environment.CurrentDirectory + @"\Files\ArtClasses\"));
     }
 
     private void Save()

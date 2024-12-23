@@ -56,7 +56,7 @@
 
     protected override void OnInitialized()
     {
-        artClass = ArtClassFactory.Create(ClassId, new ArtClassFileLoader());
+        artClass = ArtClassFactory.Create(ClassId, new ArtClassFileLoader(Environment.CurrentDirectory + @"\Files\ArtClasses\"));
         queryableAttendanceRecord = artClass.Attendance.Attendances.AsQueryable<Attendance>();
 
         members = ArtistService.GetMembers(new MembersTestCollectionLoader());
