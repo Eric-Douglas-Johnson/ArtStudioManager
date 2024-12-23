@@ -14,6 +14,8 @@ The goal of the ArtStudioManager project is to provide solutions for day-to-day 
 * Data persistence is decoupled from concrete storage medium--realized through interfaces for loading and saving.
 * Model instantiation must be done through a factory.
 * A data loader type must be injected into factory methods that instantiate models from stored data.
+* All model instances will be identified uniquely by a Guid.
+* Any models saved as files will require the file name to be the respective model's identifier value (Guid string).
 
 ## Features
 
