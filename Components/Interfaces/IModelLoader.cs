@@ -2,12 +2,12 @@
 {
     /// <summary>
     /// A form of strategy pattern that allows different data loading implementations.
-    /// The Load method loads data into the entity object.
+    /// The Load method populates the provided model instance.
     /// </summary>
-    /// <typeparam name="T">The type of object needing data load</typeparam>
+    /// <typeparam name="T">The type of model needing data load</typeparam>
     public interface IModelLoader<T> where T : class
     {
-        void Load(T entityObj);
-        Task LoadAsync(T entityObj);
+        void Load(T modelInstance);
+        Task LoadAsync(T modelInstance);
     }
 }
