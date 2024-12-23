@@ -77,7 +77,7 @@
         var primaryInstructor = GetInstructor(selectedInstructorId!);
         artClass!.Instructors = new List<Instructor>() { primaryInstructor };
         artClass!.MemberDiscount = new FlatRateDiscount(basicFlatRateMemberDiscount);
-        var saver = new ArtClassFileSaver();
+        var saver = new ArtClassFileSaver(Environment.CurrentDirectory + @"\Files\ArtClasses\");
         await saver.SaveAsync(artClass);
        // NavigationManager.NavigateTo("classes");
     }

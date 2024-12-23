@@ -6,9 +6,16 @@ namespace ArtStudioManager.Components.Savers
 {
     public class ArtClassFileSaver : IModelSaver<ArtClass>
     {
+        private readonly string _artClassFolderPath;
+
+        public ArtClassFileSaver(string artClassFolderPath)
+        {
+            _artClassFolderPath = artClassFolderPath;
+        }
+
         public void Save(ArtClass artClass)
         {
-            var fileName = Environment.CurrentDirectory + @"\Files\ArtClasses\" + artClass.Id.ToString();
+            var fileName = _artClassFolderPath + artClass.Id.ToString();
             using var fileStream = new FileStream(fileName, FileMode.Create);
             using var writer = new StreamWriter(fileStream);
 
