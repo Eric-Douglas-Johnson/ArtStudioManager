@@ -1,7 +1,6 @@
 ﻿
 using ArtStudioManager.Components.Interfaces;
 using ArtStudioManager.Components.Models;
-using System.Text.Json;
 
 namespace ArtStudioManager.Components.Loaders
 {
@@ -21,22 +20,37 @@ namespace ArtStudioManager.Components.Loaders
 
             using var fileStream = File.OpenRead(targetFile);
             using var reader = new StreamReader(fileStream);
-            var dataStr = reader.ReadToEnd();
 
-            var savedArtClass = JsonSerializer.Deserialize<ArtClass>(dataStr) ?? 
-                throw new InvalidOperationException("Art Class file was found, but there was no object data.");
+            if (!Enum.TryParse(reader.ReadLine(), out ArtClassType type)) 
+            { 
+                throw new InvalidOperationException("Art class type is not valid"); 
+            }
 
-            artClass.Type = savedArtClass.Type;
-            artClass.Name = savedArtClass.Name;
-            artClass.Description = savedArtClass.Description;
-            artClass.Start = savedArtClass.Start;
-            artClass.End = savedArtClass.End;
-            artClass.Instructors = savedArtClass.Instructors;
-            artClass.Artists = savedArtClass.Artists;
-            artClass.Cost = savedArtClass.Cost;
-            artClass.MemberDiscount = savedArtClass.MemberDiscount;
-            artClass.Materials = savedArtClass.Materials;
-            artClass.Attendance = savedArtClass.Attendance;
+            artClass.Type = type;
+            artClass.Name = reader.ReadLine();
+            artClass.Description = reader.ReadLine();
+            artClass.Start = DateTime.Parse(reader.ReadLine()!);
+            artClass.End = DateTime.Parse(reader.ReadLine()!);
+            artClass.Cost = decimal.Parse(reader.ReadLine()!);
+
+            string currentLine;
+            while (!reader.EndOfStream)
+            {
+                currentLine = reader.ReadLine()!;
+
+                if (currentLine == typeof(FlatRateDiscount).ToString())
+                {
+                    artClass.MemberDiscount = new FlatRateDiscount(decimal.Parse(reader.ReadLine()!));
+                }
+                else if (currentLine == typeof(PercentageDiscount).ToString())
+                {
+                    artClass.MemberDiscount = new PercentageDiscount(decimal.Parse(reader.ReadLine()!), decimal.Parse(reader.ReadLine()!));
+                }
+                else if (currentLine == typeof(Instructor).ToString())
+                {
+
+                }
+            }
         }
 
         public Task LoadAsync(ArtClass entityObj)

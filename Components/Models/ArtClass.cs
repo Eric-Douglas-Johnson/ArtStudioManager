@@ -4,7 +4,7 @@ namespace ArtStudioManager.Components.Models
     public class ArtClass
     {
         public Guid Id { get; private set; }
-        public ClassType Type { get; set; }
+        public ArtClassType Type { get; set; }
         public string? Name { get; set; }
         public string? Description { get; set; }
         public DateTime Start { get; set; } = DateTime.Now;

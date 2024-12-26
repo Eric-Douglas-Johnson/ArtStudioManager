@@ -1,5 +1,5 @@
 ﻿
-public enum ClassType
+public enum ArtClassType
 {
     Pottery,
     Paint,

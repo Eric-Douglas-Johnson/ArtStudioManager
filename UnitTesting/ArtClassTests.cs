@@ -12,14 +12,14 @@ namespace UnitTesting
         public ArtClassTests()
         {
             _random = new Random();
-            _classTypes = Enum.GetValues(typeof(ClassType));
+            _classTypes = Enum.GetValues(typeof(ArtClassType));
         }
 
         [Fact]
         public void GetTotalDollars_ReturnsCorrectNonRoundedValue()
         {
             var artClass = ArtClassFactory.Create();
-            artClass.Type = (ClassType)_classTypes.GetValue(_random.Next(_classTypes.Length))!;
+            artClass.Type = (ArtClassType)_classTypes.GetValue(_random.Next(_classTypes.Length))!;
             artClass.Name = "Name of Class";
             artClass.Description = "Description of specific class";
             artClass.Start = DateTime.Now;
@@ -42,7 +42,7 @@ namespace UnitTesting
         public void GetTotalDollars_ReturnsZero_WhenNoOneSignedUp()
         {
             var artClass = ArtClassFactory.Create();
-            artClass.Type = (ClassType)_classTypes.GetValue(_random.Next(_classTypes.Length))!;
+            artClass.Type = (ArtClassType)_classTypes.GetValue(_random.Next(_classTypes.Length))!;
             artClass.Name = "Name of Class";
             artClass.Description = "Description of specific class";
             artClass.Start = DateTime.Now;
@@ -59,7 +59,7 @@ namespace UnitTesting
         public void GetTotalDollars_ReturnsCorrectValue_WhenDiscountIsNull()
         {
             var artClass = ArtClassFactory.Create();
-            artClass.Type = (ClassType)_classTypes.GetValue(_random.Next(_classTypes.Length))!;
+            artClass.Type = (ArtClassType)_classTypes.GetValue(_random.Next(_classTypes.Length))!;
             artClass.Name = "Name of Class";
             artClass.Description = "Description of specific class";
             artClass.Start = DateTime.Now;
@@ -76,7 +76,7 @@ namespace UnitTesting
         public void GetTotalDollars_ReturnsCorrectValue_WhenDiscountIsFlatRateAndZero()
         {
             var artClass = ArtClassFactory.Create();
-            artClass.Type = (ClassType)_classTypes.GetValue(_random.Next(_classTypes.Length))!;
+            artClass.Type = (ArtClassType)_classTypes.GetValue(_random.Next(_classTypes.Length))!;
             artClass.Name = "Name of Class";
             artClass.Description = "Description of specific class";
             artClass.Start = DateTime.Now;
@@ -94,7 +94,7 @@ namespace UnitTesting
         public void GetTotalDollars_ReturnsCorrectValue_WhenDiscountIsPercentageAndZero()
         {
             var artClass = ArtClassFactory.Create();
-            artClass.Type = (ClassType)_classTypes.GetValue(_random.Next(_classTypes.Length))!;
+            artClass.Type = (ArtClassType)_classTypes.GetValue(_random.Next(_classTypes.Length))!;
             artClass.Name = "Name of Class";
             artClass.Description = "Description of specific class";
             artClass.Start = DateTime.Now;
@@ -112,7 +112,7 @@ namespace UnitTesting
         public void GetTotalDollars_ReturnsCorrectValue_WhenValidFlatRateDiscount()
         {
             var artClass = ArtClassFactory.Create();
-            artClass.Type = (ClassType)_classTypes.GetValue(_random.Next(_classTypes.Length))!;
+            artClass.Type = (ArtClassType)_classTypes.GetValue(_random.Next(_classTypes.Length))!;
             artClass.Name = "Name of Class";
             artClass.Description = "Description of specific class";
             artClass.Start = DateTime.Now;

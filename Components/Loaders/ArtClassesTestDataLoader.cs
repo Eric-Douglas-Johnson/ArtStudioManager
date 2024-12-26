@@ -8,7 +8,7 @@ namespace ArtStudioManager.Components.Loaders
     public class ArtClassesTestDataLoader : ICollectionLoader<ArtClass>
     {
         private Random _random = new();
-        private Array _classTypes = Enum.GetValues(typeof(ClassType));
+        private Array _classTypes = Enum.GetValues(typeof(ArtClassType));
         private Array _classNames = new[] {
             "Record Acrylic Pour", "Acrylic Canvas", "Bowl Pottery", "Finnish Bracelet", "Dog Scratch", "Coffee Face" };
 
@@ -17,7 +17,7 @@ namespace ArtStudioManager.Components.Loaders
             for (int i = 0; i < 10000; i++)
             {
                 var artClass = ArtClassFactory.Create();
-                artClass.Type = (ClassType)_classTypes.GetValue(_random.Next(_classTypes.Length))!;
+                artClass.Type = (ArtClassType)_classTypes.GetValue(_random.Next(_classTypes.Length))!;
                 artClass.Name = (string)_classNames.GetValue(_random.Next(_classNames.Length))!;
                 artClass.Description = "Any added description details";
                 artClass.Start = DateTime.Now.AddDays(_random.Next(10));
@@ -56,7 +56,7 @@ namespace ArtStudioManager.Components.Loaders
             for (int i = 0; i < 10000; i++)
             {
                 var artClass = ArtClassFactory.Create();
-                artClass.Type = (ClassType)_classTypes.GetValue(_random.Next(_classTypes.Length))!;
+                artClass.Type = (ArtClassType)_classTypes.GetValue(_random.Next(_classTypes.Length))!;
                 artClass.Name = (string)_classNames.GetValue(_random.Next(_classNames.Length))!;
                 artClass.Description = "Any added description details";
                 artClass.Start = DateTime.Now.AddDays(_random.Next(10));

@@ -46,8 +46,7 @@ namespace ArtStudioManager.Components.Savers
 
             foreach (var instructor in artClass.Instructors)
             {
-                var type = instructor.GetType().ToString();
-                writer.WriteLine(type);
+                writer.WriteLine(instructor.GetType());
 
                 writer.WriteLine(instructor.Id.ToString());
                 writer.WriteLine(instructor.IsPrimary);
