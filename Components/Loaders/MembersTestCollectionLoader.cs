@@ -11,7 +11,7 @@ namespace ArtStudioManager.Components.Loaders
                 {
                     MemberId = Guid.NewGuid().ToString(),
                     Name = "Eric Johnson",
-                    MemberType = Member.MembershipType.Family,
+                    MemberType = MembershipType.Family,
                     DateJoined = DateOnly.FromDateTime(DateTime.Now),
                     Email = "e_d_johnson2003@yahoo.com"
                 }
@@ -22,7 +22,7 @@ namespace ArtStudioManager.Components.Loaders
                 {
                     MemberId = Guid.NewGuid().ToString(),
                     Name = "Paula Ramos",
-                    MemberType = Member.MembershipType.Single,
+                    MemberType = MembershipType.Single,
                     DateJoined = DateOnly.FromDateTime(DateTime.Now),
                     Email = "someemail@yahoo.com"
                 }
@@ -33,7 +33,7 @@ namespace ArtStudioManager.Components.Loaders
                 {
                     MemberId = Guid.NewGuid().ToString(),
                     Name = "Bob Rye",
-                    MemberType = Member.MembershipType.Family,
+                    MemberType = MembershipType.Family,
                     DateJoined = DateOnly.FromDateTime(DateTime.Now),
                     Email = "bobrye@yahoo.com"
                 }
@@ -44,7 +44,7 @@ namespace ArtStudioManager.Components.Loaders
                 {
                     MemberId = Guid.NewGuid().ToString(),
                     Name = "Apple Gato",
-                    MemberType = Member.MembershipType.Student,
+                    MemberType = MembershipType.Student,
                     DateJoined = DateOnly.FromDateTime(DateTime.Now),
                     Email = "apple@yahoo.com"
                 }

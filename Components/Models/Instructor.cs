@@ -11,5 +11,10 @@
         {
             Id = Guid.NewGuid();
         }
+
+        public Instructor(Guid id)
+        {
+            Id = id;
+        }
     }
 }

@@ -23,8 +23,9 @@ namespace ArtStudioManager.Components.Savers
             writer.WriteLine(artClass.Type.ToString());
             writer.WriteLine(artClass.Name ?? string.Empty);
             writer.WriteLine(artClass.Description ?? string.Empty);
-            writer.WriteLine(artClass.Start.ToString());
-            writer.WriteLine(artClass.End.ToString());
+            writer.WriteLine(artClass.Start.Ticks.ToString());
+            writer.WriteLine(artClass.End.Ticks.
+                ToString());
             writer.WriteLine(artClass.Cost.ToString());
 
             if (artClass.MemberDiscount != null)
@@ -59,7 +60,6 @@ namespace ArtStudioManager.Components.Savers
                 writer.WriteLine(artist.GetType());
 
                 writer.WriteLine(artist.Id.ToString());
-                writer.WriteLine(artist.GetArtistType().ToString());
                 writer.WriteLine(artist.Name ?? string.Empty);
                 writer.WriteLine(artist.PrimaryPhone ?? string.Empty);
                 writer.WriteLine(artist.SecondaryPhone ?? string.Empty);
@@ -91,7 +91,7 @@ namespace ArtStudioManager.Components.Savers
                 writer.WriteLine(material.Cost);
             }
 
-            foreach (var attendance in artClass.Attendance.Attendances)
+            foreach (var attendance in artClass.AttendanceRecord.Attendances)
             {
                 writer.WriteLine(attendance.GetType());
 
@@ -112,9 +112,10 @@ namespace ArtStudioManager.Components.Savers
                 if (attendance.Artist.GetType() == typeof(Member))
                 {
                     var member = (Member)attendance.Artist;
-                    writer.WriteLine(member.MemberId);
+                    writer.WriteLine(member.GetType());
+                    writer.WriteLine(member.MemberId ?? string.Empty);
                     writer.WriteLine(member.MemberType.ToString());
-                    writer.WriteLine(member.DateJoined.ToString());
+                    writer.WriteLine(member.DateJoined.ToString() ?? string.Empty);
                 }
 
                 writer.WriteLine(attendance.Attended);
@@ -202,7 +203,7 @@ namespace ArtStudioManager.Components.Savers
                 writer.WriteLine(material.Cost);
             }
 
-            foreach (var attendance in artClass.Attendance.Attendances)
+            foreach (var attendance in artClass.AttendanceRecord.Attendances)
             {
                 writer.WriteLine(attendance.GetType());
 

@@ -57,7 +57,7 @@
     protected override void OnInitialized()
     {
         artClass = ArtClassFactory.Create(ClassId, new ArtClassFileLoader(Environment.CurrentDirectory + @"\Files\ArtClasses\"));
-        queryableAttendanceRecord = artClass.Attendance.Attendances.AsQueryable<Attendance>();
+        queryableAttendanceRecord = artClass.AttendanceRecord.Attendances.AsQueryable<Attendance>();
 
         members = ArtistService.GetMembers(new MembersTestCollectionLoader());
         selectedMemberId = members.First().MemberId;
@@ -73,12 +73,12 @@
         //JsRuntime.InvokeVoidAsync("alert", memberId);
         var member = GetMember(memberId);
 
-        if (!artClass!.Attendance!.ArtistIsAttending(member.Id))
+        if (!artClass!.AttendanceRecord!.ArtistIsAttending(member.Id))
         {
             if (member.GetType() != typeof(NullMember))
             {
-                artClass!.Attendance!.AddAttendee(member);
-                queryableAttendanceRecord = artClass.Attendance.Attendances.AsQueryable<Attendance>();
+                artClass!.AttendanceRecord!.AddAttendee(member);
+                queryableAttendanceRecord = artClass.AttendanceRecord.Attendances.AsQueryable<Attendance>();
             }
         }
     }
@@ -106,8 +106,8 @@
 
     private void RemoveAttendee(Guid artistId)
     {
-        artClass!.Attendance!.RemoveAttendee(artistId);
-        queryableAttendanceRecord = artClass.Attendance.Attendances.AsQueryable<Attendance>();
+        artClass!.AttendanceRecord!.RemoveAttendee(artistId);
+        queryableAttendanceRecord = artClass.AttendanceRecord.Attendances.AsQueryable<Attendance>();
     }
 
     private void Save()

@@ -23,12 +23,12 @@ namespace ArtStudioManager.Components.Models
             }
         }
 
-        private void AddAttendance(Artist artist, bool mark)
+        public void AddAttendance(Artist artist, bool attended)
         {
             if (artist == null) { throw new ArgumentException("Artist is null."); }
             if (artist.Name == null) { throw new ArgumentException("Artist must have a name."); }
 
-            Attendances.Add(new Attendance(artist, mark));
+            Attendances.Add(new Attendance(artist, attended));
         }
 
         public void RemoveAttendee(Guid artistId)

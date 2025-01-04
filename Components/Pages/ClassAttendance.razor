@@ -33,7 +33,7 @@
     {
         artClass = ArtClassFactory.Create(ClassId, new ArtClassFileLoader(Environment.CurrentDirectory + @"\Files\ArtClasses\"));
 
-        if (artClass.Attendance is AttendanceRecord attendance)
+        if (artClass.AttendanceRecord is AttendanceRecord attendance)
         {
             queryableAttendance = attendance.Attendances.AsQueryable<Attendance>();
         }

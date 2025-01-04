@@ -7,7 +7,7 @@ namespace ArtStudioManager.Components.Loaders
     public class ArtistTestLoader : IModelLoader<ICollection<Artist>>
     {
         private Random _random = new();
-        private Array _memberTypes = Enum.GetValues(typeof(Member.MembershipType));
+        private Array _memberTypes = Enum.GetValues(typeof(MembershipType));
         private Array _artistNames = new[] {
             "Bob Rye", "Eric Johnson", "Paula Ramos", "Sandy Shores", "Jane Doe", "Steve Oreeno", "Trevor McLovin" };
 
@@ -25,7 +25,7 @@ namespace ArtStudioManager.Components.Loaders
                 {
                     var artist = new Member();
                     artist.Name = (string)_artistNames.GetValue(_random.Next(_artistNames.Length))!;
-                    artist.MemberType = (Member.MembershipType)_memberTypes.GetValue(_random.Next(_memberTypes.Length))!;
+                    artist.MemberType = (MembershipType)_memberTypes.GetValue(_random.Next(_memberTypes.Length))!;
                     artist.Email = (string)_testEmails.GetValue(_random.Next(_testEmails.Length))!;
                     artist.Groups = (string)_groups.GetValue(_random.Next(_groups.Length))!;
                     artists.Add(artist);

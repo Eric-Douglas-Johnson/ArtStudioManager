@@ -14,7 +14,7 @@ namespace ArtStudioManager.Components.Models
         public ICollection<Instructor> Instructors { get; set; }
         public ICollection<Artist> Artists { get; set; }
         public ICollection<Material> Materials { get; set; }
-        public AttendanceRecord Attendance { get; set; }
+        public AttendanceRecord AttendanceRecord { get; set; }
 
         public ArtClass(Guid id)
         {
@@ -22,7 +22,7 @@ namespace ArtStudioManager.Components.Models
             Instructors = new List<Instructor>();
             Artists = new List<Artist>();
             Materials = new List<Material>();
-            Attendance = new AttendanceRecord();
+            AttendanceRecord = new AttendanceRecord();
         }
 
         /// <summary>
@@ -35,7 +35,7 @@ namespace ArtStudioManager.Components.Models
 
             if (Artists != null && Artists.Count > 0)
             {
-                var memberCount = Artists.Where(x => x.GetArtistType() == Artist.ArtistType.Member).Count();
+                var memberCount = Artists.Where(x => x.GetArtistType() == ArtistType.Member).Count();
                 var nonMemberCount = Artists.Count - memberCount;
                 decimal totalCostForAllMembers;
 
@@ -75,7 +75,7 @@ namespace ArtStudioManager.Components.Models
 
         public void SaveAttendance()
         {
-            foreach (var mark in Attendance.Attendances)
+            foreach (var mark in AttendanceRecord.Attendances)
             {
                 System.Diagnostics.Debug.WriteLine(mark.Artist!.Name + " - " + mark.Attended);
             }

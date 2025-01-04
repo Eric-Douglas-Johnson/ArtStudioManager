@@ -7,9 +7,9 @@ namespace ArtStudioManager.Components.Models
     {
         public NonMember() : base() { }
 
-        public NonMember(IModelLoader<NonMember> dataLoader)
+        public NonMember(Guid id)
         {
-            dataLoader.Load(this);
+            base.Id = id;
         }
 
         public override ArtistType GetArtistType()

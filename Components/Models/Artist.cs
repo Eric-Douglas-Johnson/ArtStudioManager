@@ -1,14 +1,8 @@
 ﻿
 namespace ArtStudioManager.Components.Models
 {
-    public abstract class Artist
+    public abstract partial class Artist
     {
-        public enum ArtistType
-        {
-            Member,
-            NonMember
-        }
-
         public Guid Id { get; set; }
         public string? Name { get; set; }
         public string? PrimaryPhone { get; set; }

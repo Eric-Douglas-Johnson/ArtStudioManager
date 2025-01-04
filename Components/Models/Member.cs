@@ -3,24 +3,17 @@ using ArtStudioManager.Components.Interfaces;
 
 namespace ArtStudioManager.Components.Models
 {
-    public class Member : Artist
+    public partial class Member : Artist
     {
-        public enum MembershipType
-        {
-            Student,
-            Single,
-            Family
-        }
-
         public string? MemberId { get; set; }
         public MembershipType MemberType { get; set; }
         public DateOnly? DateJoined { get; set; }
 
         public Member() : base() { }
 
-        public Member(IModelLoader<Member> dataLoader)
+        public Member(Guid artistId)
         {
-            dataLoader.Load(this);
+            base.Id = artistId;
         }
 
         public override ArtistType GetArtistType()
