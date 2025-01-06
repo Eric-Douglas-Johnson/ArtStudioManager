@@ -75,11 +75,12 @@
     private async Task Save()
     {
         var primaryInstructor = GetInstructor(selectedInstructorId!);
+        primaryInstructor.IsPrimary = true;
         artClass!.Instructors = new List<Instructor>() { primaryInstructor };
         artClass!.MemberDiscount = new FlatRateDiscount(basicFlatRateMemberDiscount);
         var saver = new ArtClassFileSaver(Environment.CurrentDirectory + @"\Files\ArtClasses\");
         await saver.SaveAsync(artClass);
-       // NavigationManager.NavigateTo("classes");
+        NavigationManager.NavigateTo("classes");
     }
 
     private Instructor GetInstructor(string idStr)

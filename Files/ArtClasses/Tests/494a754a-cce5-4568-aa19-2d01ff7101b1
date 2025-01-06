@@ -1,0 +1,135 @@
+494a754a-cce5-4568-aa19-2d01ff7101b1
+Scratch
+Test Class for file tests
+Description of specific class
+638717492838073479
+638717492838073572
+50
+ArtStudioManager.Components.Models.FlatRateDiscount
+5
+ArtStudioManager.Components.Models.Instructor
+f6cee3bc-7545-491e-89c3-543b81bc79df
+True
+Karen
+
+ArtStudioManager.Components.Models.Instructor
+79feced6-f607-4f43-9f74-242bc5a624ac
+False
+Rose
+
+ArtStudioManager.Components.Models.Member
+c281fe0d-a9ef-46a4-97cb-5451a909ba7f
+Eric Johnson
+
+
+
+
+
+
+
+
+
+
+
+Student
+
+ArtStudioManager.Components.Models.NonMember
+f3dd85c7-e29b-4b40-833b-f7b6d2856e46
+Some NonMember
+
+
+
+
+
+
+
+
+
+
+ArtStudioManager.Components.Models.NonMember
+653e566c-6927-4870-af81-6b46a965fdce
+Another NonMember
+
+
+
+
+
+
+
+
+
+
+ArtStudioManager.Components.Models.Material
+name 1
+test desc 1
+5
+10
+ArtStudioManager.Components.Models.Material
+name 2
+test desc 2
+1
+100
+ArtStudioManager.Components.Models.Material
+name 3
+test desc 3
+50
+1
+ArtStudioManager.Components.Models.Material
+name 4
+test desc 4
+15
+15
+ArtStudioManager.Components.Models.Material
+name 5
+test desc 5
+3
+33
+ArtStudioManager.Components.Models.Attendance
+c281fe0d-a9ef-46a4-97cb-5451a909ba7f
+Member
+Eric Johnson
+
+
+
+
+
+
+
+
+
+
+ArtStudioManager.Components.Models.Member
+
+Student
+
+False
+ArtStudioManager.Components.Models.Attendance
+f3dd85c7-e29b-4b40-833b-f7b6d2856e46
+NonMember
+Some NonMember
+
+
+
+
+
+
+
+
+
+
+False
+ArtStudioManager.Components.Models.Attendance
+653e566c-6927-4870-af81-6b46a965fdce
+NonMember
+Another NonMember
+
+
+
+
+
+
+
+
+
+
+False

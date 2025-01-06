@@ -11,7 +11,14 @@ namespace ArtStudioManager.Components.Loaders
 
         public ArtClassFileLoader(string artClassFolderPath)
         {
-            _artClassFolderPath = artClassFolderPath;
+            if (!artClassFolderPath.EndsWith('\\'))
+            {
+                _artClassFolderPath = artClassFolderPath + @"\";
+            }
+            else
+            {
+                _artClassFolderPath = artClassFolderPath;
+            }
         }
 
         public void Load(ArtClass artClass)

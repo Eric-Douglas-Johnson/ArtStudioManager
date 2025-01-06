@@ -1,7 +1,7 @@
 ﻿
+using ArtStudioManager.Components.Factories;
 using ArtStudioManager.Components.Interfaces;
 using ArtStudioManager.Components.Models;
-using System.Text.Json;
 
 namespace ArtStudioManager.Components.Loaders
 {
@@ -14,14 +14,9 @@ namespace ArtStudioManager.Components.Loaders
 
             foreach (var file in directoryInfo.GetFiles())
             {
-                using var fileStream = File.OpenRead(file.FullName);
-                using var reader = new StreamReader(fileStream);
-                var dataStr = reader.ReadToEnd();
-
-                var savedArtClass = JsonSerializer.Deserialize<ArtClass>(dataStr) ??
-                    throw new InvalidOperationException("Art Class file was found, but there was no object data.");
-
-                artClasses.Add(savedArtClass);
+                var artClassLoader = new ArtClassFileLoader(targetFolderName);
+                var loadedArtClassInstance = ArtClassFactory.Create(Guid.Parse(file.Name), artClassLoader);
+                artClasses.Add(loadedArtClassInstance);
             }
         }
 
@@ -32,7 +27,9 @@ namespace ArtStudioManager.Components.Loaders
 
             foreach (var file in directoryInfo.GetFiles())
             {
-
+                var artClassLoader = new ArtClassFileLoader(targetFolderName);
+                var loadedArtClassInstance = ArtClassFactory.Create(Guid.Parse(file.Name), artClassLoader);
+                artClasses.Add(loadedArtClassInstance);
             }
 
             return Task.CompletedTask;
